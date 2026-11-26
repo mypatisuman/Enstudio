@@ -1,0 +1,248 @@
+version: "1.1"
+description: "EngineeringStudio internal model — superset of YMPL topology"
+
+instrument_kinds:
+  - transmitter
+  - controller
+  - indicator
+  - recorder
+  - switch
+  - alarm
+  - analyzer
+  - element
+  - converter
+  - totalizer
+  - relief_recorder
+  - level_glass
+  - bubble_circle
+  - bubble_square
+  - bubble_diamond
+  - bubble_hexagon
+
+equipment_kinds:
+  - vessel_vertical
+  - vessel_horizontal
+  - vessel
+  - separator
+  - pump
+  - heat_exchanger
+  - compressor
+  - column
+  - reactor
+  - absorber
+  - adsorption
+  - filter
+  - meter
+  - vendor_package
+  - generic_equipment
+
+valve_kinds:
+  - hand_valve
+  - control_valve
+  - relief_valve
+  - check_valve
+  - solenoid_valve
+  - needle_valve
+  - butterfly_valve
+  - ball_valve
+  - blowdown_valve
+  - orifice_plate
+  - generic_valve
+  - valve
+  - checkvalve
+  - relief
+
+junction_kinds:
+  - tee
+  - manifold
+
+off_page_kinds:
+  - off_page_left
+  - off_page_right
+  - off_page_top
+  - off_page_bottom
+  - off_page_connector
+
+utility_kinds:
+  - instrument_air
+  - nitrogen
+  - steam
+  - cooling_water
+  - fuel_gas
+  - generic_utility
+
+annotation_kinds:
+  - setpoint
+  - data_block
+  - area_label
+  - line_label
+  - note
+
+node_categories:
+  - equipment
+  - instrument
+  - valve
+  - junction
+  - off_page
+  - utility
+  - annotation
+
+studio_extensions:
+  instruments:
+    fields:
+      - name: tag
+        type: string
+        required: true
+      - name: type
+        type: string
+        required: true
+      - name: description
+        type: string
+        required: false
+      - name: equipment_ref
+        type: string
+        required: false
+      - name: dcs_node_id
+        type: string
+        required: false
+      - name: range_lo
+        type: float
+        required: false
+      - name: range_hi
+        type: float
+        required: false
+      - name: units
+        type: string
+        required: false
+      - name: alarm_hihi
+        type: float
+        required: false
+        safety_critical: true
+      - name: alarm_hi
+        type: float
+        required: false
+      - name: alarm_lo
+        type: float
+        required: false
+      - name: alarm_lolo
+        type: float
+        required: false
+        safety_critical: true
+      - name: fail_position
+        type: string
+        required: false
+        values: [open, closed, last]
+      - name: loop_number
+        type: string
+        required: false
+        description: "Controller tag for the loop this instrument belongs to (e.g. FIC-101)"
+      - name: drawing
+        type: string
+        required: false
+        description: "Drawing number where this tag appears"
+      - name: sil_level
+        type: integer
+        required: false
+        values: [1, 2, 3, null]
+        description: "SIL rating — safety instruments only"
+      - name: area
+        type: string
+        required: false
+      - name: confidence
+        type: float
+        required: false
+
+  equipment:
+    fields:
+      - name: tag
+        type: string
+        required: true
+      - name: type
+        type: string
+        required: true
+      - name: description
+        type: string
+        required: false
+      - name: area
+        type: string
+        required: false
+      - name: drawing
+        type: string
+        required: false
+
+  connections:
+    fields:
+      - name: id
+        type: string
+        required: false
+        description: "ISA line designation e.g. 4\"-N2-1001-A1B"
+      - name: from_tag
+        type: string
+        required: true
+      - name: to_tag
+        type: string
+        required: true
+      - name: from_nozzle
+        type: string
+        required: false
+        description: "Nozzle/port on from_tag (inlet, outlet, drain, vent, N1…)"
+      - name: to_nozzle
+        type: string
+        required: false
+        description: "Nozzle/port on to_tag"
+      - name: type
+        type: string
+        required: false
+        values: [stream, signal, recycle, bypass, pneumatic, electrical, hydraulic, capillary]
+      - name: fluid
+        type: string
+        required: false
+      - name: line_size
+        type: string
+        required: false
+        description: "Nominal pipe size (4\", 6\", DN100)"
+      - name: line_class
+        type: string
+        required: false
+        description: "Piping class (150#, ANSI 300, etc.)"
+      - name: insulation
+        type: string
+        required: false
+        description: "H=heat trace, C=cold, P=personnel protection, null=none"
+      - name: to_drawing
+        type: string
+        required: false
+        description: "Destination drawing for off-page connections"
+
+  loops:
+    description: "Control and safety loops — keyed by controller tag (feedback) or initiator tag (safety)"
+    fields:
+      - name: type
+        type: string
+        required: true
+        values: [feedback, safety, ratio, cascade, feedforward]
+      - name: measurement
+        type: string
+        required: true
+        description: "Transmitter or sensing element tag"
+      - name: controller
+        type: string
+        required: false
+        description: "Controller tag; null for SIS-only loops"
+      - name: final_element
+        type: string
+        required: true
+        description: "Control valve or block valve tag"
+      - name: drawing
+        type: string
+        required: false
+      - name: setpoint
+        type: float
+        required: false
+      - name: setpoint_units
+        type: string
+        required: false
+      - name: sil_level
+        type: integer
+        required: false
+        values: [1, 2, 3, null]

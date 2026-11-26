@@ -1,0 +1,148 @@
+version: "1.0"
+target: vids
+description: "VPlant Industrial Data Schema (VIDS) v1.0 — field mappings for enVIEW"
+
+sections:
+  metadata:
+    fields:
+      - internal: plant_name
+        target: plant_name
+        required: true
+      - internal: drawing_number
+        target: drawing_number
+        required: false
+      - internal: process_type
+        target: process_type
+        required: true
+      - internal: revision
+        target: revision
+        required: true
+      - internal: date
+        target: date
+        required: false
+      - internal: changelog
+        target: changelog
+        required: false
+
+  instruments:
+    key_field: tag
+    fields:
+      - internal: type
+        target: type
+        required: true
+      - internal: description
+        target: description
+        required: false
+      - internal: dcs_node_id
+        target: dcs_tag
+        required: false
+      - internal: equipment_ref
+        target: equipment_ref
+        required: false
+      - internal: range_lo
+        target: range_lo
+        required: false
+        type: float
+      - internal: range_hi
+        target: range_hi
+        required: false
+        type: float
+      - internal: units
+        target: units
+        required: false
+      - internal: alarm_hihi
+        target: alarm_hihi
+        required: false
+        type: float
+        annotation: "[VERIFY — safety critical, requires SIL review]"
+      - internal: alarm_hi
+        target: alarm_hi
+        required: false
+        type: float
+      - internal: alarm_lo
+        target: alarm_lo
+        required: false
+        type: float
+      - internal: alarm_lolo
+        target: alarm_lolo
+        required: false
+        type: float
+      - internal: fail_position
+        target: fail_position
+        required: false
+      - internal: area
+        target: area
+        required: false
+      - internal: x
+        target: x
+        required: false
+        type: float
+      - internal: y
+        target: y
+        required: false
+        type: float
+
+  equipment:
+    key_field: tag
+    fields:
+      - internal: type
+        target: type
+        required: true
+      - internal: description
+        target: description
+        required: false
+      - internal: area
+        target: area
+        required: false
+      - internal: x
+        target: x
+        required: false
+        type: float
+      - internal: y
+        target: y
+        required: false
+        type: float
+
+  connections:
+    is_list: true
+    fields:
+      - internal: id
+        target: id
+        required: false
+      - internal: from_tag
+        target: from_tag
+        required: true
+      - internal: from_nozzle
+        target: from_port
+        required: false
+      - internal: to_tag
+        target: to_tag
+        required: true
+      - internal: to_nozzle
+        target: to_port
+        required: false
+      - internal: type
+        target: type
+        required: false
+      - internal: fluid
+        target: fluid
+        required: false
+      - internal: line_size
+        target: line_size
+        required: false
+
+  screens:
+    is_list: true
+    fields:
+      - internal: name
+        target: name
+        required: true
+      - internal: area
+        target: area
+        required: false
+      - internal: equipment
+        target: equipment
+        required: false
+      - internal: page
+        target: page
+        required: false

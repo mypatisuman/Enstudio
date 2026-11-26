@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>EngineeringStudio — Canvas</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:13px;background:#1a1a1a;color:#eee;height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+/* Top bar */
+#topbar{display:flex;align-items:center;gap:10px;padding:8px 14px;background:#111;border-bottom:1px solid #333;flex-shrink:0}
+#topbar h1{font-size:13px;font-weight:600;color:#fff;white-space:nowrap}
+.brand-logo{height:28px;width:auto;object-fit:contain}
+#topbar .sep{color:#444;margin:0 4px}
+#drawing-select{background:#222;color:#eee;border:1px solid #444;border-radius:4px;padding:4px 8px;font-size:12px;min-width:240px}
+.btn{padding:5px 12px;border-radius:4px;font-size:12px;cursor:pointer;border:1px solid #555;background:#333;color:#eee}
+.btn:hover{background:#444}
+.btn-green{background:#2d7a2d;border-color:#3a963a;color:#fff}
+.btn-green:hover{background:#3a963a}
+.btn-blue{background:#1a4fa0;border-color:#2060c0;color:#fff}
+.btn-blue:hover{background:#2060c0}
+#status{font-size:11px;color:#888;flex:1;text-align:right}
+#back-link{font-size:11px;color:#4a8fd4;text-decoration:none}
+#back-link:hover{text-decoration:underline}
+
+/* Main layout */
+#main{flex:1;display:flex;overflow:hidden}
+
+/* PDF panel */
+#pdf-panel{width:48%;border-right:1px solid #333;display:flex;flex-direction:column;overflow:hidden;position:relative}
+#pdf-header{padding:6px 10px;background:#111;border-bottom:1px solid #333;font-size:11px;color:#888;display:flex;align-items:center;gap:8px;flex-shrink:0}
+#pdf-page-nav{display:flex;align-items:center;gap:6px;margin-left:auto}
+#pdf-body{position:relative;flex:1;overflow:hidden}
+#pdf-frame{position:absolute;inset:0;width:100%;height:100%;border:none;background:#222}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:0.6}}
+
+/* Canvas panel */
+#canvas-panel{flex:1;display:flex;flex-direction:column;overflow:hidden}
+#canvas-header{padding:6px 10px;background:#111;border-bottom:1px solid #333;font-size:11px;color:#888;display:flex;align-items:center;gap:8px;flex-shrink:0}
+#canvas-wrap{flex:1;overflow:hidden;position:relative;cursor:grab}
+#canvas-wrap.grabbing{cursor:grabbing}
+#svg-canvas{width:100%;height:100%}
+
+/* Edit panel (side drawer) */
+#edit-panel{width:0;overflow:hidden;transition:width 0.2s;background:#111;border-left:1px solid #333;flex-shrink:0;display:flex;flex-direction:column}
+#edit-panel.open{width:240px}
+#edit-header{padding:10px 12px;border-bottom:1px solid #333;display:flex;align-items:center;justify-content:space-between}
+#edit-header h3{font-size:12px;font-weight:600}
+#close-edit{background:none;border:none;color:#888;cursor:pointer;font-size:16px}
+#edit-body{padding:12px;flex:1;overflow-y:auto}
+.field-group{margin-bottom:12px}
+.field-group label{display:block;font-size:10px;color:#888;margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px}
+.field-group input, .field-group select{width:100%;background:#222;border:1px solid #444;color:#eee;padding:5px 8px;border-radius:3px;font-size:12px}
+.field-group input:focus,.field-group select:focus{outline:none;border-color:#4a8fd4}
+#verified-row{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+#verified-cb{width:16px;height:16px}
+#edit-save{width:100%;margin-top:8px}
+#perry-hint{background:#1a2a1a;border:1px solid #2d4a2d;border-radius:4px;padding:8px;font-size:10px;color:#90c890;margin-top:10px;line-height:1.5}
+#perry-hint strong{display:block;margin-bottom:4px;color:#a0d8a0}
+#liptak-hint{background:#1a1a2a;border:1px solid #2d2d4a;border-radius:4px;padding:8px;font-size:10px;color:#9090c8;margin-top:8px;line-height:1.5}
+#liptak-hint strong{display:block;margin-bottom:4px;color:#a0a0d8}
+
+/* SVG node styles */
+.node-g{cursor:pointer}
+.node-g:hover .node-shape{stroke-width:2.5!important;filter:brightness(1.2)}
+.node-g.selected .node-shape{stroke-width:3!important;stroke:#FFD700!important}
+.node-g.verified .node-label{fill:#90EE90!important}
+.node-g.low-conf .node-shape{stroke-dasharray:4,2}
+.node-g.connect-source .node-shape{stroke:#FFD700!important;stroke-width:3px!important;filter:brightness(1.3)}
+
+/* Stats bar */
+#stats{padding:4px 10px;background:#0d0d0d;border-top:1px solid #222;font-size:10px;color:#555;display:flex;gap:16px;flex-shrink:0}
+</style>
+</head>
+<body>
+
+<div id="topbar">
+  <img src="/static/logo.png" alt="enStudio" class="brand-logo">
+  <a href="/" id="back-link">← Studio</a>
+  <span class="sep">|</span>
+  <h1 id="project-name">—</h1>
+  <span class="sep">|</span>
+  <select id="drawing-select" onchange="selectDrawing(this.value)">
+    <option value="">— select drawing —</option>
+  </select>
+  <button class="btn btn-blue" onclick="saveCanvas()">save</button>
+  <button class="btn btn-green" onclick="exportSVG()">export SVG</button>
+  <button class="btn" onclick="toggleLayout()">⇄ layout</button>
+  <button class="btn" id="sync-btn" onclick="toggleSync()" title="Sync zoom to PDF width">⇄ sync</button>
+  <span id="status">select a drawing to begin</span>
+</div>
+
+<div id="main">
+  <!-- PDF viewer -->
+  <div id="pdf-panel">
+    <div id="pdf-header">
+      <span>original drawing</span>
+      <span id="pdf-drawing-label" style="color:#ccc"></span>
+      <div id="pdf-page-nav">
+        <button class="btn" onclick="pdfPage(-1)" style="padding:2px 8px">‹</button>
+        <span id="pdf-page-num" style="font-size:11px">—</span>
+        <button class="btn" onclick="pdfPage(+1)" style="padding:2px 8px">›</button>
+      </div>
+    </div>
+    <div id="pdf-body">
+      <iframe id="pdf-frame" src="" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <!-- SVG canvas -->
+  <div id="canvas-panel">
+    <div id="canvas-header">
+      <span>extracted tags</span>
+      <span id="canvas-drawing-label" style="color:#ccc;flex:1"></span>
+      <span style="font-size:10px;color:#555">scroll=zoom · drag=pan · click=edit</span>
+    </div>
+    <div id="canvas-wrap">
+      <svg id="svg-canvas" xmlns="http://www.w3.org/2000/svg">
+        <g id="canvas-g"></g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Edit panel -->
+  <div id="edit-panel">
+    <div id="edit-header">
+      <h3 id="edit-tag-title">Tag</h3>
+      <button id="close-edit" onclick="closeEdit()">×</button>
+    </div>
+    <div id="edit-body">
+      <div class="field-group">
+        <label>Tag</label>
+        <input id="edit-tag" type="text">
+      </div>
+      <div class="field-group">
+        <label>Kind</label>
+        <select id="edit-kind">
+          <option value="transmitter">transmitter</option>
+          <option value="controller">controller</option>
+          <option value="indicator">indicator</option>
+          <option value="recorder">recorder</option>
+          <option value="switch">switch</option>
+          <option value="analyzer">analyzer</option>
+          <option value="element">element</option>
+          <option value="vessel">vessel</option>
+          <option value="heat_exchanger">heat exchanger</option>
+          <option value="reactor">reactor</option>
+          <option value="pump">pump</option>
+          <option value="compressor">compressor</option>
+          <option value="separator">separator</option>
+          <option value="column">column</option>
+          <option value="filter">filter</option>
+          <option value="valve">valve (mech)</option>
+          <option value="checkvalve">check valve</option>
+          <option value="relief">relief device</option>
+        </select>
+      </div>
+      <div class="field-group">
+        <label>Equipment ref</label>
+        <input id="edit-equip" type="text" placeholder="e.g. R-301">
+      </div>
+      <div class="field-group">
+        <label>Drawing</label>
+        <input id="edit-drawing" type="text" placeholder="e.g. 157-2-130">
+      </div>
+      <div class="field-group">
+        <label>Units</label>
+        <input id="edit-units" type="text" placeholder="e.g. kg/h">
+      </div>
+      <div class="field-group">
+        <label>Range</label>
+        <div style="display:flex;gap:4px">
+          <input id="edit-range-lo" type="number" placeholder="lo" style="width:50%">
+          <input id="edit-range-hi" type="number" placeholder="hi" style="width:50%">
+        </div>
+      </div>
+      <div id="verified-row">
+        <input type="checkbox" id="verified-cb">
+        <label for="verified-cb" style="font-size:12px;color:#aaa">verified</label>
+      </div>
+      <button class="btn btn-blue" id="edit-save" onclick="saveEdit()">save changes</button>
+      <button class="btn" style="width:100%;margin-top:6px;color:#c66" onclick="deleteNode()">delete tag</button>
+
+      <div id="perry-hint" style="display:none"></div>
+      <div id="liptak-hint" style="display:none"></div>
+    </div>
+  </div>
+</div>
+
+<div id="stats">
+  <span id="stat-total">—</span>
+  <span id="stat-verified">—</span>
+  <span id="stat-drawings">—</span>
+</div>
+
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+const pid = "{{ pid }}";
+let project = null;
+let allNodes = [];
+let allEdges = [];
+let drawings = [];
+let canvasData = {};      // {nodeId: {x, y, verified}}
+let currentDrawing = null;
+let selectedNode = null;
+let currentPdfPage = 1;
+let drawingPageMap = {};  // {drawingNumber: pdfPageNumber}
+let sourceFile = null;
+
+// Pan/zoom
+let vx = 0, vy = 0, vscale = 1;
+let syncScroll = false;
+
+// Connect mode
+let connectMode = false;
+let connectFromNode = null;
+let dragging = false, dragStartX = 0, dragStartY = 0, dragVX = 0, dragVY = 0;
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+async function init() {
+  setStatus('Loading project...');
+  try {
+    // Load project data
+    const r = await fetch(`/api/projects/${pid}`);
+    if (!r.ok) { setStatus('Project not found: ' + pid); return; }
+    project = await r.json();
+    document.getElementById('project-name').textContent =
+      project?.studio?.metadata?.plant_name || pid;
+
+    allNodes = project?.nodes || [];
+    allEdges = project?.edges || [];
+    console.log('Loaded nodes:', allNodes.length, 'edges:', allEdges.length);
+
+    // Load canvas positions (non-fatal if missing)
+    try {
+      const rc = await fetch(`/api/projects/${pid}/canvas`);
+      if (rc.ok) canvasData = await rc.json() || {};
+    } catch(e) { console.log('No canvas data:', e); }
+
+    // Load manifest for source PDF (non-fatal)
+    try {
+      const rm = await fetch(`/api/projects/${pid}/manifest`);
+      if (rm.ok) {
+        const manifest = await rm.json();
+        if (manifest && manifest.sources && manifest.sources.length > 0) {
+          sourceFile = manifest.sources[0].filename;
+          document.getElementById('pdf-frame').src = `/api/projects/${pid}/source/${encodeURIComponent(sourceFile)}#toolbar=1&navpanes=1`;
+        }
+      }
+    } catch(e) { console.log('No manifest:', e); }
+
+    // Build drawing list and render
+    buildDrawingList();
+    updateStats();
+    setupCanvasInteraction();
+
+    // Auto-select ALL immediately
+    if (allNodes.length > 0) {
+      document.getElementById('drawing-select').value = 'ALL';
+      selectDrawing('ALL');
+      setStatus(`${allNodes.length} tags loaded — select drawing or use ALL`);
+    } else {
+      setStatus('No tags found. Upload a P&ID first.');
+    }
+  } catch(err) {
+    setStatus('Error: ' + err.message);
+    console.error('Canvas init failed:', err);
+  }
+}
+
+function buildDrawingList() {
+  const drawingSet = {};
+
+  // From node drawing/area fields (Option C - enriched extraction)
+  allNodes.forEach(n => {
+    const d = n.drawing || n.area || '';
+    if (d) drawingSet[d] = d;
+  });
+
+  // Fallback: group by tag number prefix when no drawing field assigned
+  if (Object.keys(drawingSet).length === 0) {
+    allNodes.forEach(n => {
+      const m = n.label.match(/[A-Za-z]+-(\d)/);
+      const prefix = m ? m[1] + '00x series' : 'OTHER';
+      drawingSet[prefix] = prefix;
+    });
+  }
+
+  // Populate drawingPageMap from studio.drawings (Pass 1 page assignments)
+  if (project?.studio?.drawings) {
+    project.studio.drawings.forEach(d => {
+      if (d.number && d.page) drawingPageMap[d.number] = d.page;
+    });
+  }
+
+  // Always add ALL option first
+  drawings = ['ALL', ...Object.keys(drawingSet).sort()];
+  const sel = document.getElementById('drawing-select');
+  drawings.forEach(d => {
+    const opt = document.createElement('option');
+    opt.value = d;
+    const count = d === 'ALL' ? allNodes.length : allNodes.filter(n => {
+      const nd = n.drawing || n.area || '';
+      if (nd) return nd === d;
+      const m = n.label.match(/[A-Za-z]+-(\d)/);
+      return (m ? m[1] + '00x series' : 'OTHER') === d;
+    }).length;
+    opt.textContent = d === 'ALL' ? `ALL TAGS (${count})` : `${d} (${count})`;
+    sel.appendChild(opt);
+  });
+
+  document.getElementById('stat-drawings').textContent =
+    `${drawings.length - 1} drawing groups`;
+}
+
+function selectDrawing(drawing) {
+  currentDrawing = drawing;
+  if (!drawing) return;
+
+  document.getElementById('canvas-drawing-label').textContent = drawing;
+  document.getElementById('pdf-drawing-label').textContent = drawing;
+
+  // Set PDF page - use mapped page or try to infer from drawing number
+  let page = drawingPageMap[drawing] || 1;
+  // Infer from drawings array if available
+  if (!drawingPageMap[drawing] && project?.studio?.drawings) {
+    const d = project.studio.drawings.find(d => d.number === drawing);
+    if (d?.page) page = d.page;
+  }
+  setPdfPage(page);
+
+  // Filter nodes for this drawing
+  const nodes = getNodesForDrawing(drawing);
+  renderCanvas(nodes);
+
+  // Stats
+  const verified = nodes.filter(n => canvasData[n.id]?.verified).length;
+  document.getElementById('status').textContent =
+    `${nodes.length} tags · ${verified} verified`;
+}
+
+function getNodesForDrawing(drawing) {
+  if (!drawing || drawing === 'ALL') return allNodes;
+  return allNodes.filter(n => {
+    const d = n.drawing || n.area || '';
+    if (d) return d === drawing;
+    const m = n.label.match(/[A-Za-z]+-(\d)/);
+    return (m ? m[1] + '00x series' : 'OTHER') === drawing;
+  });
+}
+
+// ── Canvas rendering ──────────────────────────────────────────────────────────
+const COLORS = {
+  vessel:        {fill:'#1a3a5c', stroke:'#4a8fd4'},
+  separator:     {fill:'#1a3a5c', stroke:'#4a8fd4'},
+  heat_exchanger:{fill:'#3a2a10', stroke:'#d4884a'},
+  pump:          {fill:'#1a3a1a', stroke:'#4ad44a'},
+  compressor:    {fill:'#1a3a1a', stroke:'#4ad44a'},
+  reactor:       {fill:'#3a1a1a', stroke:'#d44a4a'},
+  column:        {fill:'#2a1a3a', stroke:'#8a4ad4'},
+  filter:        {fill:'#2a2a2a', stroke:'#888'},
+  relief:        {fill:'#3a1a1a', stroke:'#ff6060'},
+  valve:         {fill:'#222',    stroke:'#666'},
+  off_page:      {fill:'#111620', stroke:'#334155'},
+  fitting:       {fill:'#1a1a1a', stroke:'#555'},
+  transmitter:   {fill:'#102030', stroke:'#4090d0'},
+  controller:    {fill:'#102010', stroke:'#40a040'},
+  indicator:     {fill:'#1a1a1a', stroke:'#888'},
+  recorder:      {fill:'#201808', stroke:'#c09040'},
+  switch:        {fill:'#201008', stroke:'#d06020'},
+  analyzer:      {fill:'#180820', stroke:'#9040c0'},
+  element:       {fill:'#101828', stroke:'#4060a0'},
+  default:       {fill:'#1a1a1a', stroke:'#666'},
+};
+
+// Map a node's type (YOLO PascalCase) to a COLORS key.
+// Falls back through type → kind for backward-compat with older DB rows.
+function nodeColorKey(node) {
+  const t = (node.type || node.kind || '').toLowerCase();
+  if (t.includes('check') && t.includes('valve')) return 'valve';
+  if (t.includes('relief') || t.includes('psv') || t.includes('prv') || t.includes('safety_valve')) return 'relief';
+  if (t.includes('valve') || t.includes('regulator')) return 'valve';
+  if (t === 'tank' || t === 'vessel' || t === 'separator' || t === 'drum' || t === 'accumulator') return 'vessel';
+  if (t === 'inlet' || t === 'outlet' || t.includes('off_page')) return 'off_page';
+  if (t.includes('heat_exchanger') || t.includes('condenser') || t.includes('reboiler')) return 'heat_exchanger';
+  if (t === 'pump' || t.includes('pump')) return 'pump';
+  if (t === 'compressor' || t.includes('compressor') || t.includes('blower')) return 'compressor';
+  if (t === 'reactor' || t.includes('reactor')) return 'reactor';
+  if (t === 'column' || t.includes('column') || t.includes('absorber') || t.includes('scrubber')) return 'column';
+  if (t === 'filter' || t.includes('filter') || t.includes('cyclone') || t.includes('centrifuge')) return 'filter';
+  if (t.includes('fitting')) return 'fitting';
+  if (t.includes('transmitter') || t.includes('meter')) return 'transmitter';
+  if (t.includes('controller')) return 'controller';
+  if (t.includes('indicator') || t.includes('gauge')) return 'indicator';
+  if (t.includes('recorder')) return 'recorder';
+  if (t.includes('switch')) return 'switch';
+  if (t.includes('analyzer') || t.includes('analyser')) return 'analyzer';
+  if (t.includes('element') || t.includes('sensor')) return 'element';
+  return t in COLORS ? t : 'default';
+}
+
+const INSTR_FRAGMENTS = ['indicator','element','controller','transmitter','meter','gauge','sensor','recorder','analyzer','analyser','switch'];
+function isInstrNode(node) {
+  const t = (node.type || node.kind || '').toLowerCase();
+  return INSTR_FRAGMENTS.some(f => t.includes(f));
+}
+
+function renderCanvas(nodes) {
+  if (currentDrawing === 'ALL') { renderCombinedView(); return; }
+
+  const g = document.getElementById('canvas-g');
+  g.innerHTML = '';
+
+  if (!nodes.length) {
+    g.innerHTML = `<text x="20" y="40" fill="#555" font-size="13">No tags for this drawing. Run extraction first.</text>`;
+    return;
+  }
+
+  // Auto-layout if no positions saved
+  const positions = layoutNodes(nodes);
+
+  // Draw edges first
+  const edges = allEdges.filter(e => {
+    const fn = allNodes.find(n => n.id === e.from);
+    const tn = allNodes.find(n => n.id === e.to);
+    return fn && tn && getNodesForDrawing(currentDrawing).find(n => n.id === fn.id);
+  });
+
+  // Draw edges as orthogonal pipe lines
+  edges.forEach(e => {
+    const fp = positions[e.from], tp = positions[e.to];
+    if (!fp || !tp) return;
+
+    const isInstr = (n) => isInstrNode(allNodes.find(x=>x.id===n) || {});
+    const fSize = isInstr(e.from) ? 18 : 28;
+    const tSize = isInstr(e.to)   ? 18 : 28;
+
+    const x1 = fp.x + fSize, y1 = fp.y + (isInstr(e.from) ? 18 : 18);
+    const x2 = tp.x,          y2 = tp.y + (isInstr(e.to)   ? 18 : 18);
+    const mx = (x1 + x2) / 2;
+
+    // Orthogonal routing: out → mid → in
+    const d = `M${x1},${y1} L${mx},${y1} L${mx},${y2} L${x2},${y2}`;
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    path.setAttribute('fill', 'none');
+
+    if (e.kind === 'signal') {
+      path.setAttribute('stroke', '#b8d8ff');
+      path.setAttribute('stroke-width', '2');
+      path.setAttribute('stroke-dasharray', '6,3');
+    } else if (e.kind === 'recycle') {
+      path.setAttribute('stroke', '#80c8ff');
+      path.setAttribute('stroke-width', '2.5');
+      path.setAttribute('stroke-dasharray', '8,3');
+    } else {
+      path.setAttribute('stroke', '#ffffff');
+      path.setAttribute('stroke-width', '2.5');
+    }
+    g.appendChild(path);
+
+    // Arrowhead
+    const ang = Math.atan2(y2 - y1, x2 - x1);
+    const ax = x2, ay = y2;
+    const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    const size = 7;
+    arrow.setAttribute('points', [
+      `${ax},${ay}`,
+      `${ax - size * Math.cos(ang - 0.4)},${ay - size * Math.sin(ang - 0.4)}`,
+      `${ax - size * Math.cos(ang + 0.4)},${ay - size * Math.sin(ang + 0.4)}`
+    ].join(' '));
+    arrow.setAttribute('fill', e.kind === 'signal' ? '#b8d8ff' : '#ffffff');
+    g.appendChild(arrow);
+
+    // Stream label
+    if (e.label) {
+      const lt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      lt.setAttribute('x', mx + 3); lt.setAttribute('y', (y1 + y2) / 2 - 3);
+      lt.setAttribute('font-size', '8'); lt.setAttribute('font-family', 'Arial');
+      lt.setAttribute('fill', '#aaa');
+      lt.textContent = e.label.substring(0, 16);
+      g.appendChild(lt);
+    }
+  });
+
+  renderNodesInto(nodes, positions, g);
+
+  // Reset view
+  vx = 20; vy = 20; vscale = 2;
+  applyTransform();
+}
+
+// ── Node renderer (shared by single-drawing and combined views) ───────────────
+function renderNodesInto(nodes, positions, targetG) {
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const inCombined = (currentDrawing === 'ALL');
+
+  nodes.forEach(node => {
+    const pos = positions[node.id];
+    if (!pos) return;
+    const col = COLORS[nodeColorKey(node)] || COLORS.default;
+    const verified = canvasData[node.id]?.verified;
+    const conf = canvasData[node.id]?.confidence;
+    const isInstr = isInstrNode(node);
+
+    const ng = document.createElementNS(SVG_NS, 'g');
+    ng.setAttribute('class', `node-g${verified ? ' verified' : ''}${conf < 0.7 ? ' low-conf' : ''}`);
+    ng.setAttribute('data-id', node.id);
+    ng.setAttribute('transform', `translate(${pos.x},${pos.y})`);
+
+    ng.onclick = (e) => {
+      e.stopPropagation();
+      if (connectMode && connectFromNode && connectFromNode.id !== node.id) {
+        createEdge(connectFromNode, node);
+        exitConnectMode();
+        return;
+      }
+      if (!connectMode) selectNodeById(node.id);
+    };
+
+    ng.addEventListener('mousedown', (e) => {
+      e.stopPropagation();
+      // Shift+click → enter connect mode (single-drawing only)
+      if (e.shiftKey && !inCombined) {
+        if (!connectFromNode) {
+          connectFromNode = node;
+          connectMode = true;
+          document.querySelector(`[data-id="${node.id}"]`).classList.add('connect-source');
+          setStatus('Click target node to connect · ESC cancels');
+        } else {
+          createEdge(connectFromNode, node);
+          exitConnectMode();
+        }
+        return;
+      }
+      // No drag in combined view (positions include tile offsets)
+      if (inCombined) return;
+
+      let isDragging = false;
+      const startX = e.clientX, startY = e.clientY;
+      const dragOX = pos.x, dragOY = pos.y;
+
+      const onMove = (ev) => {
+        const dx = (ev.clientX - startX) / vscale;
+        const dy = (ev.clientY - startY) / vscale;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) isDragging = true;
+        if (!isDragging) return;
+        pos.x = dragOX + dx; pos.y = dragOY + dy;
+        ng.setAttribute('transform', `translate(${pos.x},${pos.y})`);
+        renderEdgesOnly(getNodesForDrawing(currentDrawing), layoutNodes(getNodesForDrawing(currentDrawing)));
+      };
+      const onUp = () => {
+        window.removeEventListener('mousemove', onMove);
+        window.removeEventListener('mouseup', onUp);
+        if (isDragging) {
+          canvasData[node.id] = {...(canvasData[node.id]||{}), x: pos.x, y: pos.y};
+        } else {
+          selectNodeById(node.id);
+        }
+      };
+      window.addEventListener('mousemove', onMove);
+      window.addEventListener('mouseup', onUp);
+    });
+
+    if (isInstr) {
+      const r = 18;
+      const circle = document.createElementNS(SVG_NS, 'circle');
+      circle.setAttribute('class', 'node-shape');
+      circle.setAttribute('cx', r); circle.setAttribute('cy', r);
+      circle.setAttribute('r', r);
+      circle.setAttribute('fill', col.fill);
+      circle.setAttribute('stroke', verified ? '#90EE90' : col.stroke);
+      circle.setAttribute('stroke-width', '1.5');
+      ng.appendChild(circle);
+      const letters = node.label.match(/^([A-Za-z]{1,3})/)?.[1]?.toUpperCase() || '?';
+      const lt = document.createElementNS(SVG_NS, 'text');
+      lt.setAttribute('x', r); lt.setAttribute('y', r - 3);
+      lt.setAttribute('text-anchor', 'middle');
+      lt.setAttribute('font-size', '8'); lt.setAttribute('font-family', 'Arial');
+      lt.setAttribute('fill', col.stroke); lt.setAttribute('font-weight', 'bold');
+      lt.textContent = letters;
+      ng.appendChild(lt);
+    } else {
+      const rect = document.createElementNS(SVG_NS, 'rect');
+      rect.setAttribute('class', 'node-shape');
+      rect.setAttribute('width', '56'); rect.setAttribute('height', '36');
+      rect.setAttribute('rx', '3');
+      rect.setAttribute('fill', col.fill);
+      rect.setAttribute('stroke', verified ? '#90EE90' : col.stroke);
+      rect.setAttribute('stroke-width', '1.5');
+      ng.appendChild(rect);
+    }
+
+    const lt = document.createElementNS(SVG_NS, 'text');
+    lt.setAttribute('class', 'node-label');
+    lt.setAttribute('x', isInstr ? 18 : 28);
+    lt.setAttribute('y', isInstr ? 52 : 52);
+    lt.setAttribute('text-anchor', 'middle');
+    lt.setAttribute('font-size', '9'); lt.setAttribute('font-family', 'Arial');
+    lt.setAttribute('fill', verified ? '#90EE90' : '#ccc');
+    lt.textContent = node.label;
+    ng.appendChild(lt);
+
+    if (verified) {
+      const ck = document.createElementNS(SVG_NS, 'text');
+      ck.setAttribute('x', isInstr ? 30 : 50); ck.setAttribute('y', 4);
+      ck.setAttribute('font-size', '10'); ck.setAttribute('fill', '#90EE90');
+      ck.textContent = '✓';
+      ng.appendChild(ck);
+    }
+
+    targetG.appendChild(ng);
+  });
+}
+
+// ── Combined full-plant view ──────────────────────────────────────────────────
+function renderCombinedView() {
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const g = document.getElementById('canvas-g');
+  g.innerHTML = '';
+
+  const TILE_W = 1400, TILE_H = 900, GAP = 80;
+  const drawingList = drawings.filter(d => d !== 'ALL');
+  if (!drawingList.length) {
+    g.innerHTML = '<text x="20" y="40" fill="#555" font-size="13">No drawings found.</text>';
+    return;
+  }
+  const COLS = Math.ceil(Math.sqrt(drawingList.length));
+
+  drawingList.forEach((drawing, idx) => {
+    const col = idx % COLS;
+    const row = Math.floor(idx / COLS);
+    const ox = col * (TILE_W + GAP);
+    const oy = row * (TILE_H + GAP);
+
+    // Tile border
+    const border = document.createElementNS(SVG_NS, 'rect');
+    border.setAttribute('x', ox); border.setAttribute('y', oy);
+    border.setAttribute('width', TILE_W); border.setAttribute('height', TILE_H);
+    border.setAttribute('fill', 'none');
+    border.setAttribute('stroke', '#333');
+    border.setAttribute('stroke-width', '1');
+    g.appendChild(border);
+
+    // Drawing title label
+    const title = document.createElementNS(SVG_NS, 'text');
+    title.setAttribute('x', ox + 10); title.setAttribute('y', oy + 18);
+    title.setAttribute('fill', '#666');
+    title.setAttribute('font-size', '13'); title.setAttribute('font-family', 'Arial');
+    title.textContent = drawing;
+    g.appendChild(title);
+
+    // Nodes and edges for this tile
+    const tileNodes = getNodesForDrawing(drawing);
+    const rawPos = layoutNodes(tileNodes);
+    const nodeIdSet = new Set(tileNodes.map(n => n.id));
+
+    // Offset positions by tile origin
+    const positions = {};
+    Object.keys(rawPos).forEach(nid => {
+      positions[nid] = { x: rawPos[nid].x + ox, y: rawPos[nid].y + oy };
+    });
+
+    // Draw edges within the tile
+    allEdges.forEach(e => {
+      if (!nodeIdSet.has(e.from) || !nodeIdSet.has(e.to)) return;
+      const fp = positions[e.from], tp = positions[e.to];
+      if (!fp || !tp) return;
+      const isInstr = (n) => isInstrNode(allNodes.find(x => x.id === n) || {});
+      const x1 = fp.x + (isInstr(e.from) ? 18 : 28), y1 = fp.y + 18;
+      const x2 = tp.x, y2 = tp.y + 18;
+      const mx = (x1 + x2) / 2;
+      const path = document.createElementNS(SVG_NS, 'path');
+      path.setAttribute('d', `M${x1},${y1} L${mx},${y1} L${mx},${y2} L${x2},${y2}`);
+      path.setAttribute('fill', 'none');
+      if (e.kind === 'signal') {
+        path.setAttribute('stroke', '#b8d8ff'); path.setAttribute('stroke-width', '2');
+        path.setAttribute('stroke-dasharray', '6,3');
+      } else {
+        path.setAttribute('stroke', '#ffffff'); path.setAttribute('stroke-width', '2.5');
+      }
+      g.appendChild(path);
+    });
+
+    renderNodesInto(tileNodes, positions, g);
+  });
+
+  // Fit all tiles in view
+  const totalW = COLS * (TILE_W + GAP);
+  const totalH = Math.ceil(drawingList.length / COLS) * (TILE_H + GAP);
+  const wrap = document.getElementById('canvas-wrap');
+  vscale = Math.min(wrap.clientWidth / totalW, wrap.clientHeight / totalH) * 0.85;
+  vx = 20; vy = 20;
+  applyTransform();
+}
+
+function layoutNodes(nodes) {
+  const positions = {};
+  // Canvas size in SVG units
+  const W = 1400, H = 900;
+  const PAD = 60;
+
+  nodes.forEach((n, i) => {
+    const saved = canvasData[n.id];
+    if (saved && saved.x !== undefined && saved.y !== undefined) {
+      // Use saved position (engineer-adjusted)
+      positions[n.id] = {x: saved.x, y: saved.y};
+    } else if (n.x !== undefined && n.y !== undefined) {
+      // Use Claude-extracted position (normalized 0-1 → canvas pixels)
+      positions[n.id] = {
+        x: PAD + n.x * (W - PAD*2),
+        y: PAD + n.y * (H - PAD*2)
+      };
+    } else {
+      // Fallback grid
+      const COLS = Math.ceil(Math.sqrt(nodes.length * 2));
+      const col = i % COLS, row = Math.floor(i / COLS);
+      const isInstr = isInstrNode(n);
+      positions[n.id] = {
+        x: PAD + col * (isInstr ? 70 : 100),
+        y: PAD + row * 90
+      };
+    }
+  });
+  return positions;
+}
+
+// ── Node selection and editing ────────────────────────────────────────────────
+function selectNodeById(nid) {
+  selectedNode = allNodes.find(n => n.id === nid);
+  if (!selectedNode) return;
+
+  // Highlight
+  document.querySelectorAll('.node-g').forEach(g => g.classList.remove('selected'));
+  document.querySelector(`[data-id="${nid}"]`)?.classList.add('selected');
+
+  // Populate edit panel
+  const saved = canvasData[nid] || {};
+  const instr = project?.studio?.instruments?.[selectedNode.label] || {};
+
+  document.getElementById('edit-tag-title').textContent = selectedNode.label;
+  document.getElementById('edit-tag').value = selectedNode.label;
+  document.getElementById('edit-kind').value = selectedNode.kind || 'transmitter';
+  document.getElementById('edit-equip').value = instr.equipment_ref || saved.equipment_ref || '';
+  document.getElementById('edit-drawing').value = selectedNode.drawing || selectedNode.area || '';
+  document.getElementById('edit-units').value = instr.units || saved.units || '';
+  document.getElementById('edit-range-lo').value = instr.range_lo ?? saved.range_lo ?? '';
+  document.getElementById('edit-range-hi').value = instr.range_hi ?? saved.range_hi ?? '';
+  document.getElementById('verified-cb').checked = !!saved.verified;
+
+  // Perry's / Lipták hints
+  showEngHints(selectedNode.label, selectedNode.kind, instr);
+
+  // Highlight position in PDF
+  showPdfPin(selectedNode);
+
+  document.getElementById('edit-panel').classList.add('open');
+}
+
+function showPdfPin(node) {
+  document.getElementById('pdf-pin')?.remove();
+  document.getElementById('pdf-pin-tip')?.remove();
+
+  // Resolve normalized position: Claude x/y first, then canvas layout fallback
+  let nx = node.x;
+  let ny = node.y;
+  if (nx === undefined || ny === undefined) {
+    const saved = canvasData[node.id];
+    if (saved?.x !== undefined) {
+      nx = saved.x / 1400;
+      ny = saved.y / 900;
+    }
+  }
+  if (nx === undefined || ny === undefined) return;
+
+  try {
+    const frame = document.querySelector('#pdf-panel iframe');
+    if (!frame || frame.offsetWidth === 0) return;
+
+    const rect = frame.getBoundingClientRect();
+    const px = rect.left + nx * rect.width;
+    const py = rect.top  + ny * rect.height;
+
+    const conf = canvasData[node.id]?.confidence;
+    const confPct = conf !== undefined ? ` · ${Math.round(conf * 100)}% conf` : '';
+
+    const pin = document.createElement('div');
+    pin.id = 'pdf-pin';
+    pin.style.cssText = `position:fixed;left:${px - 16}px;top:${py - 16}px;width:32px;height:32px;border-radius:50%;border:3px solid #ff3333;background:rgba(255,51,51,0.25);pointer-events:none;z-index:9999;animation:pulse 1.2s infinite`;
+
+    const tip = document.createElement('div');
+    tip.id = 'pdf-pin-tip';
+    tip.style.cssText = `position:fixed;left:${px + 20}px;top:${py - 10}px;background:rgba(0,0,0,0.85);color:#fff;padding:4px 10px;border-radius:4px;font-size:12px;white-space:nowrap;pointer-events:none;z-index:10000`;
+    tip.textContent = `${node.label} · ${node.kind || ''}${confPct}`;
+
+    document.body.appendChild(pin);
+    document.body.appendChild(tip);
+  } catch(e) {
+    console.error('[pin] error:', e);
+  }
+}
+
+function showEngHints(tag, kind, instr) {
+  const perryDiv = document.getElementById('perry-hint');
+  const liptakDiv = document.getElementById('liptak-hint');
+
+  // Perry's hints by kind
+  const perryHints = {
+    transmitter: `Perry's Ch.6/8: Range = 2–3× normal operating value. For flow: 0–120% of design flow.`,
+    controller: `Perry's Ch.8: PID — start with Kc=1, Ti=1min, Td=0. Tune after plant stable.`,
+    element: `Perry's Ch.6: Orifice β=0.6–0.75. Thermowell: insertion ≥1/3 pipe dia.`,
+    heat_exchanger: `Perry's Ch.11: UA = Q/ΔTLM. Add 15% fouling margin. Check Re>10,000 for turbulent.`,
+    reactor: `Perry's Ch.26: τ = V/Q. Check Da = k·τ for conversion. Safety: TSHH = T_max - 10°C.`,
+    vessel: `Perry's Ch.10: L/D = 2–4 for separators. Surge time = 5–10 min for reflux drums.`,
+    pump: `Perry's Ch.6: NPSH_available > NPSH_required + 1m. Affinity laws for speed change.`,
+  };
+
+  const liptakHints = {
+    transmitter: `Lipták: Rangeability ≥10:1 preferred. Smart transmitters: 4-20mA + HART. Calibrate at 0,25,50,75,100%.`,
+    controller: `Lipták: Cascade: outer loop 3–5× slower than inner. Feedforward: compensate disturbances >1 min lag.`,
+    switch: `Lipták: High alarm = 90% of trip. PAHH = 95% of PSV set. Proof-test per SIL requirement.`,
+    analyzer: `Lipták: Sample conditioning critical. Dead time = sample transport time. Validate with grab samples monthly.`,
+    element: `Lipták: RTD accuracy ±0.1°C, TC ±1°C. Thermowell wake frequency: fn > 3× vortex shedding.`,
+  };
+
+  const perry = perryHints[kind] || perryHints['vessel'];
+  const liptak = liptakHints[kind];
+
+  if (perry) {
+    perryDiv.style.display = 'block';
+    perryDiv.innerHTML = `<strong>Perry's</strong>${perry}`;
+  } else perryDiv.style.display = 'none';
+
+  if (liptak) {
+    liptakDiv.style.display = 'block';
+    liptakDiv.innerHTML = `<strong>Lipták</strong>${liptak}`;
+  } else liptakDiv.style.display = 'none';
+}
+
+function closeEdit() {
+  document.getElementById('edit-panel').classList.remove('open');
+  document.querySelectorAll('.node-g').forEach(g => g.classList.remove('selected'));
+  document.getElementById('pdf-pin')?.remove();
+  document.getElementById('pdf-pin-tip')?.remove();
+  selectedNode = null;
+}
+
+async function saveEdit() {
+  if (!selectedNode) return;
+  const nid = selectedNode.id;
+  const newTag = document.getElementById('edit-tag').value.trim();
+  const newKind = document.getElementById('edit-kind').value;
+  const verified = document.getElementById('verified-cb').checked;
+
+  // Update node
+  selectedNode.label = newTag;
+  selectedNode.kind = newKind;
+  selectedNode.drawing = document.getElementById('edit-drawing').value.trim();
+
+  // Update canvas data
+  canvasData[nid] = {
+    ...canvasData[nid],
+    tag: newTag, kind: newKind, verified,
+    equipment_ref: document.getElementById('edit-equip').value.trim(),
+    units: document.getElementById('edit-units').value.trim(),
+    range_lo: parseFloat(document.getElementById('edit-range-lo').value) || null,
+    range_hi: parseFloat(document.getElementById('edit-range-hi').value) || null,
+  };
+
+  // Save to server
+  await fetch(`/api/projects/${pid}/canvas`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({canvas: canvasData, nodes: allNodes})
+  });
+
+  // Re-render
+  const nodes = getNodesForDrawing(currentDrawing);
+  renderCanvas(nodes);
+  updateStats();
+  setStatus('Saved.');
+}
+
+async function deleteNode() {
+  if (!selectedNode || !confirm(`Delete ${selectedNode.label}?`)) return;
+  allNodes = allNodes.filter(n => n.id !== selectedNode.id);
+  delete canvasData[selectedNode.id];
+  await fetch(`/api/projects/${pid}/canvas`, {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({canvas: canvasData, nodes: allNodes})
+  });
+  closeEdit();
+  renderCanvas(getNodesForDrawing(currentDrawing));
+  updateStats();
+  setStatus('Tag deleted.');
+}
+
+async function saveCanvas() {
+  await fetch(`/api/projects/${pid}/canvas`, {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({canvas: canvasData, nodes: allNodes})
+  });
+  setStatus('Canvas saved.');
+}
+
+async function exportSVG() {
+  setStatus('Generating SVG...');
+  const drawing = currentDrawing === 'ALL'
+    ? 'zip'
+    : encodeURIComponent(currentDrawing || '');
+  const url = drawing
+    ? `/api/projects/${pid}/export/svg/${drawing}`
+    : `/api/projects/${pid}/export/svg`;
+  const r = await fetch(url);
+  if (!r.ok) { setStatus('Export failed.'); return; }
+  const blob = await r.blob();
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  const isZip = drawing === 'zip';
+  a.download = isZip ? `${pid}_svgs.zip` : `${pid}_${(currentDrawing||'pid').replace(/\//g,'-')}.svg`;
+  a.click();
+  setStatus(isZip ? 'SVG zip exported.' : 'SVG exported.');
+}
+
+// ── Pan and zoom ──────────────────────────────────────────────────────────────
+function applyTransform() {
+  document.getElementById('canvas-g').setAttribute(
+    'transform', `translate(${vx},${vy}) scale(${vscale})`
+  );
+}
+
+function setupCanvasInteraction() {
+  const wrap = document.getElementById('canvas-wrap');
+
+  wrap.addEventListener('wheel', e => {
+    e.preventDefault();
+    const delta = e.deltaY > 0 ? 0.9 : 1.1;
+    vscale = Math.max(0.1, Math.min(5, vscale * delta));
+    applyTransform();
+    if (syncScroll) {
+      const pct = Math.min(70, Math.max(25, 48 * vscale));
+      document.getElementById('pdf-panel').style.width = pct + '%';
+    }
+  });
+
+  wrap.addEventListener('mousedown', e => {
+    if (e.target.closest('.node-g')) return;
+    dragging = true;
+    dragStartX = e.clientX; dragStartY = e.clientY;
+    dragVX = vx; dragVY = vy;
+    wrap.classList.add('grabbing');
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    vx = dragVX + (e.clientX - dragStartX);
+    vy = dragVY + (e.clientY - dragStartY);
+    applyTransform();
+  });
+
+  window.addEventListener('mouseup', () => {
+    dragging = false;
+    document.getElementById('canvas-wrap').classList.remove('grabbing');
+  });
+
+  // Click on empty canvas closes edit
+  wrap.addEventListener('click', e => {
+    if (!e.target.closest('.node-g')) closeEdit();
+  });
+}
+
+// ── PDF navigation ────────────────────────────────────────────────────────────
+function setPdfPage(page) {
+  currentPdfPage = page;
+  document.getElementById('pdf-page-num').textContent = `page ${page}`;
+  if (!sourceFile) return;
+
+  const frame = document.getElementById('pdf-frame');
+  const base = `/api/projects/${pid}/source/${encodeURIComponent(sourceFile)}`;
+
+  // Only update src if not already loaded — avoids blank reload
+  if (!frame.src || !frame.src.includes(sourceFile.split('.')[0])) {
+    frame.src = base + `#page=${page}&toolbar=1&navpanes=1`;
+  } else {
+    // PDF already loaded — navigate page via URL hash update
+    try {
+      frame.contentWindow.PDFViewerApplication?.page &&
+        (frame.contentWindow.PDFViewerApplication.page = page);
+    } catch(e) {}
+    // Fallback: update hash without full reload
+    frame.src = base + `#page=${page}&toolbar=1&navpanes=1`;
+  }
+}
+
+function pdfPage(delta) {
+  setPdfPage(Math.max(1, currentPdfPage + delta));
+}
+
+// ── Utilities ─────────────────────────────────────────────────────────────────
+function updateStats() {
+  const total = allNodes.length;
+  const verified = Object.values(canvasData).filter(v => v.verified).length;
+  document.getElementById('stat-total').textContent = `${total} total tags`;
+  document.getElementById('stat-verified').textContent = `${verified} verified`;
+}
+
+function setStatus(msg) {
+  document.getElementById('status').textContent = msg;
+}
+
+function toggleLayout() {
+  if (!currentDrawing) return;
+  // Clear saved positions to trigger auto-layout
+  getNodesForDrawing(currentDrawing).forEach(n => {
+    if (canvasData[n.id]) delete canvasData[n.id].x;
+  });
+  renderCanvas(getNodesForDrawing(currentDrawing));
+}
+
+function toggleSync() {
+  syncScroll = !syncScroll;
+  const btn = document.getElementById('sync-btn');
+  btn.classList.toggle('btn-blue', syncScroll);
+  btn.textContent = syncScroll ? '⇄ synced' : '⇄ sync';
+  if (!syncScroll) {
+    // Reset PDF panel to default width
+    document.getElementById('pdf-panel').style.width = '';
+  }
+}
+
+// ── Connect mode ──────────────────────────────────────────────────────────────
+function exitConnectMode() {
+  connectMode = false;
+  connectFromNode = null;
+  document.querySelectorAll('.connect-source').forEach(el => el.classList.remove('connect-source'));
+}
+
+async function createEdge(fromNode, toNode) {
+  const type = await promptConnectionType();
+  if (!type) return;
+  const edge = { from: fromNode.id, to: toNode.id, kind: type, label: '' };
+  allEdges.push(edge);
+  await fetch(`/api/projects/${pid}/canvas`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({canvas: canvasData, nodes: allNodes, edges: allEdges})
+  });
+  renderCanvas(getNodesForDrawing(currentDrawing));
+  setStatus(`${fromNode.label} → ${toNode.label} (${type})`);
+}
+
+function promptConnectionType() {
+  return new Promise(resolve => {
+    const types = ['stream', 'signal', 'pneumatic', 'electrical', 'hydraulic', 'bypass', 'recycle'];
+    const div = document.createElement('div');
+    div.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#1a1a1a;border:1px solid #444;border-radius:8px;padding:20px;z-index:9999;min-width:200px;box-shadow:0 8px 32px rgba(0,0,0,0.6)';
+    div.innerHTML = '<div style="color:#eee;margin-bottom:12px;font-size:13px;font-weight:600">Connection type:</div>';
+    types.forEach(t => {
+      const btn = document.createElement('button');
+      btn.textContent = t;
+      btn.style.cssText = 'display:block;width:100%;padding:6px;margin:3px 0;background:#333;color:#eee;border:1px solid #555;border-radius:4px;cursor:pointer;font-size:12px;text-align:left;';
+      btn.onmouseenter = () => { btn.style.background = '#444'; };
+      btn.onmouseleave = () => { btn.style.background = '#333'; };
+      btn.onclick = () => { document.body.removeChild(div); resolve(t); };
+      div.appendChild(btn);
+    });
+    const cancel = document.createElement('button');
+    cancel.textContent = 'cancel';
+    cancel.style.cssText = 'display:block;width:100%;padding:6px;margin-top:8px;background:none;color:#888;border:none;cursor:pointer;font-size:11px;';
+    cancel.onclick = () => { document.body.removeChild(div); resolve(null); };
+    div.appendChild(cancel);
+    document.body.appendChild(div);
+  });
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    exitConnectMode();
+    setStatus('');
+  }
+});
+
+init();
+</script>
+</body>
+</html>
+<script>
+// renderEdgesOnly — redraws just the edge layer without rebuilding nodes
+function renderEdgesOnly(nodes, positions) {
+  const g = document.getElementById('canvas-g');
+  // Remove existing edge paths
+  g.querySelectorAll('path.pipe, polygon.arrow, text.stream-label').forEach(e => e.remove());
+  // Redraw edges (same logic as renderCanvas edges section)
+  const edges = allEdges.filter(e => {
+    return nodes.find(n => n.id === e.from) || nodes.find(n => n.id === e.to);
+  });
+  edges.forEach(e => {
+    const fp = positions[e.from], tp = positions[e.to];
+    if (!fp || !tp) return;
+    const isInstr = (n) => isInstrNode(allNodes.find(x=>x.id===n) || {});
+    const x1 = fp.x + (isInstr(e.from)?18:28), y1 = fp.y + 18;
+    const x2 = tp.x, y2 = tp.y + 18;
+    const mx = (x1+x2)/2;
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('class','pipe');
+    path.setAttribute('d',`M${x1},${y1} L${mx},${y1} L${mx},${y2} L${x2},${y2}`);
+    path.setAttribute('fill','none');
+    path.setAttribute('stroke', e.kind==='signal'?'#b8d8ff':'#ffffff');
+    path.setAttribute('stroke-width', e.kind==='signal'?'2':'2.5');
+    if(e.kind==='signal') path.setAttribute('stroke-dasharray','5,3');
+    g.insertBefore(path, g.firstChild);
+  });
+}
+</script>

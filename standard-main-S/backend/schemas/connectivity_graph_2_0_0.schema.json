@@ -1,0 +1,469 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://enstudio.local/schemas/connectivity_graph/2.0.0",
+  "title": "P&ID connectivity graph",
+  "description": "Derived field by field from fixtures/connectivity_graph 18.json (schema_version 2.0.0). Additional properties are allowed everywhere so schema 2.1.0 can add hierarchy fields without breaking 2.0.0 consumers.",
+  "type": "object",
+  "required": [
+    "metadata",
+    "nodes",
+    "edges",
+    "lines",
+    "expansion_joints",
+    "control_loops",
+    "loop_groups",
+    "signal_paths",
+    "spatial_clusters",
+    "electric_heat_trace"
+  ],
+  "definitions": {
+    "point": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "bbox": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "direction": {
+      "enum": [
+        "left_to_right",
+        "right_to_left",
+        "top_to_bottom",
+        "bottom_to_top"
+      ]
+    },
+    "nodeType": {
+      "enum": [
+        "equipment",
+        "valve",
+        "safety_valve",
+        "regulator",
+        "mechanical",
+        "instrument",
+        "inline_component",
+        "boundary",
+        "t_junction",
+        "endpoint_share",
+        "crossover",
+        "open_endpoint"
+      ]
+    },
+    "nodeRef": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "type",
+        "point"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/nodeType"
+        },
+        "symbol_type": {
+          "type": "string"
+        },
+        "bbox": {
+          "$ref": "#/definitions/bbox"
+        },
+        "point": {
+          "$ref": "#/definitions/point"
+        }
+      }
+    },
+    "lineDirection": {
+      "enum": [
+        "left_to_right",
+        "right_to_left",
+        "top_to_bottom",
+        "bottom_to_top",
+        "mixed",
+        "unknown"
+      ]
+    }
+  },
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "diagram_type",
+        "generated_at",
+        "node_count",
+        "edge_count",
+        "line_count",
+        "node_types",
+        "control_loops_count",
+        "loop_groups_count",
+        "signal_paths_count",
+        "spatial_clusters_count",
+        "electric_heat_trace_count"
+      ],
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "pattern": "^2\\.[0-9]+\\.[0-9]+$"
+        },
+        "diagram_type": {
+          "const": "PID"
+        },
+        "generated_at": {
+          "type": "string"
+        },
+        "node_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "edge_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "line_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "node_types": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer"
+          }
+        },
+        "control_loops_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "loop_groups_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "signal_paths_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "spatial_clusters_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "electric_heat_trace_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "nodes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "type",
+          "point",
+          "label"
+        ],
+        "properties": {
+          "type": {
+            "$ref": "#/definitions/nodeType"
+          },
+          "point": {
+            "$ref": "#/definitions/point"
+          },
+          "label": {
+            "type": "string"
+          },
+          "bbox": {
+            "$ref": "#/definitions/bbox"
+          },
+          "flow_direction": {
+            "enum": [
+              "inlet",
+              "outlet"
+            ]
+          },
+          "control_loop": {
+            "type": "object",
+            "required": [
+              "loop_type",
+              "loop_id",
+              "loop_name"
+            ],
+            "properties": {
+              "loop_type": {
+                "type": "string"
+              },
+              "loop_id": {
+                "type": "string"
+              },
+              "loop_name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "from",
+          "to",
+          "line_id",
+          "direction",
+          "is_expansion_joint",
+          "_logical",
+          "_source",
+          "_jx_roles"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "line_id": {
+            "type": "string"
+          },
+          "direction": {
+            "$ref": "#/definitions/direction"
+          },
+          "is_expansion_joint": {
+            "type": "boolean"
+          },
+          "_logical": {
+            "enum": [
+              "forward",
+              "backward"
+            ]
+          },
+          "_source": {
+            "type": "string"
+          },
+          "_jx_roles": {
+            "type": "object",
+            "additionalProperties": {
+              "enum": [
+                "incoming",
+                "outgoing"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "lines": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "points",
+          "style",
+          "direction"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "process",
+              "signal"
+            ]
+          },
+          "points": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/point"
+            },
+            "minItems": 2
+          },
+          "style": {
+            "enum": [
+              "solid",
+              "dashed"
+            ]
+          },
+          "direction": {
+            "$ref": "#/definitions/lineDirection"
+          }
+        }
+      }
+    },
+    "expansion_joints": {
+      "type": "array"
+    },
+    "control_loops": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "loop_type",
+          "loop_id",
+          "instruments",
+          "connected_components",
+          "process_line_junctions",
+          "connected_inline"
+        ],
+        "properties": {
+          "loop_type": {
+            "type": "string"
+          },
+          "loop_id": {
+            "type": "string"
+          },
+          "instruments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "connected_components": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "type"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "type": {
+                  "$ref": "#/definitions/nodeType"
+                }
+              }
+            }
+          },
+          "process_line_junctions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "required": [
+                "point",
+                "via_instruments"
+              ],
+              "properties": {
+                "point": {
+                  "$ref": "#/definitions/point"
+                },
+                "via_instruments": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "connected_inline": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "loop_groups": {
+      "type": "array"
+    },
+    "signal_paths": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "signal_id",
+          "chain",
+          "chain_ids",
+          "start_node",
+          "end_node",
+          "path",
+          "signal_role"
+        ],
+        "properties": {
+          "signal_id": {
+            "type": "string"
+          },
+          "chain": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2
+          },
+          "chain_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 2
+          },
+          "start_node": {
+            "$ref": "#/definitions/nodeRef"
+          },
+          "end_node": {
+            "$ref": "#/definitions/nodeRef"
+          },
+          "path": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/nodeRef"
+            }
+          },
+          "signal_role": {
+            "enum": [
+              "primary",
+              "secondary"
+            ]
+          }
+        }
+      }
+    },
+    "spatial_clusters": {
+      "type": "array"
+    },
+    "electric_heat_trace": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": [
+            "points"
+          ],
+          "properties": {
+            "points": {
+              "type": "array",
+              "items": {
+                "type": "number"
+              },
+              "minItems": 4
+            }
+          }
+        }
+      }
+    }
+  }
+}

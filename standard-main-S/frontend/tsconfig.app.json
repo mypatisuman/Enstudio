@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "es2023",
+    "lib": ["ES2023", "DOM"],
+    "module": "esnext",
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  // *.test.ts files under src/ are run directly by `node` (>= 23.6 strips types
+  // natively) and import node: builtins. They are not part of the app bundle --
+  // nothing in the entry graph imports them -- but `include: ["src"]` swept them
+  // into the app type-check, where `types: ["vite/client"]` cannot resolve
+  // `node:assert/strict`. Those two unresolvable imports were failing `tsc -b`,
+  // which is the first half of `npm run build`, which is tauri's
+  // beforeBuildCommand -- so they blocked the production build outright.
+  "exclude": ["**/*.test.ts"]
+}

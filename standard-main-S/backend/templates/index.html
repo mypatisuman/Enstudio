@@ -1,0 +1,2276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlantSketch — EngineeringStudio</title>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script src="/ympl.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --bg-base:    #0f172a;
+  --bg-panel:   #1e293b;
+  --bg-raised:  #263348;
+  --border:     #334155;
+  --border-light: #475569;
+  --text-primary: #e2e8f0;
+  --text-muted:   #94a3b8;
+  --text-dim:     #64748b;
+  --accent:     #2563eb;
+  --accent-hover: #1d4ed8;
+  --success:    #16a34a;
+  --success-hover: #15803d;
+  --danger:     #dc2626;
+  --danger-hover: #b91c1c;
+  --canvas-bg:  #f8fafc;
+  --canvas-grid-minor: #e2e8f0;
+  --canvas-grid-major: #cbd5e1;
+  --font-ui: system-ui, -apple-system, sans-serif;
+  --font-mono: 'Courier New', monospace;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+}
+
+body{font-family:var(--font-ui);font-size:13px;background:var(--bg-base);color:var(--text-primary);height:100vh;display:flex;flex-direction:column;overflow:hidden}
+
+/* Global header */
+#header{height:48px;background:#0f172a;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0}
+.brand-logo{height:32px;width:auto;object-fit:contain}
+.brand-name{font-size:16px;font-weight:700;color:#fff;letter-spacing:-0.01em}
+.brand-sub{font-size:11px;color:var(--text-dim)}
+
+/* Workspace below header */
+#workspace{flex:1;display:flex;flex-direction:row;overflow:hidden}
+
+/* Sidebar */
+#sidebar{width:220px;background:var(--bg-base);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
+#project-list{flex:1;overflow-y:auto;padding:8px}
+.project-item{padding:10px 14px;background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--radius-md);cursor:pointer;margin-bottom:4px}
+.project-item:hover{border-color:var(--border-light);background:#2d3d55}
+.project-item.active{border-color:var(--accent);background:rgba(37,99,235,0.1)}
+.project-item .pname{color:var(--text-primary);font-size:12px;font-weight:500}
+.project-item .pmeta{color:var(--text-dim);font-size:10px;margin-top:1px;font-family:var(--font-mono)}
+.project-item .badges{margin-top:4px;display:flex;gap:4px;flex-wrap:wrap}
+#new-project-btn{margin:8px 12px;padding:8px;border:1px dashed var(--border-light);border-radius:var(--radius-md);font-size:11px;color:var(--text-dim);text-align:center;cursor:pointer;background:none}
+#new-project-btn:hover{border-color:var(--accent);color:var(--text-muted)}
+#hub-status{padding:8px 12px;border-top:1px solid var(--border);color:var(--text-dim);font-size:10px}
+#hub-status .hub-path{font-family:var(--font-mono);font-size:10px;word-break:break-all}
+
+/* Main */
+#main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg-base);min-width:0}
+#topbar{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--border);background:var(--bg-panel);flex-shrink:0;height:48px}
+#topbar-title{flex:1}
+#topbar-title h2{font-size:14px;font-weight:500;color:var(--text-primary)}
+#topbar-title .meta{font-size:11px;color:var(--text-muted)}
+#tabs{display:flex;background:var(--bg-panel);border-bottom:1px solid var(--border);padding:0 14px;flex-shrink:0}
+.tab{font-size:12px;padding:8px 12px;color:var(--text-muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:500}
+#content{flex:1;overflow:auto;background:var(--bg-base);padding:16px}
+
+/* Panels */
+.panel{background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius-md);overflow:hidden;margin-bottom:12px}
+.panel-header{padding:8px 12px;border-bottom:1px solid var(--border);font-size:9px;color:var(--text-dim);background:var(--bg-raised);display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;letter-spacing:0.08em}
+
+/* Review tab */
+#review-grid{display:grid;grid-template-columns:340px 1fr;gap:12px}
+#pid-panel,#mermaid-panel,#table-panel{min-height:300px}
+#pid-drop-zone{border:2px dashed var(--border-light);border-radius:var(--radius-md);display:flex;flex-direction:column;align-items:center;justify-content:center;height:260px;cursor:pointer;color:var(--text-muted);gap:8px;background:var(--bg-raised)}
+#pid-drop-zone:hover{border-color:var(--accent);color:var(--accent);background:rgba(37,99,235,0.05)}
+#pid-drop-zone.dragging{border-color:var(--accent);background:rgba(37,99,235,0.05)}
+#pid-img-container{height:260px;overflow:hidden;position:relative}
+#pid-img-container img{width:100%;height:100%;object-fit:contain}
+#mermaid-box{padding:10px;font-family:var(--font-mono);font-size:10px;color:var(--text-muted);line-height:1.7;height:260px;overflow:auto;background:var(--bg-raised)}
+#mermaid-render{height:260px;overflow:auto;padding:8px;display:flex;align-items:center;justify-content:center}
+.conf-table{width:100%;border-collapse:collapse;font-size:11px}
+.conf-table th{padding:5px 8px;color:var(--text-dim);font-weight:400;border-bottom:1px solid var(--border);text-align:left;background:var(--bg-raised)}
+.conf-table td{padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text-primary)}
+.conf-table tr.warn td{background:rgba(251,191,36,0.08)}
+.conf-table tr.danger td{background:rgba(220,38,38,0.08)}
+
+/* Export bar */
+#export-bar{padding:10px 14px;border-top:1px solid var(--border);background:var(--bg-panel);display:flex;gap:8px;align-items:center;flex-shrink:0}
+#export-bar .elabel{flex:1;font-size:11px;color:var(--text-muted)}
+
+/* Canvas tab */
+#canvas-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;height:400px;color:var(--text-dim);gap:8px;text-align:center}
+
+/* YAML tab */
+#yaml-box{font-family:var(--font-mono);font-size:11px;line-height:1.7;padding:14px;background:var(--bg-base);min-height:400px;white-space:pre-wrap;border:none;width:100%;outline:none;color:var(--text-muted)}
+.yaml-key{color:var(--accent)}
+.yaml-val{color:#4ade80}
+.yaml-comment{color:var(--text-dim);font-style:italic}
+
+/* Buttons */
+.btn{padding:5px 12px;border-radius:var(--radius-md);font-size:12px;cursor:pointer;border:1px solid var(--border-light);background:var(--bg-raised);color:var(--text-primary);font-family:var(--font-ui)}
+.btn:hover{border-color:#64748b;background:var(--bg-panel)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:500}
+.btn-primary:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
+.btn-green{background:var(--success);border-color:var(--success);color:#fff;font-weight:500}
+.btn-green:hover{background:var(--success-hover);border-color:var(--success-hover)}
+.btn-danger{background:var(--danger);border-color:var(--danger);color:#fff;font-weight:500}
+.btn-danger:hover{background:var(--danger-hover)}
+.btn-sm{font-size:10px;padding:3px 8px}
+
+/* Badges */
+.badge{font-size:10px;padding:1px 6px;border-radius:99px;display:inline-block;font-weight:500}
+.bg{background:rgba(22,163,74,0.15);color:#4ade80;border:1px solid rgba(22,163,74,0.3)}
+.by{background:rgba(251,191,36,0.1);color:#fbbf24;border:1px solid rgba(251,191,36,0.25)}
+.br{background:rgba(220,38,38,0.1);color:#f87171;border:1px solid rgba(220,38,38,0.25)}
+.bgray{background:var(--bg-raised);color:var(--text-muted)}
+
+/* Modal */
+#modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:100;align-items:center;justify-content:center}
+#modal-overlay.show{display:flex}
+#modal{background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;width:360px;box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+#modal h3{font-size:14px;margin-bottom:16px;color:var(--text-primary)}
+#modal label{font-size:11px;color:var(--text-muted);display:block;margin-bottom:4px}
+#modal input,#modal select{width:100%;font-size:12px;padding:6px 8px;border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:12px;background:var(--bg-base);color:var(--text-primary)}
+#modal .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}
+
+/* Discovery modal */
+#disc-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:110;align-items:center;justify-content:center}
+#disc-overlay.show{display:flex}
+#disc-modal{background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px;width:700px;max-width:95vw;max-height:85vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
+#disc-modal h3{font-size:14px;font-weight:600;color:var(--text-primary);margin-bottom:4px}
+#disc-modal .disc-subtitle{font-size:11px;color:var(--text-muted);margin-bottom:16px}
+#disc-modal .disc-row{display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap}
+#disc-modal .disc-row label{font-size:11px;color:var(--text-muted);margin-bottom:3px;display:block}
+#disc-modal .disc-row input{font-size:12px;padding:5px 8px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-base);color:var(--text-primary);width:100%}
+#disc-modal .disc-field{flex:1;min-width:140px}
+#disc-prefix-table{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:14px}
+#disc-prefix-table th{text-align:left;padding:4px 6px;border-bottom:1px solid var(--border);color:var(--text-muted);font-weight:500;white-space:nowrap}
+#disc-prefix-table td{padding:3px 4px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle}
+#disc-prefix-table tr:hover td{background:var(--bg-raised)}
+#disc-prefix-table input,#disc-prefix-table select{font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:3px;background:var(--bg-base);color:var(--text-primary);width:100%}
+.disc-badge{display:inline-block;padding:1px 5px;border-radius:3px;font-size:10px;font-weight:500}
+.disc-high{background:rgba(74,222,128,0.15);color:#4ade80}
+.disc-med{background:rgba(251,191,36,0.15);color:#fbbf24}
+.disc-low{background:rgba(148,163,184,0.15);color:#94a3b8}
+#disc-actions{display:flex;gap:8px;justify-content:flex-end;padding-top:12px;border-top:1px solid var(--border)}
+#disc-unknown-bar:hover{background:rgba(251,191,36,0.18)!important}
+
+/* Spinner */
+.spinner{width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;display:inline-block;vertical-align:middle;margin-left:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Warnings */
+#warnings-bar{display:none;padding:6px 12px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);border-radius:var(--radius-sm);font-size:11px;color:#fbbf24;margin-bottom:8px}
+
+/* Status bar */
+#status-bar{background:rgba(37,99,235,0.1);border:1px solid rgba(37,99,235,0.25);border-radius:var(--radius-sm);color:var(--accent);font-size:11px}
+
+/* Source list */
+#source-list{padding:6px 8px;border-top:1px solid var(--border);display:none}
+#source-list-label{font-size:10px;color:var(--text-dim);margin-bottom:4px}
+.source-item{display:flex;align-items:center;gap:6px;padding:3px 6px;font-size:11px;border-radius:var(--radius-sm);margin-bottom:2px;background:var(--bg-raised)}
+.source-item:hover{background:#2d3d55}
+.src-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-primary)}
+.src-badge{font-size:10px;color:var(--text-muted);flex-shrink:0;white-space:nowrap}
+.src-remove{background:none;border:none;color:var(--text-dim);cursor:pointer;padding:0 2px;flex-shrink:0;font-size:13px;line-height:1}
+.src-remove:hover{color:#f87171}
+
+/* Units panel */
+#units-panel{padding:6px 8px;border-top:1px solid var(--border)}
+#units-panel .panel-header{padding:5px 2px;border-bottom:none;font-size:10px;color:var(--text-dim);background:none}
+#units-panel .panel-header button{font-size:10px;padding:1px 7px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-raised);color:var(--text-muted);cursor:pointer}
+#units-panel .panel-header button:hover{background:var(--bg-panel);color:var(--text-primary)}
+.unit-row{margin-bottom:6px;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+.unit-bar{display:flex;align-items:center;gap:6px;padding:4px 8px;font-size:11px}
+.unit-name{flex:1;font-weight:500;cursor:text;outline:none;color:var(--text-primary)}
+.unit-name:focus{background:var(--bg-raised);border-radius:2px;padding:0 2px}
+.unit-remove{background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px;line-height:1;padding:0 2px}
+.unit-remove:hover{color:#f87171}
+.unit-drawings{padding:4px 8px 6px;display:flex;flex-wrap:wrap;gap:4px;min-height:24px;background:var(--bg-raised)}
+.unit-drawings[data-uid]{border-top:1px solid var(--border)}
+.unit-drawings.drag-over{background:rgba(37,99,235,0.08);border-top-color:rgba(37,99,235,0.4)}
+.drawing-chip{font-size:10px;padding:2px 8px;border-radius:99px;background:rgba(37,99,235,0.1);color:#93c5fd;border:1px solid rgba(37,99,235,0.2);cursor:grab;white-space:nowrap}
+.drawing-chip:active{cursor:grabbing}
+#ungrouped-drawings{padding:6px 0 2px;display:flex;flex-wrap:wrap;gap:4px}
+#ungrouped-label{font-size:10px;color:var(--text-dim);margin-bottom:4px;padding:0 2px}
+
+/* Locate pulse */
+@keyframes locate-pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}50%{transform:translate(-50%,-50%) scale(1.4);opacity:0.6}}
+#locate-dot{position:absolute;width:22px;height:22px;border:2px solid #f87171;border-radius:50%;background:rgba(248,113,113,0.18);transform:translate(-50%,-50%);pointer-events:none;z-index:10;animation:locate-pulse 0.9s ease infinite}
+
+/* Toast notifications */
+#toast-container{position:fixed;bottom:20px;right:20px;z-index:99999;display:flex;flex-direction:column;gap:8px}
+.toast{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius-md);font-size:12px;color:var(--text-primary);box-shadow:0 4px 16px rgba(0,0,0,0.35);min-width:220px;max-width:340px;animation:toast-in 0.2s ease}
+.toast.success{border-left:3px solid var(--success)}
+.toast.error{border-left:3px solid var(--danger)}
+.toast.info{border-left:3px solid var(--accent)}
+@keyframes toast-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Loading overlay */
+#loading-overlay{display:none;position:fixed;inset:0;background:rgba(15,23,42,0.7);z-index:99998;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+#loading-overlay.active{display:flex}
+#loading-box{display:flex;flex-direction:column;align-items:center;gap:14px}
+.loading-ring{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.8s linear infinite}
+#loading-msg{font-size:12px;color:var(--text-muted)}
+
+/* Settings modal */
+#set-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9000;display:none;align-items:center;justify-content:center}
+#set-overlay.open{display:flex}
+#set-modal{background:var(--bg-panel);border:1px solid var(--border);border-radius:var(--radius-lg);width:520px;max-width:96vw;max-height:88vh;display:flex;flex-direction:column;overflow:hidden}
+.set-header{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:space-between}
+.set-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:16px}
+.set-section{display:flex;flex-direction:column;gap:8px}
+.set-sh{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.set-row{display:flex;align-items:center;gap:10px}
+.set-lbl{width:160px;font-size:12px;color:var(--text-muted);flex-shrink:0}
+.set-ctrl{flex:1;background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text-primary);padding:5px 8px;font-size:12px;font-family:var(--font-mono)}
+.set-ctrl:focus{outline:none;border-color:var(--accent)}
+.set-ctrl select,.set-ctrl option{background:var(--bg-raised);color:var(--text-primary)}
+.set-test-row{display:flex;align-items:center;gap:8px;margin-top:4px}
+#set-test-status{font-size:11px;color:var(--text-muted)}
+.set-footer{padding:12px 16px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:8px}
+.set-layer-ck{display:flex;flex-wrap:wrap;gap:6px}
+.set-layer-ck label{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--text-muted);cursor:pointer}
+</style>
+</head>
+<body>
+
+<!-- Full-width header -->
+<div id="header">
+  <img src="/static/logo.png" alt="enStudio" class="brand-logo">
+  <span style="flex:1"></span>
+  <button class="btn-icon" onclick="openSettings()" title="Settings" style="font-size:16px;background:none;border:none;color:var(--text-muted);cursor:pointer;padding:6px;border-radius:var(--radius-sm)">⚙</button>
+</div>
+
+<!-- Workspace: sidebar + main -->
+<div id="workspace">
+
+<!-- Sidebar -->
+<div id="sidebar">
+  <div id="project-list"></div>
+  <div id="new-project-btn" onclick="showNewProjectModal()">+ new project</div>
+  <div id="hub-status">
+    <div>Hub</div>
+    <div class="hub-path" id="hub-path">loading...</div>
+    <div id="skill-badges" style="margin-top:4px"></div>
+  </div>
+</div>
+
+<!-- Main -->
+<div id="main">
+  <div id="topbar">
+    <div id="topbar-title">
+      <h2 id="project-title">Select a project</h2>
+      <div class="meta" id="project-meta">—</div>
+    </div>
+    <button class="btn" id="rebuild-btn" onclick="rebuildProject()" title="Rebuild from cache if data is missing" style="display:none">rebuild</button>
+    <button class="btn" id="link-btn" onclick="linkDrawings()" style="display:none">link drawings</button>
+    <button class="btn" id="redisc-btn" onclick="rediscoverConventions()" title="Re-scan drawing for tag prefixes" style="display:none">re-discover</button>
+    <button class="btn btn-primary" onclick="exportVids()">export VIDS</button>
+    <button class="btn btn-green" onclick="exportYmpl()">export YMPL</button>
+    <button class="btn" onclick="exportSvg()" title="Download full plant as single SVG">export SVG (all)</button>
+    <button class="btn" onclick="exportSvgPerDrawing()" title="Download one SVG per drawing, packed as zip">export SVG (per drawing)</button>
+    <button class="btn" onclick="exportMarkdown()" title="Download Markdown + Mermaid per drawing">export MD</button>
+  </div>
+
+  <div id="tabs">
+    <div class="tab active" onclick="showTab('review',this)">Review</div>
+    <div class="tab" onclick="showTab('loops',this)">Loops</div>
+    <div class="tab" onclick="showTab('canvas',this)">Canvas</div>
+    <div class="tab" onclick="showTab('yaml',this)">YAML</div>
+    <div class="tab" onclick="showTab('usage',this);loadUsage()">Usage</div>
+  </div>
+
+  <!-- Review Tab -->
+  <div id="tab-review" class="tab-content" style="padding:16px">
+    <!-- Status bar -->
+    <div id="status-bar" style="padding:7px 12px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
+      <span id="status-text">Select a project from the sidebar, then upload a P&ID or type a description below.</span>
+      <span id="status-spinner" style="display:none"><span class="spinner"></span></span>
+    </div>
+
+    <div id="warnings-bar"></div>
+    <div id="disc-unknown-bar" onclick="openUnknownPrefixes()" style="display:none;margin-bottom:8px;padding:6px 12px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);border-radius:var(--radius-sm);font-size:11px;color:#fbbf24;cursor:pointer"></div>
+
+    <!-- Pass 3 / Pass 4 inference-proposal panels — engineer review above the
+         standard review table. Hidden until count > 0. -->
+    <style>
+      .prop-section { margin-bottom: 8px; border: 1px solid var(--border-light);
+                      border-radius: var(--radius-sm); background: var(--bg-raised); }
+      .prop-section.collapsed .prop-body { display: none; }
+      .prop-header  { display: flex; align-items: center; gap: 8px;
+                      padding: 8px 12px; cursor: pointer; user-select: none;
+                      font-size: 12px; font-weight: 600; }
+      .prop-caret   { display: inline-block; width: 12px; transition: transform .15s; }
+      .prop-section.collapsed .prop-caret { transform: rotate(-90deg); }
+      .prop-count   { display: inline-block; padding: 1px 8px; border-radius: 10px;
+                      background: rgba(37,99,235,0.18); color: var(--accent);
+                      font-size: 10px; font-weight: 700; }
+      .prop-count.zero { background: rgba(120,120,120,0.15); color: var(--text-dim); }
+      .prop-body    { padding: 0 12px 12px; }
+      .prop-table   { width: 100%; border-collapse: collapse; font-size: 11px; }
+      .prop-table th, .prop-table td { padding: 4px 8px; border-bottom: 1px solid var(--border-light); text-align: left; }
+      .prop-table th { color: var(--text-dim); font-weight: 600; font-size: 10px; }
+      .prop-table tr.fading { transition: opacity .35s; opacity: 0; }
+      .prop-empty   { color: var(--text-dim); font-size: 11px; padding: 6px 0; }
+      .conf-badge   { display: inline-block; padding: 1px 7px; border-radius: 9px;
+                      font-size: 10px; font-weight: 700; }
+      .conf-green   { background: rgba(22,163,74,0.18);  color: #4ade80; }
+      .conf-amber   { background: rgba(234,179,8,0.18);  color: #fbbf24; }
+      .conf-red     { background: rgba(220,38,38,0.18);  color: #f87171; }
+      .prop-action-accept { color: #4ade80; border-color: rgba(22,163,74,0.35); }
+      .prop-action-reject { color: #f87171; border-color: rgba(220,38,38,0.35); margin-left: 4px; }
+    </style>
+
+    <div id="tag-prop-section" class="prop-section collapsed" style="display:none">
+      <div class="prop-header" onclick="toggleProposalSection('tag-prop-section')">
+        <span class="prop-caret">▾</span>
+        <span>Tag proposals</span>
+        <span id="tag-prop-count" class="prop-count zero">0</span>
+      </div>
+      <div class="prop-body">
+        <table class="prop-table" id="tag-prop-table">
+          <thead>
+            <tr>
+              <th>Original tag</th>
+              <th>Proposed tag</th>
+              <th>Method</th>
+              <th>Confidence</th>
+              <th style="text-align:right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tag-prop-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="conn-prop-section" class="prop-section collapsed" style="display:none">
+      <div class="prop-header" onclick="toggleProposalSection('conn-prop-section')">
+        <span class="prop-caret">▾</span>
+        <span>Connection proposals</span>
+        <span id="conn-prop-count" class="prop-count zero">0</span>
+      </div>
+      <div class="prop-body">
+        <table class="prop-table" id="conn-prop-table">
+          <thead>
+            <tr>
+              <th>Instrument</th>
+              <th></th>
+              <th>Equipment</th>
+              <th>Method</th>
+              <th>Confidence</th>
+              <th style="text-align:right">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="conn-prop-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="review-grid">
+      <!-- P&ID Source — file input lives here -->
+      <div class="panel" id="pid-panel">
+        <div class="panel-header">
+          <span id="pid-panel-title">source drawing</span>
+        </div>
+        <div id="upload-toolbar" style="display:flex;gap:6px;padding:8px 8px 4px;flex-wrap:wrap;align-items:center">
+          <label style="cursor:pointer;padding:5px 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);font-size:11px;background:var(--bg-raised);color:var(--text-muted)">
+            browse files
+            <input type="file" id="file-input" accept=".pdf,.png,.jpg,.jpeg,.gif,.webp"
+                   multiple style="display:none" onchange="handleFileUpload(event)">
+          </label>
+          <label style="cursor:pointer;padding:5px 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);font-size:11px;background:var(--bg-raised);color:var(--text-muted)">
+            browse folder
+            <input type="file" id="folder-input" webkitdirectory
+                   style="display:none" onchange="handleFileUpload(event)">
+          </label>
+          <div style="margin-left:auto;display:flex;gap:4px;align-items:center">
+            <span style="font-size:10px;color:var(--text-dim);margin-right:2px">provider</span>
+            <button id="provider-btn-anthropic" onclick="switchProvider('anthropic')"
+              style="padding:4px 10px;border-radius:var(--radius-sm);font-size:10px;cursor:pointer;border:1px solid var(--border-light);background:var(--bg-raised);color:var(--text-muted);transition:all 0.15s">
+              Claude
+            </button>
+            <button id="provider-btn-gemini" onclick="switchProvider('gemini')"
+              style="padding:4px 10px;border-radius:var(--radius-sm);font-size:10px;cursor:pointer;border:1px solid var(--border-light);background:var(--bg-raised);color:var(--text-muted);transition:all 0.15s">
+              Gemini
+            </button>
+            <button id="provider-btn-openai" onclick="switchProvider('openai')"
+              style="padding:4px 10px;border-radius:var(--radius-sm);font-size:10px;cursor:pointer;border:1px solid var(--border-light);background:var(--bg-raised);color:var(--text-muted);transition:all 0.15s">
+              OpenAI
+            </button>
+          </div>
+        </div>
+        <div id="pid-drop-zone"
+             ondragover="event.preventDefault();this.classList.add('dragging')"
+             ondragleave="this.classList.remove('dragging')"
+             ondrop="handleDrop(event)">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+          <div style="font-size:11px;text-align:center">drop P&ID here</div>
+          <div style="font-size:10px;color:var(--text-dim)">PNG · JPG · PDF</div>
+        </div>
+        <div id="pid-img-container" style="display:none;height:220px;overflow:hidden">
+          <img id="pid-img" src="" alt="P&ID" style="width:100%;height:100%;object-fit:contain">
+          <div id="pid-filename" style="font-size:10px;color:var(--text-muted);padding:4px 8px;text-align:center"></div>
+        </div>
+        <div id="source-list">
+          <div id="source-list-label">sources</div>
+        </div>
+        <div id="units-panel" style="display:none">
+          <div class="panel-header">
+            <span>drawing units</span>
+            <button onclick="addUnit()">+ unit</button>
+          </div>
+          <div id="units-list"></div>
+          <div id="ungrouped-drawings">
+            <div id="ungrouped-label" style="display:none">ungrouped</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Extracted items + bulk actions -->
+      <div class="panel" id="table-panel">
+        <div class="panel-header">
+          <span id="table-title">extracted items</span>
+          <div style="display:flex;gap:6px;align-items:center">
+            <button class="btn btn-sm" onclick="bulkAccept(0.85)" title="Accept all ≥85% confidence">accept high</button>
+            <button class="btn btn-sm" onclick="bulkAccept(0)" title="Accept everything">accept all</button>
+            <a id="canvas-link" href="#" target="_blank" class="btn btn-sm btn-primary" style="display:none;text-decoration:none">open canvas ⬡</a>
+          </div>
+        </div>
+        <!-- Summary bar -->
+        <div id="extract-summary" style="display:none;padding:8px 12px;background:var(--bg-raised);border-bottom:1px solid var(--border);font-size:11px;color:var(--text-muted);flex-wrap:wrap;gap:12px 20px">
+          <span id="sum-instruments"></span>
+          <span id="sum-equipment"></span>
+          <span id="sum-connections"></span>
+          <span id="sum-drawings"></span>
+          <span id="sum-sep" style="color:var(--border-light)">·</span>
+          <span id="sum-symbols" style="display:none"></span>
+          <span id="sum-texts" style="display:none"></span>
+          <span id="sum-lines" style="display:none"></span>
+          <span id="sum-time" style="display:none;margin-left:auto;color:var(--text-dim)"></span>
+        </div>
+        <div id="table-wrap" style="height:320px;overflow:auto">
+          <div style="padding:20px;color:var(--text-dim);font-size:11px;text-align:center">upload a P&ID to extract items</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loops Tab -->
+  <div id="tab-loops" class="tab-content" style="display:none;padding:16px">
+    <!-- Summary bar -->
+    <div id="loops-summary" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+      <span id="loops-count-complete"  style="padding:4px 10px;background:rgba(22,163,74,0.1);border:1px solid rgba(22,163,74,0.3);border-radius:var(--radius-sm);font-size:11px;color:#4ade80">0 complete ✓</span>
+      <span id="loops-count-incomplete" style="padding:4px 10px;background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.25);border-radius:var(--radius-sm);font-size:11px;color:#fbbf24">0 incomplete ⚠</span>
+      <span id="loops-count-orphan"    style="padding:4px 10px;background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.25);border-radius:var(--radius-sm);font-size:11px;color:#f87171">0 no controller ?</span>
+      <span id="loops-count-unconfirmed" style="padding:4px 10px;background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--radius-sm);font-size:11px;color:var(--text-muted)">0 unconfirmed</span>
+      <button class="btn btn-primary btn-sm" onclick="inferLoops()" style="margin-left:auto">infer loops</button>
+    </div>
+    <!-- Filter row -->
+    <div style="display:flex;gap:6px;margin-bottom:10px">
+      <button class="btn btn-sm" id="lf-all"          onclick="filterLoops('all')"          style="background:var(--accent);border-color:var(--accent);color:#fff">all</button>
+      <button class="btn btn-sm" id="lf-complete"     onclick="filterLoops('complete')"     >complete</button>
+      <button class="btn btn-sm" id="lf-incomplete"   onclick="filterLoops('incomplete')"   >incomplete</button>
+      <button class="btn btn-sm" id="lf-no_controller" onclick="filterLoops('no_controller')">no controller</button>
+      <button class="btn btn-sm" id="lf-unconfirmed"  onclick="filterLoops('unconfirmed')"  >unconfirmed</button>
+    </div>
+    <!-- Loop table -->
+    <div id="loops-table-wrap" style="overflow-x:auto">
+      <table id="loops-table" style="width:100%;border-collapse:collapse;font-size:12px">
+        <thead>
+          <tr style="background:var(--bg-raised);text-align:left">
+            <th style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text-muted);font-weight:500">Loop</th>
+            <th style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text-muted);font-weight:500">Measurement</th>
+            <th style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text-muted);font-weight:500">Controller</th>
+            <th style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text-muted);font-weight:500">Final Element</th>
+            <th style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text-muted);font-weight:500">Status</th>
+            <th style="padding:6px 8px;border-bottom:1px solid var(--border);color:var(--text-muted);font-weight:500">Action</th>
+          </tr>
+        </thead>
+        <tbody id="loops-tbody"></tbody>
+      </table>
+      <div id="loops-empty" style="text-align:center;padding:40px;color:var(--text-dim);font-size:12px;display:none">
+        No loops inferred yet. Click <strong>infer loops</strong> to analyse ISA tag names.
+      </div>
+    </div>
+  </div>
+
+  <!-- Canvas Tab -->
+  <div id="tab-canvas" class="tab-content" style="display:none;padding:16px">
+    <div class="panel" style="text-align:center;padding:40px 20px">
+      <div style="font-size:32px;margin-bottom:12px;color:var(--text-dim)">⬡</div>
+      <div style="font-size:14px;font-weight:500;margin-bottom:8px;color:var(--text-primary)" id="canvas-tab-msg">Select a project to open the canvas</div>
+      <div style="font-size:11px;color:var(--text-muted);margin-bottom:20px">Interactive P&ID editor — position equipment, draw connections, verify tags, export SVG</div>
+      <a id="canvas-tab-link" href="#" target="_blank"
+        style="display:inline-block;padding:8px 20px;background:var(--accent);color:#fff;border-radius:var(--radius-sm);text-decoration:none;font-size:12px;font-weight:500">
+        open canvas editor
+      </a>
+    </div>
+  </div>
+
+  <!-- YAML Tab -->
+  <div id="tab-yaml" class="tab-content" style="display:none;padding:16px">
+    <div class="panel">
+      <div class="panel-header">
+        <span>VIDS YAML output · read-only</span>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-sm" onclick="copyYaml()">copy</button>
+          <button class="btn btn-sm btn-primary" onclick="exportVids()">download</button>
+        </div>
+      </div>
+      <textarea id="yaml-box" readonly placeholder="YAML appears here after export"></textarea>
+    </div>
+  </div>
+
+  <!-- Usage Tab -->
+  <div id="tab-usage" class="tab-content" style="display:none;padding:16px">
+    <div class="panel">
+      <div class="panel-header">
+        <span>LLM Usage &amp; Cost</span>
+        <div style="display:flex;gap:8px;align-items:center">
+          <span id="usage-total" style="font-size:11px;color:var(--text-muted)"></span>
+          <button class="btn btn-sm" onclick="loadUsage()">refresh</button>
+          <button class="btn btn-sm" onclick="clearUsage()" style="color:#f87171;border-color:rgba(220,38,38,0.3)">clear</button>
+        </div>
+      </div>
+      <!-- Summary tiles -->
+      <div id="usage-tiles" style="display:flex;gap:12px;padding:12px;flex-wrap:wrap;border-bottom:1px solid var(--border)">
+        <div style="flex:1;min-width:120px;background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--radius-md);padding:10px 14px">
+          <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Total cost</div>
+          <div id="tile-cost" style="font-size:20px;font-weight:700;color:#4ade80;font-family:var(--font-mono)">$0.00</div>
+        </div>
+        <div style="flex:1;min-width:120px;background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--radius-md);padding:10px 14px">
+          <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Tokens in</div>
+          <div id="tile-tokens-in" style="font-size:20px;font-weight:700;color:var(--accent);font-family:var(--font-mono)">0</div>
+        </div>
+        <div style="flex:1;min-width:120px;background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--radius-md);padding:10px 14px">
+          <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Tokens out</div>
+          <div id="tile-tokens-out" style="font-size:20px;font-weight:700;color:#c084fc;font-family:var(--font-mono)">0</div>
+        </div>
+        <div style="flex:1;min-width:120px;background:var(--bg-raised);border:1px solid var(--border);border-radius:var(--radius-md);padding:10px 14px">
+          <div style="font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Extractions</div>
+          <div id="tile-runs" style="font-size:20px;font-weight:700;color:var(--text-primary);font-family:var(--font-mono)">0</div>
+        </div>
+      </div>
+      <!-- Records table -->
+      <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:11px" id="usage-table">
+          <thead>
+            <tr style="background:var(--bg-raised)">
+              <th style="padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);text-align:left;font-weight:500">Time</th>
+              <th style="padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);text-align:left;font-weight:500">Project</th>
+              <th style="padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);text-align:left;font-weight:500">Provider</th>
+              <th style="padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);text-align:left;font-weight:500">Model</th>
+              <th style="padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);text-align:right;font-weight:500">Tokens in</th>
+              <th style="padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);text-align:right;font-weight:500">Tokens out</th>
+              <th style="padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);text-align:right;font-weight:500">Cost</th>
+              <th style="padding:6px 10px;border-bottom:1px solid var(--border);color:var(--text-dim);text-align:right;font-weight:500">Nodes</th>
+            </tr>
+          </thead>
+          <tbody id="usage-tbody">
+            <tr><td colspan="8" style="padding:24px;text-align:center;color:var(--text-dim)">No usage data yet</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export bar -->
+  <div id="export-bar">
+    <span class="elabel" id="export-status">no project selected</span>
+    <button class="btn btn-primary" onclick="exportVids()">download VIDS YAML</button>
+    <button class="btn btn-green" onclick="exportYmpl()">download YMPL</button>
+    <button class="btn" onclick="exportSvg()">download SVG (all)</button>
+    <button class="btn" onclick="exportSvgPerDrawing()">download SVG (per drawing)</button>
+  </div>
+</div><!-- /#main -->
+</div><!-- /#workspace -->
+
+<!-- New Project Modal -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h3>New project</h3>
+    <label>Plant name</label>
+    <input type="text" id="new-name" placeholder="DHTU Unit 400">
+    <label>Process type</label>
+    <select id="new-type">
+      <option value="refinery">Refinery</option>
+      <option value="petrochemical">Petrochemical</option>
+      <option value="upstream">Upstream</option>
+      <option value="utility">Utility</option>
+      <option value="generic" selected>Generic</option>
+    </select>
+    <div class="modal-actions">
+      <button class="btn" onclick="closeModal()">cancel</button>
+      <button class="btn btn-primary" onclick="createProject()">create</button>
+    </div>
+  </div>
+</div>
+
+<!-- Convention Discovery Modal -->
+<div id="disc-overlay">
+  <div id="disc-modal">
+    <h3>Convention Discovery</h3>
+    <p class="disc-subtitle">Claude identified these tag prefixes from the drawing. Review and correct, then click Accept &amp; Extract.</p>
+    <div class="disc-row">
+      <div class="disc-field">
+        <label>Company name</label>
+        <input type="text" id="disc-company" placeholder="AIR COMPANY">
+      </div>
+      <div class="disc-field">
+        <label>Drawing format</label>
+        <input type="text" id="disc-drawing-fmt" placeholder="157-2-XXX">
+      </div>
+      <div class="disc-field">
+        <label>Tag numbering</label>
+        <input type="text" id="disc-tag-num" placeholder="First digit = area">
+      </div>
+    </div>
+    <table id="disc-prefix-table">
+      <thead>
+        <tr>
+          <th>Prefix</th>
+          <th>Count</th>
+          <th>Context</th>
+          <th>Type</th>
+          <th>Layer</th>
+          <th>Confidence</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="disc-prefix-body"></tbody>
+    </table>
+    <div id="disc-actions">
+      <button class="btn" onclick="closeDiscovery()">cancel</button>
+      <button class="btn" onclick="discAddRow()">+ add row</button>
+      <button class="btn btn-primary" id="disc-accept-btn" onclick="acceptDiscovery()">Accept &amp; Extract</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+
+<div id="loading-overlay">
+  <div id="loading-box">
+    <div class="loading-ring"></div>
+    <div id="loading-msg">Processing…</div>
+  </div>
+</div>
+
+<script>
+mermaid.initialize({startOnLoad: false, theme: 'neutral', securityLevel: 'loose'});
+
+let currentProject = null;
+let projectsCache = [];
+
+// ── Toast ──────────────────────────────────────────────────────────────────────
+function showToast(msg, type = 'info', duration = 3000) {
+  const c = document.getElementById('toast-container');
+  const t = document.createElement('div');
+  t.className = 'toast ' + type;
+  t.textContent = msg;
+  c.appendChild(t);
+  setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity 0.3s'; setTimeout(() => t.remove(), 300); }, duration);
+}
+
+// ── Loading ────────────────────────────────────────────────────────────────────
+function showLoading(msg = 'Processing…') {
+  document.getElementById('loading-msg').textContent = msg;
+  document.getElementById('loading-overlay').classList.add('active');
+}
+function hideLoading() {
+  document.getElementById('loading-overlay').classList.remove('active');
+}
+
+// ── Tab switching ────────────────────────────────────────────────────────────
+function showTab(id, el) {
+  document.querySelectorAll('.tab-content').forEach(t => t.style.display = 'none');
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).style.display = 'block';
+  el.classList.add('active');
+}
+
+// ── Hub status ───────────────────────────────────────────────────────────────
+async function loadHubStatus() {
+  try {
+    const r = await fetch('/api/hub');
+    const data = await r.json();
+    document.getElementById('hub-path').textContent = data.hub;
+    const badges = document.getElementById('skill-badges');
+    badges.innerHTML = data.skills.map(s =>
+      `<span class="badge ${s.active ? 'bg' : 'by'}" style="margin-right:3px">
+        ${s.name} ${s.active ? '✓' : '—'}
+      </span>`
+    ).join('');
+  } catch(e) {}
+}
+
+// ── Project list ─────────────────────────────────────────────────────────────
+async function loadProjects() {
+  const r = await fetch('/api/projects');
+  const projects = await r.json();
+  projectsCache = projects;
+  const list = document.getElementById('project-list');
+  list.innerHTML = projects.length ? '' :
+    '<div style="padding:12px;font-size:11px;color:var(--text-dim);text-align:center">no projects yet</div>';
+
+  projects.forEach(p => {
+    const el = document.createElement('div');
+    el.className = 'project-item' + (currentProject === p.id ? ' active' : '');
+    el.dataset.pid = p.id;
+    el.onclick = (e) => {
+      if (!e.target.classList.contains('del-btn') && !e.target.classList.contains('open-editor-btn') && !e.target.closest('a'))
+        selectProject(p.id, p, el);
+    };
+    el.innerHTML = `
+      <div style="display:flex;align-items:center;gap:4px">
+        <div class="pname" style="flex:1">${p.name}</div>
+        <a href="/canvas/${p.id}" target="_blank" title="Open canvas"
+          style="font-size:10px;padding:2px 8px;border:1px solid #334155;border-radius:4px;background:#263348;color:#93c5fd;cursor:pointer;text-decoration:none;flex-shrink:0">⬡</a>
+        <button class="open-editor-btn" onclick="window.location.href='/editor?pid=${p.id}'"
+          title="Open editor"
+          style="font-size:10px;padding:2px 8px;border:1px solid #334155;border-radius:4px;background:#263348;color:#93c5fd;cursor:pointer;flex-shrink:0">Editor →</button>
+        <button class="del-btn" onclick="deleteProject('${p.id}',event)"
+          title="Delete project"
+          style="font-size:10px;padding:2px 8px;border:1px solid #334155;border-radius:4px;background:none;color:#64748b;cursor:pointer;flex-shrink:0">✕</button>
+      </div>
+      <div class="pmeta">${p.process_type} · ${p.n_instruments || 0} instr${(p.sources||[]).length > 1 ? ' · ' + p.sources.length + ' sources' : ''}</div>
+      <div class="badges">
+        ${p.has_vids ? '<span class="badge bg">VIDS ✓</span>' : ''}
+        ${p.has_ympl ? '<span class="badge bg">YMPL ✓</span>' : ''}
+        ${p.extraction_status === 'complete' ? '<span class="badge bg">extracted</span>' : ''}
+        ${p.extraction_locked ? '<span class="badge bgray" title="Scan results locked as truth">🔒</span>' : ''}
+      </div>`;
+    list.appendChild(el);
+  });
+}
+
+async function deleteProject(pid, event) {
+  event.stopPropagation();
+  if (!confirm(`Delete project "${pid}"? This cannot be undone.`)) return;
+  const r = await fetch(`/api/projects/${pid}`, {method: 'DELETE'});
+  if (r.ok) {
+    if (currentProject === pid) {
+      currentProject = null;
+      document.getElementById('project-title').textContent = 'Select a project';
+      document.getElementById('project-meta').textContent = '—';
+    }
+    await loadProjects();
+    setStatus('Project deleted.', 'ok');
+  }
+}
+
+function selectProject(pid, meta, el) {
+  try {
+    currentProject = pid;
+    document.querySelectorAll('.project-item').forEach(e => e.classList.remove('active'));
+    if (el) el.classList.add('active');
+    document.getElementById('project-title').textContent = meta.name;
+    document.getElementById('project-meta').textContent =
+      `${meta.process_type} · ${meta.n_instruments || 0} instruments · ${meta.n_equipment || 0} equipment`;
+    document.getElementById('export-status').textContent =
+      `project: ${meta.name} · ready to export`;
+
+    // Set canvas links
+    const cl = document.getElementById('canvas-link');
+    if (cl) { cl.href = `/canvas/${pid}`; if (meta.n_instruments > 0) cl.style.display = 'inline-block'; }
+    const ctl = document.getElementById('canvas-tab-link');
+    if (ctl) ctl.href = `/canvas/${pid}`;
+    const ctm = document.getElementById('canvas-tab-msg');
+    if (ctm && meta.n_instruments > 0) ctm.textContent = `${meta.n_instruments} tags ready — open canvas to verify`;
+
+    loadProjectData(pid);
+  } catch(e) {
+    console.error('selectProject error:', e);
+  }
+}
+
+async function loadProjectData(pid) {
+  const [r, rr, rm, ru, rt, rc] = await Promise.all([
+    fetch(`/api/projects/${pid}`),
+    fetch(`/api/projects/${pid}/review`),
+    fetch(`/api/projects/${pid}/manifest`),
+    fetch(`/api/projects/${pid}/units`),
+    fetch(`/api/projects/${pid}/proposals/tags`),
+    fetch(`/api/projects/${pid}/proposals/connections`)
+  ]);
+  const data        = await r.json();
+  const reviewState = await rr.json();
+  const manifest    = await rm.json();
+  const unitList    = ru.ok ? await ru.json() : [];
+  const tagProps    = rt.ok ? await rt.json() : [];
+  const connProps   = rc.ok ? await rc.json() : [];
+  renderTagProposals(tagProps);
+  renderConnectionProposals(connProps);
+
+  buildNodePositions(data.nodes);
+
+  const mermaid_str = data?.meta?.mermaid || '';
+  if (mermaid_str) renderMermaid(mermaid_str);
+
+  const instr = data?.studio?.instruments || {};
+  const equip = data?.studio?.equipment || {};
+
+  // Load loops into loops tab (uses espx data already fetched)
+  loopsData = data?.studio?.loops || {};
+  renderLoopTable();
+
+  renderSourceList(manifest.sources || []);
+
+  const allDrawings = [...new Set((data.nodes || []).map(n => n.drawing || '').filter(Boolean))].sort();
+  renderUnits(unitList, allDrawings);
+
+  const linkBtn = document.getElementById('link-btn');
+  if (linkBtn) linkBtn.style.display = allDrawings.length >= 2 ? '' : 'none';
+  const rebuildBtn = document.getElementById('rebuild-btn');
+  if (rebuildBtn) rebuildBtn.style.display = currentProject ? '' : 'none';
+  const rediscBtn = document.getElementById('redisc-btn');
+  if (rediscBtn) rediscBtn.style.display = (manifest.sources || []).length > 0 ? '' : 'none';
+
+  // Hide warnings bar on project load — uploads will set it if needed
+  document.getElementById('warnings-bar').style.display = 'none';
+
+  renderTable(instr, equip, reviewState);
+}
+
+// ── Status bar ───────────────────────────────────────────────────────────────
+function setStatus(msg, type) {
+  const bar = document.getElementById('status-bar');
+  if (!bar) return;
+  const txt = document.getElementById('status-text');
+  const spin = document.getElementById('status-spinner');
+  txt.textContent = msg;
+  spin.style.display = type === 'loading' ? 'inline' : 'none';
+  bar.style.background = type === 'error' ? 'rgba(220,38,38,0.1)' : type === 'ok' ? 'rgba(22,163,74,0.1)' : 'rgba(37,99,235,0.1)';
+  bar.style.borderColor = type === 'error' ? 'rgba(220,38,38,0.3)' : type === 'ok' ? 'rgba(22,163,74,0.3)' : 'rgba(37,99,235,0.25)';
+  bar.style.color = type === 'error' ? '#f87171' : type === 'ok' ? '#4ade80' : 'var(--accent)';
+}
+
+// ── Convention discovery ─────────────────────────────────────────────────────
+let _discFile = null;         // file held between discovery and extraction
+let _discData = null;         // last discovery result
+
+const _LAYER_LABELS = {1:'process',2:'control',3:'mechanical',4:'safety'};
+const _CONF_CLASS   = {high:'disc-high',medium:'disc-med',low:'disc-low'};
+
+function _discRowHtml(p, idx) {
+  return `<tr id="disc-row-${idx}">
+    <td><input value="${p.prefix||''}" style="width:60px" onchange="discRowField(${idx},'prefix',this.value)"></td>
+    <td style="text-align:center;color:var(--text-muted)">${p.count??'—'}</td>
+    <td><input value="${p.context||''}" onchange="discRowField(${idx},'context',this.value)"></td>
+    <td><input value="${p.suggested_type||''}" onchange="discRowField(${idx},'suggested_type',this.value)"></td>
+    <td><select onchange="discRowField(${idx},'suggested_layer',+this.value)">
+      ${[1,2,3,4].map(l=>`<option value="${l}"${p.suggested_layer===l?' selected':''}>${l} – ${_LAYER_LABELS[l]}</option>`).join('')}
+    </select></td>
+    <td><span class="disc-badge ${_CONF_CLASS[p.confidence]||'disc-low'}">${p.confidence||'—'}</span></td>
+    <td><button style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:13px" onclick="discRemoveRow(${idx})" title="Remove">✕</button></td>
+  </tr>`;
+}
+
+function discRowField(idx, field, val) {
+  if (_discData && _discData.prefixes[idx]) _discData.prefixes[idx][field] = val;
+}
+function discRemoveRow(idx) {
+  if (_discData) _discData.prefixes.splice(idx, 1);
+  document.getElementById(`disc-row-${idx}`)?.remove();
+}
+function discAddRow() {
+  if (!_discData) return;
+  const idx = _discData.prefixes.length;
+  _discData.prefixes.push({prefix:'',count:0,context:'',suggested_type:'',suggested_layer:1,confidence:'low'});
+  const tbody = document.getElementById('disc-prefix-body');
+  tbody.insertAdjacentHTML('beforeend', _discRowHtml(_discData.prefixes[idx], idx));
+}
+
+function openDiscovery(data, file) {
+  _discData = data;
+  _discFile = file;
+  document.getElementById('disc-company').value    = data.company || '';
+  document.getElementById('disc-drawing-fmt').value = data.drawing_format || '';
+  const tn = data.tag_numbering || {};
+  document.getElementById('disc-tag-num').value =
+    [tn.first_digit, tn.example].filter(Boolean).join(' — ');
+  const tbody = document.getElementById('disc-prefix-body');
+  tbody.innerHTML = (data.prefixes || []).map((p,i) => _discRowHtml(p,i)).join('');
+  document.getElementById('disc-overlay').classList.add('show');
+}
+
+function closeDiscovery() {
+  document.getElementById('disc-overlay').classList.remove('show');
+  _discFile = null;
+  _discData = null;
+}
+
+async function acceptDiscovery() {
+  const company = document.getElementById('disc-company').value.trim();
+  if (!company) { alert('Enter a company name'); return; }
+  const btn = document.getElementById('disc-accept-btn');
+  btn.disabled = true; btn.textContent = 'Saving…';
+
+  // Sync any in-flight input changes
+  if (_discData) {
+    _discData.company = company;
+    _discData.drawing_format = document.getElementById('disc-drawing-fmt').value.trim();
+    const tnRaw = document.getElementById('disc-tag-num').value.trim();
+    _discData.tag_numbering = {first_digit: tnRaw, example: ''};
+  }
+
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/save-discovered-conventions`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(_discData),
+    });
+    const d = await r.json();
+    if (!r.ok) { showToast('Save failed: '+(d.error||r.status),'error'); return; }
+
+    closeDiscovery();
+    showToast(`Conventions saved for ${company}. Starting extraction…`, 'info', 4000);
+
+    if (_discFile) {
+      await _doExtract(_discFile);
+    }
+  } catch(e) {
+    showToast('Error: '+e.message, 'error');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Accept & Extract';
+  }
+}
+
+async function _doExtract(file) {
+  const _provLabel = {anthropic:'Claude', gemini:'Gemini', openai:'OpenAI', ollama:'Ollama'}[_activeProvider] || _activeProvider;
+  setStatus('Sending ' + file.name + ' to ' + _provLabel + '...', 'loading');
+  _showFilePreview(file);
+  const formData = new FormData();
+  formData.append('file', file);
+  const t0 = Date.now();
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/parse/image`, {
+      method:'POST', body: formData
+    });
+    const data = await r.json();
+    if (!r.ok || data.error) {
+      setStatus('Failed: ' + (data.error || 'Server error '+r.status), 'error');
+      return;
+    }
+    data._elapsed = ((Date.now() - t0) / 1000).toFixed(1);
+    handleParseResult(data);
+    setStatus('Extracted from ' + file.name + '. Review the results.', 'ok');
+    await loadProjectData(currentProject);
+    _checkUnknownPrefixes();
+  } catch(e) {
+    setStatus('Network error: ' + e.message, 'error');
+  }
+}
+
+function _showFilePreview(file) {
+  document.getElementById('pid-drop-zone').style.display = 'none';
+  document.getElementById('pid-img-container').style.display = 'block';
+  if (file.type.startsWith('image/')) {
+    const reader = new FileReader();
+    reader.onload = e => { document.getElementById('pid-img').src = e.target.result; };
+    reader.readAsDataURL(file);
+  } else {
+    document.getElementById('pid-img').src = '';
+  }
+  document.getElementById('pid-filename').textContent = file.name + (file.type.startsWith('image/') ? '' : ' (PDF)');
+}
+
+async function _checkUnknownPrefixes() {
+  if (!currentProject) return;
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/unknown-prefixes`);
+    if (!r.ok) return;
+    const d = await r.json();
+    const unknown = d.unknown || [];
+    if (!unknown.length) return;
+    const bar = document.getElementById('disc-unknown-bar');
+    const names = unknown.slice(0,5).map(u=>`${u.prefix}(${u.count})`).join(', ');
+    const extra = unknown.length > 5 ? ` +${unknown.length-5} more` : '';
+    bar.textContent = `⚠ ${unknown.length} new prefix${unknown.length>1?'es':''} found: ${names}${extra} — click to classify`;
+    bar.style.display = 'block';
+    bar._unknown = unknown;
+  } catch(e) { /* silent */ }
+}
+
+function openUnknownPrefixes() {
+  const bar = document.getElementById('disc-unknown-bar');
+  const unknown = bar._unknown || [];
+  if (!unknown.length) return;
+  // Reuse discovery modal — inject the unknown prefixes as rows to classify
+  _discData = {
+    company: '', drawing_format: '', prefixes: unknown.map(u => ({
+      prefix: u.prefix, count: u.count, context: '',
+      suggested_type: '', suggested_layer: 1, confidence: 'low',
+    })),
+    tag_numbering: {},
+  };
+  _discFile = null;
+  document.getElementById('disc-company').value = '';
+  document.getElementById('disc-drawing-fmt').value = '';
+  document.getElementById('disc-tag-num').value = '';
+  document.getElementById('disc-prefix-body').innerHTML =
+    _discData.prefixes.map((p,i) => _discRowHtml(p,i)).join('');
+  document.getElementById('disc-modal').querySelector('h3').textContent = 'Classify New Prefixes';
+  document.getElementById('disc-accept-btn').textContent = 'Save Classifications';
+  document.getElementById('disc-overlay').classList.add('show');
+}
+
+async function rediscoverConventions() {
+  if (!currentProject) return;
+  setStatus('Scanning drawing for tag prefixes…', 'loading');
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/discover-conventions`, {method:'POST'});
+    const data = await r.json();
+    if (!r.ok || data.error) { setStatus('Discovery failed: '+(data.error||r.status),'error'); return; }
+    setStatus('Discovery complete. Review the modal.', 'ok');
+    openDiscovery(data, null);
+  } catch(e) {
+    setStatus('Error: '+e.message, 'error');
+  }
+}
+
+// ── File upload ──────────────────────────────────────────────────────────────
+async function handleFileUpload(event) {
+  if (!currentProject) {
+    setStatus('Select a project first.', 'error');
+    event.target.value = '';
+    return;
+  }
+  const files = Array.from(event.target.files)
+    .filter(f => f.name.match(/\.(pdf|png|jpg|jpeg|gif|webp)$/i))
+    .sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+  event.target.value = '';
+  if (!files.length) return;
+  await processFiles(files);
+}
+
+async function handleDrop(event) {
+  event.preventDefault();
+  event.currentTarget.classList.remove('dragging');
+  if (!currentProject) { setStatus('Select a project first.', 'error'); return; }
+  const files = Array.from(event.dataTransfer.files)
+    .filter(f => f.name.match(/\.(pdf|png|jpg|jpeg|gif|webp)$/i));
+  if (!files.length) return;
+  await processFiles(files);
+}
+
+async function _hasCompany() {
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/manifest`);
+    const m = await r.json();
+    return !!(m.company);
+  } catch(e) { return false; }
+}
+
+async function processFiles(files) {
+  if (files.length === 1) {
+    await uploadFile(files[0]);
+    loadProjectData(currentProject);
+    return;
+  }
+
+  setStatus(`Uploading ${files.length} files...`, 'loading');
+  const dropZone = document.getElementById('pid-drop-zone');
+  let queueDiv = document.getElementById('upload-queue');
+  if (!queueDiv) {
+    queueDiv = document.createElement('div');
+    queueDiv.id = 'upload-queue';
+    queueDiv.style.cssText = 'padding:8px;font-size:11px;color:var(--text-muted);width:100%;text-align:left';
+    dropZone.appendChild(queueDiv);
+  }
+  queueDiv.innerHTML = files.map(f =>
+    `<div id="q-${CSS.escape(f.name)}" style="padding:2px 0">&#9203; ${f.name}</div>`
+  ).join('');
+
+  let done = 0;
+  for (const file of files) {
+    const row = document.getElementById(`q-${CSS.escape(file.name)}`);
+    if (row) row.innerHTML = `&#9203; ${file.name} — uploading...`;
+    try {
+      await uploadFile(file);
+      done++;
+      if (row) row.innerHTML = `&#10003; ${file.name}`;
+      setStatus(`${done}/${files.length} complete`, 'loading');
+      await loadProjectData(currentProject);
+    } catch(e) {
+      if (row) row.innerHTML = `&#10007; ${file.name}: ${e.message}`;
+      console.error('Upload failed:', file.name, e);
+    }
+  }
+  setStatus(`${done}/${files.length} files extracted`, 'ok');
+  _checkUnknownPrefixes();
+}
+
+async function uploadFile(file) {
+  try {
+    console.log('Upload:', file.name, file.type, file.size + 'b');
+
+    // Discovery gate: PDF upload with no company set → discover conventions first
+    if (file.name.toLowerCase().endsWith('.pdf') && !(await _hasCompany())) {
+      setStatus('Analyzing conventions…', 'loading');
+      _showFilePreview(file);
+      const formData = new FormData();
+      formData.append('file', file);
+      try {
+        const r = await fetch(`/api/projects/${currentProject}/discover-conventions`, {
+          method: 'POST', body: formData,
+        });
+        const data = await r.json();
+        if (r.ok && !data.error) {
+          openDiscovery(data, file);  // modal takes over; extraction happens in acceptDiscovery()
+          return;
+        }
+        // Discovery failed — fall through to normal extraction with a warning
+        showToast('Convention discovery failed — extracting without conventions.', 'info', 4000);
+      } catch(e) {
+        showToast('Discovery error: '+e.message+' — proceeding with extraction.', 'info', 4000);
+      }
+    }
+
+    await _doExtract(file);
+    _checkUnknownPrefixes();
+  } catch(e) {
+    console.error('uploadFile error:', e);
+    setStatus('Upload error: ' + e.message, 'error');
+  }
+}
+
+// ── Handle parse result ──────────────────────────────────────────────────────
+function handleParseResult(data) {
+  buildNodePositions(data.ympl_doc?.nodes || []);
+
+  const wbar = document.getElementById('warnings-bar');
+  if (data.cached) {
+    wbar.style.display = 'block';
+    wbar.style.background = 'rgba(37,99,235,0.1)';
+    wbar.style.borderColor = 'rgba(37,99,235,0.25)';
+    wbar.style.color = 'var(--accent)';
+    wbar.textContent = 'Source already extracted — showing current project data.';
+  } else if (data.used_claude) {
+    wbar.style.display = 'block';
+    wbar.style.background = 'rgba(22,163,74,0.1)';
+    wbar.style.borderColor = 'rgba(22,163,74,0.3)';
+    wbar.style.color = '#4ade80';
+    const nNodes = (data.ympl_doc?.nodes || []).length;
+    wbar.textContent = `Extraction complete — ${nNodes} nodes in project`;
+  } else {
+    wbar.style.display = 'none';
+  }
+
+  // Refresh source list and units
+  if (currentProject) {
+    Promise.all([
+      fetch(`/api/projects/${currentProject}/manifest`).then(r => r.json()),
+      fetch(`/api/projects/${currentProject}/units`).then(r => r.json()),
+    ]).then(([m, unitList]) => {
+      renderSourceList(m.sources || []);
+      const allDrawings = [...new Set((data.ympl_doc?.nodes || []).map(n => n.drawing || '').filter(Boolean))].sort();
+      renderUnits(unitList, allDrawings);
+    });
+  }
+
+  const nI = Object.keys(data.instruments || {}).length;
+  const nE = Object.keys(data.equipment || {}).length;
+  const nC = (data.connections || []).length;
+
+  // Summary bar
+  const sumBar = document.getElementById('extract-summary');
+  if (sumBar) {
+    sumBar.style.display = 'flex';
+    document.getElementById('sum-instruments').textContent = `${nI} instruments`;
+    document.getElementById('sum-equipment').textContent = `${nE} equipment`;
+    document.getElementById('sum-connections').textContent = `${nC} connections`;
+    const drawings = new Set(Object.values(data.instruments||{}).map(i=>i.drawing||'').filter(Boolean));
+    document.getElementById('sum-drawings').textContent = drawings.size ? `${drawings.size} drawings` : '';
+
+    const det = data.detection || {};
+    const hasDet = det.available;
+    const sepEl = document.getElementById('sum-sep');
+    if (sepEl) sepEl.style.display = hasDet ? '' : 'none';
+    const symEl = document.getElementById('sum-symbols');
+    if (symEl) { symEl.textContent = `${det.symbol_count ?? 0} symbols`; symEl.style.display = hasDet ? '' : 'none'; }
+    const txtEl = document.getElementById('sum-texts');
+    if (txtEl) { txtEl.textContent = `${det.text_count ?? 0} text`; txtEl.style.display = hasDet ? '' : 'none'; }
+    const lnEl = document.getElementById('sum-lines');
+    if (lnEl) { lnEl.textContent = `${det.line_count ?? 0} lines`; lnEl.style.display = hasDet ? '' : 'none'; }
+    const timeEl = document.getElementById('sum-time');
+    if (timeEl && data._elapsed) { timeEl.textContent = `${data._elapsed}s`; timeEl.style.display = ''; }
+  }
+
+  // Canvas link
+  if (currentProject) {
+    const cl = document.getElementById('canvas-link');
+    if (cl) { cl.href = `/canvas/${currentProject}`; cl.style.display = 'inline-block'; }
+    const ctl = document.getElementById('canvas-tab-link');
+    if (ctl) { ctl.href = `/canvas/${currentProject}`; }
+    const ctm = document.getElementById('canvas-tab-msg');
+    if (ctm) ctm.textContent = `${nI} tags ready — open canvas to verify`;
+  }
+
+  renderTable(data.instruments || {}, data.equipment || {}, {});
+  document.getElementById('project-meta').textContent = `${nI} instruments · ${nE} equipment`;
+  document.getElementById('export-status').textContent = `${nI} instruments · ${nE} equipment · ready to export`;
+  loadProjects();
+}
+
+// ── Bulk accept ───────────────────────────────────────────────────────────────
+async function bulkAccept(minConfidence) {
+  if (!currentProject) { setStatus('Select a project first.', 'error'); return; }
+  const r = await fetch(`/api/projects/${currentProject}`);
+  const data = await r.json();
+  const instruments = data?.studio?.instruments || {};
+  const equipment  = data?.studio?.equipment  || {};
+
+  const toAccept = [];
+  Object.entries(instruments).forEach(([tag, inst]) => {
+    const conf = inst.confidence;
+    if (minConfidence === 0 || conf === null || conf === undefined || conf >= minConfidence)
+      toAccept.push(tag);
+  });
+  Object.keys(equipment).forEach(tag => toAccept.push(tag));
+
+  setStatus(`Accepting ${toAccept.length} items...`, 'loading');
+  let done = 0;
+  for (const tag of toAccept) {
+    await fetch(`/api/projects/${currentProject}/review/${encodeURIComponent(tag)}`, {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({action: 'accepted'})
+    });
+    done++;
+  }
+  setStatus(`Accepted ${done} items.`, 'ok');
+  loadProjectData(currentProject);
+}
+
+// ── Pass 3 / Pass 4 inference proposals — review-tab UI ─────────────────────
+function _confBadge(c) {
+  const v = Number(c) || 0;
+  const cls = v >= 0.90 ? 'conf-green' : v >= 0.70 ? 'conf-amber' : 'conf-red';
+  return `<span class="conf-badge ${cls}">${v.toFixed(2)}</span>`;
+}
+
+function _propEsc(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function toggleProposalSection(sectionId) {
+  const el = document.getElementById(sectionId);
+  if (el) el.classList.toggle('collapsed');
+}
+
+function _setSectionVisibility(sectionId, countId, n) {
+  const sec = document.getElementById(sectionId);
+  const cnt = document.getElementById(countId);
+  if (!sec || !cnt) return;
+  cnt.textContent = String(n);
+  cnt.classList.toggle('zero', n === 0);
+  sec.style.display = n === 0 ? 'none' : '';
+  // Collapsed by default when count == 0; expanded when count > 0 on first paint
+  if (n === 0) sec.classList.add('collapsed');
+  else         sec.classList.remove('collapsed');
+}
+
+function renderTagProposals(list) {
+  const tbody = document.getElementById('tag-prop-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  for (const p of list || []) {
+    const tr = document.createElement('tr');
+    tr.dataset.nodeId = p.node_id;
+    tr.innerHTML = `
+      <td><code>${_propEsc(p.original_tag)}</code></td>
+      <td><code>${_propEsc(p.proposed_tag)}</code></td>
+      <td>${_propEsc(p.method)}</td>
+      <td>${_confBadge(p.confidence)}</td>
+      <td style="text-align:right">
+        <button class="btn btn-sm prop-action-accept"
+                onclick="actOnTagProposal('${_propEsc(p.node_id)}','accept')">accept</button>
+        <button class="btn btn-sm prop-action-reject"
+                onclick="actOnTagProposal('${_propEsc(p.node_id)}','reject')">reject</button>
+      </td>`;
+    tbody.appendChild(tr);
+  }
+  _setSectionVisibility('tag-prop-section', 'tag-prop-count', (list || []).length);
+}
+
+function renderConnectionProposals(list) {
+  const tbody = document.getElementById('conn-prop-tbody');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  for (const p of list || []) {
+    const tr = document.createElement('tr');
+    tr.dataset.nodeId = p.node_id;
+    tr.innerHTML = `
+      <td><code>${_propEsc(p.from_tag)}</code></td>
+      <td style="color:var(--text-dim);text-align:center">→</td>
+      <td><code>${_propEsc(p.to_tag)}</code></td>
+      <td>${_propEsc(p.method)}</td>
+      <td>${_confBadge(p.confidence)}</td>
+      <td style="text-align:right">
+        <button class="btn btn-sm prop-action-accept"
+                onclick="actOnConnectionProposal('${_propEsc(p.node_id)}','accept')">accept</button>
+        <button class="btn btn-sm prop-action-reject"
+                onclick="actOnConnectionProposal('${_propEsc(p.node_id)}','reject')">reject</button>
+      </td>`;
+    tbody.appendChild(tr);
+  }
+  _setSectionVisibility('conn-prop-section', 'conn-prop-count', (list || []).length);
+}
+
+async function _actOnProposal(kind, nodeId, action) {
+  // kind: 'tags' | 'connections'
+  if (!currentProject) return;
+  const tbodyId  = kind === 'tags' ? 'tag-prop-tbody'  : 'conn-prop-tbody';
+  const sectionId = kind === 'tags' ? 'tag-prop-section' : 'conn-prop-section';
+  const countId   = kind === 'tags' ? 'tag-prop-count'   : 'conn-prop-count';
+  const refetch   = `/api/projects/${currentProject}/proposals/${kind}`;
+  const tr = document.querySelector(`#${tbodyId} tr[data-node-id="${nodeId}"]`);
+  if (tr) tr.classList.add('fading');
+  try {
+    const res = await fetch(
+      `/api/projects/${currentProject}/proposals/${kind}/${encodeURIComponent(nodeId)}`,
+      { method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({action}) }
+    );
+    if (!res.ok) {
+      if (tr) tr.classList.remove('fading');
+      const err = await res.json().catch(() => ({}));
+      setStatus(err.error || 'proposal update failed', 'error');
+      return;
+    }
+    // Brief fade-out then re-fetch only this section
+    setTimeout(async () => {
+      const r = await fetch(refetch);
+      const list = r.ok ? await r.json() : [];
+      if (kind === 'tags') renderTagProposals(list);
+      else                 renderConnectionProposals(list);
+    }, 300);
+  } catch (e) {
+    if (tr) tr.classList.remove('fading');
+    setStatus('proposal update error: ' + e.message, 'error');
+  }
+}
+
+function actOnTagProposal(nodeId, action) {
+  return _actOnProposal('tags', nodeId, action);
+}
+function actOnConnectionProposal(nodeId, action) {
+  return _actOnProposal('connections', nodeId, action);
+}
+
+
+// ── Mermaid rendering ────────────────────────────────────────────────────────
+async function renderMermaid(mermaidStr) {
+  const container = document.getElementById('mermaid-render');
+  if (!container) return;
+  if (!mermaidStr || mermaidStr.trim() === '') {
+    container.innerHTML = '<div style="color:var(--text-dim);font-size:11px">no topology yet</div>';
+    return;
+  }
+  try {
+    const id = 'mermaid-' + Date.now();
+    const {svg} = await mermaid.render(id, mermaidStr);
+    container.innerHTML = svg;
+    const conf = document.getElementById('mermaid-confidence');
+    if (conf) { conf.textContent = 'generated'; conf.className = 'badge bg'; }
+  } catch(e) {
+    // Fallback: show raw text
+    container.innerHTML =
+      `<pre style="font-size:9px;color:var(--text-dim);overflow:auto;padding:8px">${mermaidStr}</pre>`;
+  }
+}
+
+// ── Confidence table ─────────────────────────────────────────────────────────
+function renderTable(instruments, equipment, reviewState) {
+  reviewState = reviewState || {};
+  const wrap = document.getElementById('table-wrap');
+  const rows = [];
+
+  // Equipment rows
+  Object.entries(equipment).forEach(([tag, data]) => {
+    rows.push({tag, type: data.type || '—', kind: 'equipment', confidence: data.confidence || null});
+  });
+
+  // Instrument rows
+  Object.entries(instruments).forEach(([tag, data]) => {
+    const conf = data.confidence;
+    const isSafety = tag.includes('HH') || tag.includes('LL') || tag.startsWith('PSV') || tag.startsWith('PAHH');
+    rows.push({tag, type: data.type || '—', kind: 'instrument', confidence: conf, safety: isSafety});
+  });
+
+  if (!rows.length) {
+    wrap.innerHTML = '<div style="padding:20px;color:var(--text-dim);font-size:11px;text-align:center">no items yet</div>';
+    return;
+  }
+
+  document.getElementById('table-title').textContent =
+    `extracted · ${Object.keys(instruments).length} instruments · ${Object.keys(equipment).length} equipment`;
+
+  let html = `<table class="conf-table"><thead><tr>
+    <th>tag</th><th>type</th><th>confidence</th><th>action</th>
+  </tr></thead><tbody>`;
+
+  rows.forEach(row => {
+    const conf = row.confidence;
+    const saved = reviewState[row.tag];
+    const t = row.tag;
+    let cls = '', badge = '', action = '';
+
+    const rejectBtn = `<button class="btn btn-sm" style="color:#f87171;border-color:rgba(220,38,38,0.3);margin-left:4px" onclick="reviewTag('${t}','rejected')">reject</button>`;
+
+    if (saved === 'accepted' || saved === 'signoff') {
+      const label = saved === 'signoff' ? 'signed off' : 'accepted';
+      badge = `<span class="badge bg">✓ ${label}</span>`;
+      action = `<span style="color:#4ade80;font-size:10px">saved</span>${rejectBtn}`;
+    } else if (saved === 'rejected') {
+      badge = `<span class="badge br">✗ rejected</span>`;
+      action = `<button class="btn btn-sm" onclick="reviewTag('${t}','accepted')">undo</button>`;
+    } else if (row.safety) {
+      cls = 'danger';
+      badge = '<span class="badge br">safety</span>';
+      action = `<button class="btn btn-sm btn-primary" title="Formal engineer sign-off required for safety instruments" onclick="reviewTag('${t}','signoff')">sign off (safety)</button>${rejectBtn}`;
+    } else if (conf === null || conf === undefined) {
+      badge = `<span class="badge bgray" style="cursor:pointer" title="Unknown — click to locate in drawing" onclick="locateTag('${t}')">?</span>`;
+      action = `<button class="btn btn-sm" onclick="reviewTag('${t}','accepted')">accept</button>${rejectBtn}`;
+    } else if (conf >= 0.9) {
+      badge = `<span class="badge bg" style="cursor:pointer" title="Click to locate in drawing" onclick="locateTag('${t}')">${Math.round(conf*100)}%</span>`;
+      action = `<button class="btn btn-sm" onclick="reviewTag('${t}','accepted')">accept</button>${rejectBtn}`;
+    } else if (conf >= 0.7) {
+      cls = 'warn';
+      badge = `<span class="badge by" style="cursor:pointer" title="Click to locate in drawing" onclick="locateTag('${t}')">${Math.round(conf*100)}%</span>`;
+      action = `<button class="btn btn-sm" onclick="reviewTag('${t}','accepted')">accept</button>${rejectBtn}`;
+    } else {
+      cls = 'danger';
+      badge = `<span class="badge br" style="cursor:pointer" title="Click to locate in drawing" onclick="locateTag('${t}')">${Math.round(conf*100)}%</span>`;
+      action = `<button class="btn btn-sm" onclick="reviewTag('${t}','accepted')">accept</button>${rejectBtn}`;
+    }
+
+    html += `<tr class="${cls}">
+      <td style="font-weight:500">${row.tag}</td>
+      <td style="color:var(--text-muted)">${row.type}</td>
+      <td>${badge}</td>
+      <td>${action}</td>
+    </tr>`;
+  });
+
+  html += '</tbody></table>';
+  wrap.innerHTML = html;
+}
+
+async function reviewTag(tag, action) {
+  if (!currentProject) return;
+  await fetch(`/api/projects/${currentProject}/review/${encodeURIComponent(tag)}`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({action})
+  });
+  loadProjectData(currentProject);
+}
+
+// ── Tag location overlay (Fix 1) ─────────────────────────────────────────────
+let nodePositions = {};  // tag → {x, y, drawing}
+
+function buildNodePositions(nodes) {
+  nodePositions = {};
+  (nodes || []).forEach(n => {
+    if (n.label && n.x !== undefined) {
+      nodePositions[n.label] = {x: n.x || 0, y: n.y || 0, drawing: n.drawing || ''};
+    }
+  });
+}
+
+function locateTag(tag) {
+  const pos = nodePositions[tag];
+  const drawingText = pos ? (pos.drawing ? ` · Drawing ${pos.drawing}` : '') : '';
+
+  if (!pos) {
+    setStatus(`${tag} — no position data from extraction`, 'info');
+    return;
+  }
+
+  const container = document.getElementById('pid-img-container');
+  if (!container || container.style.display === 'none') {
+    setStatus(`${tag}${drawingText} · position ${Math.round(pos.x*100)}%, ${Math.round(pos.y*100)}%`, 'ok');
+    return;
+  }
+
+  // Remove any previous locator
+  const old = document.getElementById('locate-dot');
+  if (old) old.remove();
+
+  const dot = document.createElement('div');
+  dot.id = 'locate-dot';
+  dot.style.left = `${pos.x * 100}%`;
+  dot.style.top  = `${pos.y * 100}%`;
+  container.appendChild(dot);
+
+  setStatus(`Located: ${tag}${drawingText} · ${Math.round(pos.x*100)}%, ${Math.round(pos.y*100)}%`, 'ok');
+  setTimeout(() => { const d = document.getElementById('locate-dot'); if (d) d.remove(); }, 3000);
+}
+
+// ── Extraction reset (Fix 3) ──────────────────────────────────────────────────
+async function resetExtraction() {
+  if (!currentProject) return;
+  if (!confirm('Reset extraction?\n\n• Cached scan results cleared\n• Canvas positions cleared\n• Review decisions preserved for matching tags\n\nRe-upload the P&ID to re-scan.')) return;
+  const r = await fetch(`/api/projects/${currentProject}/reset-extraction`, {method: 'POST'});
+  if (r.ok) {
+    document.getElementById('warnings-bar').style.display = 'none';
+    setStatus('Extraction reset. Upload the P&ID again to re-scan.', 'ok');
+    loadProjects();
+    loadProjectData(currentProject);
+  } else {
+    setStatus('Reset failed.', 'error');
+  }
+}
+
+// ── Export ───────────────────────────────────────────────────────────────────
+async function exportSvg() {
+  if (!currentProject) { setStatus('Select a project first.', 'error'); return; }
+  setStatus('Generating SVG P&ID...', 'loading');
+  const r = await fetch(`/api/projects/${currentProject}/export/svg`);
+  if (!r.ok) { setStatus('SVG export failed.', 'error'); return; }
+  const blob = await r.blob();
+  const fname = `${currentProject}_pid.svg`;
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = fname; a.click();
+  URL.revokeObjectURL(url);
+  setStatus(`SVG P&ID exported → ${fname}`, 'ok');
+}
+
+// ── Source list ──────────────────────────────────────────────────────────────
+function renderSourceList(sources) {
+  const el = document.getElementById('source-list');
+  if (!el) return;
+  if (!sources || sources.length === 0) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  const items = sources.map(s => {
+    const name = typeof s === 'string' ? s : (s.filename || '');
+    const drwCount = (s.drawings || []).length;
+    const badge = drwCount ? `<span class="src-badge">${drwCount} drw</span>` : '';
+    const safeName = name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    return `<div class="source-item">
+      <span class="src-name" title="${name}">&#128196; ${name}</span>
+      ${badge}
+      <button class="src-remove" onclick="removeSource('${safeName}')" title="Remove source and extracted data">&times;</button>
+    </div>`;
+  }).join('');
+  el.innerHTML = `<div id="source-list-label">sources</div>${items}`;
+}
+
+async function removeSource(filename) {
+  if (!currentProject) return;
+  if (!confirm(`Remove "${filename}" and its extracted data?`)) return;
+  setStatus(`Removing ${filename}...`, 'loading');
+  try {
+    const r = await fetch(
+      `/api/projects/${currentProject}/source/${encodeURIComponent(filename)}`,
+      {method: 'DELETE'}
+    );
+    const data = await r.json();
+    if (!r.ok) { setStatus('Remove failed: ' + (data.error || r.status), 'error'); return; }
+    setStatus(`Removed ${filename}: ${data.removed_nodes} nodes, ${data.removed_instruments} instruments.`, 'ok');
+    loadProjectData(currentProject);
+    loadProjects();
+  } catch(e) {
+    setStatus('Remove failed: ' + e.message, 'error');
+  }
+}
+
+// ── Unit organiser ───────────────────────────────────────────────────────────
+
+let _units = [];
+
+function renderUnits(units, allDrawings) {
+  _units = units || [];
+  const panel = document.getElementById('units-panel');
+  if (!panel) return;
+
+  // Only show panel when there are drawings
+  if (!allDrawings || allDrawings.length === 0) { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+
+  const grouped = new Set(_units.flatMap(u => u.drawings || []));
+  const ungrouped = allDrawings.filter(d => !grouped.has(d));
+
+  // Render unit rows
+  const listEl = document.getElementById('units-list');
+  listEl.innerHTML = _units.map(u => {
+    const chips = (u.drawings || []).map(d =>
+      `<span class="drawing-chip" draggable="true"
+        ondragstart="event.dataTransfer.setData('drawing',${JSON.stringify(d)})"
+        title="Drag to move">${d}</span>`
+    ).join('');
+    const barStyle = `background:${u.color}22;border-left:3px solid ${u.color}`;
+    return `<div class="unit-row" id="unit-${u.id}">
+      <div class="unit-bar" style="${barStyle}">
+        <span class="unit-name" contenteditable="true"
+          onblur="renameUnit('${u.id}',this.textContent.trim())"
+          onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}"
+          >${u.name}</span>
+        <button class="unit-remove" onclick="deleteUnit('${u.id}')" title="Delete unit">&times;</button>
+      </div>
+      <div class="unit-drawings" data-uid="${u.id}"
+        ondragover="event.preventDefault();this.classList.add('drag-over')"
+        ondragleave="this.classList.remove('drag-over')"
+        ondrop="this.classList.remove('drag-over');assignDrawingToUnit(event.dataTransfer.getData('drawing'),'${u.id}')"
+        >${chips}</div>
+    </div>`;
+  }).join('');
+
+  // Render ungrouped chips
+  const ungroupedEl = document.getElementById('ungrouped-drawings');
+  const labelEl = document.getElementById('ungrouped-label');
+  if (ungrouped.length > 0) {
+    labelEl.style.display = 'block';
+    const chips = ungrouped.map(d =>
+      `<span class="drawing-chip" draggable="true"
+        ondragstart="event.dataTransfer.setData('drawing',${JSON.stringify(d)})"
+        title="Drag to a unit">${d}</span>`
+    ).join('');
+    ungroupedEl.innerHTML = labelEl.outerHTML + chips;
+  } else {
+    labelEl.style.display = 'none';
+    ungroupedEl.innerHTML = '';
+  }
+}
+
+async function addUnit() {
+  if (!currentProject) return;
+  const name = prompt('Unit name:');
+  if (!name) return;
+  const colors = ['#4a8fd4','#2d7a2d','#c0392b','#8e44ad','#d35400','#16a085','#2c3e50'];
+  const color = colors[_units.length % colors.length];
+  await fetch(`/api/projects/${currentProject}/units`, {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({name, drawings: [], color})
+  });
+  loadProjectData(currentProject);
+}
+
+async function renameUnit(uid, name) {
+  if (!currentProject || !name) return;
+  await fetch(`/api/projects/${currentProject}/units/${uid}`, {
+    method: 'PUT',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({name})
+  });
+}
+
+async function deleteUnit(uid) {
+  if (!currentProject) return;
+  if (!confirm('Delete this unit? Drawings will become ungrouped.')) return;
+  await fetch(`/api/projects/${currentProject}/units/${uid}`, {method: 'DELETE'});
+  loadProjectData(currentProject);
+}
+
+async function assignDrawingToUnit(drawing, uid) {
+  if (!currentProject || !drawing) return;
+  // Remove from all units first
+  for (const u of _units) {
+    if ((u.drawings || []).includes(drawing)) {
+      u.drawings = u.drawings.filter(d => d !== drawing);
+      await fetch(`/api/projects/${currentProject}/units/${u.id}`, {
+        method: 'PUT',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({drawings: u.drawings})
+      });
+    }
+  }
+  // Add to target
+  const target = _units.find(u => u.id === uid);
+  if (target) {
+    target.drawings = [...(target.drawings || []), drawing];
+    await fetch(`/api/projects/${currentProject}/units/${uid}`, {
+      method: 'PUT',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({drawings: target.drawings})
+    });
+  }
+  loadProjectData(currentProject);
+}
+
+async function rebuildProject() {
+  if (!currentProject) return;
+  setStatus('Rebuilding from cache...', 'loading');
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/rebuild`, {method: 'POST'});
+    const d = await r.json();
+    if (!r.ok) { setStatus('Rebuild failed: ' + (d.error || r.status), 'error'); return; }
+    setStatus(d.message, 'ok');
+    loadProjectData(currentProject);
+  } catch(e) {
+    setStatus('Rebuild error: ' + e.message, 'error');
+  }
+}
+
+async function linkDrawings() {
+  if (!currentProject) return;
+  setStatus('Linking cross-drawing connections...', 'loading');
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/link`, {method: 'POST'});
+    const data = await r.json();
+    if (!r.ok) { setStatus('Link failed: ' + (data.error || r.status), 'error'); return; }
+    setStatus(data.message, 'ok');
+    loadProjectData(currentProject);
+  } catch(e) {
+    setStatus('Link error: ' + e.message, 'error');
+  }
+}
+
+// ── Loop inference ────────────────────────────────────────────────────────────
+let loopsData = {};
+let loopsFilter = 'all';
+
+async function loadLoops() {
+  if (!currentProject) return;
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/loops`);
+    if (!r.ok) return;
+    loopsData = await r.json();
+    renderLoopTable();
+  } catch(e) {}
+}
+
+async function inferLoops() {
+  if (!currentProject) { setStatus('Select a project first.', 'error'); return; }
+  setStatus('Inferring control loops...', 'loading');
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/infer_loops`, {method: 'POST'});
+    const d = await r.json();
+    if (!r.ok) { setStatus('Loop inference failed: ' + (d.error || r.status), 'error'); return; }
+    loopsData = d.loops || {};
+    renderLoopTable();
+    setStatus(`Loops inferred: ${d.complete} complete, ${d.incomplete} incomplete, ${d.no_controller} orphan`, 'ok');
+  } catch(e) {
+    setStatus('Loop inference error: ' + e.message, 'error');
+  }
+}
+
+async function confirmLoop(loopId) {
+  if (!currentProject) return;
+  const loop = loopsData[loopId];
+  if (!loop) return;
+  const typeEl = document.getElementById('ltype-' + CSS.escape(loopId));
+  const loopType = typeEl ? typeEl.value : (loop.loop_type || 'feedback');
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/loops/${encodeURIComponent(loopId)}`, {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({confirmed: true, loop_type: loopType})
+    });
+    if (!r.ok) return;
+    const updated = await r.json();
+    loopsData[loopId] = updated;
+    renderLoopTable();
+    setStatus(`Loop ${loopId} confirmed.`, 'ok');
+  } catch(e) {}
+}
+
+function filterLoops(status) {
+  loopsFilter = status;
+  document.querySelectorAll('[id^="lf-"]').forEach(b => {
+    b.style.background = '';
+    b.style.color = '';
+  });
+  const active = document.getElementById('lf-' + status);
+  if (active) { active.style.background = 'var(--accent)'; active.style.color = '#fff'; }
+  renderLoopTable();
+}
+
+function renderLoopTable() {
+  const tbody = document.getElementById('loops-tbody');
+  const empty = document.getElementById('loops-empty');
+  if (!tbody) return;
+
+  const loops = Object.values(loopsData);
+
+  // Update summary counts
+  let nComplete = 0, nIncomplete = 0, nOrphan = 0, nUnconfirmed = 0;
+  loops.forEach(l => {
+    if (l.status === 'complete') nComplete++;
+    else if (l.status === 'incomplete' || l.status === 'controller_only') nIncomplete++;
+    else if (l.status === 'no_controller') nOrphan++;
+    if (!l.confirmed) nUnconfirmed++;
+  });
+  const el = id => document.getElementById(id);
+  if (el('loops-count-complete'))    el('loops-count-complete').textContent    = `${nComplete} complete ✓`;
+  if (el('loops-count-incomplete'))  el('loops-count-incomplete').textContent  = `${nIncomplete} incomplete ⚠`;
+  if (el('loops-count-orphan'))      el('loops-count-orphan').textContent      = `${nOrphan} no controller ?`;
+  if (el('loops-count-unconfirmed')) el('loops-count-unconfirmed').textContent = `${nUnconfirmed} unconfirmed`;
+
+  // Filter
+  let visible = loops;
+  if (loopsFilter === 'complete')      visible = loops.filter(l => l.status === 'complete');
+  else if (loopsFilter === 'incomplete') visible = loops.filter(l => l.status === 'incomplete' || l.status === 'controller_only');
+  else if (loopsFilter === 'no_controller') visible = loops.filter(l => l.status === 'no_controller');
+  else if (loopsFilter === 'unconfirmed')   visible = loops.filter(l => !l.confirmed);
+
+  if (visible.length === 0) {
+    tbody.innerHTML = '';
+    if (empty) empty.style.display = loops.length === 0 ? 'block' : 'none';
+    if (loops.length > 0 && empty) {
+      empty.style.display = 'none';
+      tbody.innerHTML = '<tr><td colspan="6" style="padding:20px;text-align:center;color:var(--text-dim);font-size:12px">No loops match this filter.</td></tr>';
+    }
+    return;
+  }
+  if (empty) empty.style.display = 'none';
+
+  const statusDot = s => {
+    if (s === 'complete')      return '<span style="color:#4ade80;font-size:14px">●</span>';
+    if (s === 'incomplete' || s === 'controller_only') return '<span style="color:#fbbf24;font-size:14px">●</span>';
+    return '<span style="color:#f87171;font-size:14px">●</span>';
+  };
+  const tagCell = t => t
+    ? `<span style="font-family:var(--font-mono);background:var(--bg-raised);padding:1px 5px;border-radius:3px;color:var(--text-primary)">${t}</span>`
+    : '<span style="color:var(--text-dim)">—</span>';
+  const eid = id => CSS.escape(id);
+
+  tbody.innerHTML = visible.sort((a,b) => (a.loop_id || '').localeCompare(b.loop_id || '')).map(loop => {
+    const lid = loop.loop_id;
+    const confirmed = loop.confirmed
+      ? '<span style="color:#4ade80;font-size:10px">✓ confirmed</span>'
+      : '';
+    const actionLabel = loop.status === 'complete' ? 'confirm' :
+                        loop.status === 'no_controller' ? 'review' : 'fix';
+    return `<tr id="lrow-${eid(lid)}" style="border-bottom:1px solid var(--border);cursor:pointer" onclick="toggleLoopDetail('${lid.replace(/'/g,"\\'")}')">
+      <td style="padding:6px 8px;font-family:var(--font-mono);font-weight:500;color:var(--text-primary)">${lid}</td>
+      <td style="padding:6px 8px">${tagCell(loop.measurement)}</td>
+      <td style="padding:6px 8px">${tagCell(loop.controller)}</td>
+      <td style="padding:6px 8px">${tagCell(loop.final_element)}</td>
+      <td style="padding:6px 8px">${statusDot(loop.status)} ${confirmed}</td>
+      <td style="padding:6px 8px">
+        <button class="btn btn-sm" onclick="event.stopPropagation();confirmLoop('${lid.replace(/'/g,"\\'")}')">${actionLabel}</button>
+      </td>
+    </tr>
+    <tr id="ldetail-${eid(lid)}" style="display:none;background:var(--bg-raised)">
+      <td colspan="6" style="padding:8px 16px">
+        <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:var(--text-muted)">
+          <div><strong>Drawing:</strong> ${loop.drawing || '—'}</div>
+          <div><strong>Variable:</strong> ${loop.variable || '—'}</div>
+          <div><strong>Loop #:</strong> ${loop.number || '—'}</div>
+          ${loop.indicators && loop.indicators.length ? `<div><strong>Indicators:</strong> ${loop.indicators.join(', ')}</div>` : ''}
+          ${loop.alarms && loop.alarms.length ? `<div><strong>Alarms/Switches:</strong> ${loop.alarms.join(', ')}</div>` : ''}
+          ${loop.other && loop.other.length ? `<div><strong>Other:</strong> ${loop.other.join(', ')}</div>` : ''}
+          <div><strong>Type:</strong>
+            <select id="ltype-${eid(lid)}" style="font-size:11px;padding:1px 4px;background:var(--bg-base);border:1px solid var(--border);color:var(--text-primary);border-radius:var(--radius-sm)">
+              ${['feedback','cascade','feedforward','ratio'].map(t =>
+                `<option value="${t}"${(loop.loop_type||'feedback')===t?' selected':''}>${t}</option>`
+              ).join('')}
+            </select>
+          </div>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+function toggleLoopDetail(lid) {
+  const row = document.getElementById('ldetail-' + CSS.escape(lid));
+  if (row) row.style.display = row.style.display === 'none' ? '' : 'none';
+}
+
+async function exportSvgPerDrawing() {
+  if (!currentProject) { setStatus('Select a project first.', 'error'); return; }
+  setStatus('Generating per-drawing SVG zip...', 'loading');
+  const r = await fetch(`/api/projects/${currentProject}/export/svg/zip`);
+  if (!r.ok) { setStatus('SVG zip export failed.', 'error'); return; }
+  const blob = await r.blob();
+  const fname = `${currentProject}_svgs.zip`;
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = fname; a.click();
+  URL.revokeObjectURL(url);
+  setStatus(`Per-drawing SVG zip exported → ${fname}`, 'ok');
+}
+
+async function exportVids() {
+  if (!currentProject) { alert('Select a project first'); return; }
+  const r = await fetch(`/api/projects/${currentProject}/export/vids`);
+  const data = await r.json();
+  document.getElementById('yaml-box').value = data.yaml || '';
+  downloadFile(data.yaml, data.filename || `${currentProject}_vids.yaml`, 'text/yaml');
+  document.getElementById('export-status').textContent =
+    `VIDS exported → ${data.filename}`;
+  // Switch to YAML tab to show output
+  document.querySelectorAll('.tab')[2].click();
+}
+
+async function exportYmpl() {
+  if (!currentProject) { alert('Select a project first'); return; }
+  const r = await fetch(`/api/projects/${currentProject}/export/ympl`);
+  const data = await r.json();
+  downloadFile(data.ympl, data.filename || `${currentProject}.ympl`, 'text/yaml');
+  document.getElementById('export-status').textContent =
+    `YMPL exported → ${data.filename}`;
+}
+
+async function exportMarkdown() {
+  if (!currentProject) { setStatus('Select a project first.', 'error'); return; }
+  setStatus('Generating Markdown...', 'loading');
+  try {
+    const r = await fetch(`/api/projects/${currentProject}/export/markdown`);
+    if (!r.ok) { setStatus('Markdown export failed.', 'error'); return; }
+    const cd = r.headers.get('Content-Disposition') || '';
+    const isZip = cd.includes('.zip') || r.headers.get('Content-Type')?.includes('zip');
+    const blob = await r.blob();
+    const fname = currentProject + (isZip ? '_drawings.zip' : '.md');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = fname;
+    a.click();
+    setStatus('Markdown exported → ' + fname, 'ok');
+  } catch(e) {
+    setStatus('Network error: ' + e.message, 'error');
+  }
+}
+
+function downloadFile(content, filename, mime) {
+  const blob = new Blob([content], {type: mime});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function copyYaml() {
+  const txt = document.getElementById('yaml-box').value;
+  navigator.clipboard.writeText(txt).then(() => {
+    const btn = event.target;
+    btn.textContent = 'copied!';
+    setTimeout(() => btn.textContent = 'copy', 1500);
+  });
+}
+
+// ── New project modal ────────────────────────────────────────────────────────
+function showNewProjectModal() {
+  document.getElementById('modal-overlay').classList.add('show');
+  document.getElementById('new-name').focus();
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('show');
+}
+
+async function createProject() {
+  const name = document.getElementById('new-name').value.trim();
+  if (!name) { alert('Enter a plant name'); return; }
+  const type = document.getElementById('new-type').value;
+  const r = await fetch('/api/projects', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({plant_name: name, process_type: type})
+  });
+  const data = await r.json();
+  closeModal();
+  window.location.href = `/editor?pid=${data.id}`;
+}
+
+// Close modal on overlay click
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  try {
+    loadHubStatus();
+    const autoSelect = new URLSearchParams(window.location.search).get('pid');
+    loadProjects().then(() => {
+      if (autoSelect) {
+        const meta = projectsCache.find(p => p.id === autoSelect);
+        const el   = document.querySelector(`.project-item[data-pid="${autoSelect}"]`);
+        if (meta && el) selectProject(autoSelect, meta, el);
+      }
+    });
+    setStatus('Select a project from the sidebar, then upload a P&ID.', 'info');
+  } catch(e) {
+    console.error('Init error:', e);
+  }
+});
+</script>
+
+<!-- Settings modal -->
+<div id="set-overlay" onclick="if(event.target===this)closeSettings()">
+  <div id="set-modal">
+    <div class="set-header">
+      Settings
+      <button onclick="closeSettings()" style="background:none;border:none;color:var(--text-muted);font-size:18px;cursor:pointer;line-height:1">&times;</button>
+    </div>
+    <div class="set-body">
+      <div class="set-section">
+        <div class="set-sh">LLM Provider</div>
+        <div class="set-row">
+          <span class="set-lbl">Provider</span>
+          <select id="set-provider" class="set-ctrl" onchange="onProviderChange()">
+            <option value="anthropic">Anthropic (Claude)</option>
+            <option value="gemini">Google (Gemini)</option>
+            <option value="openai">OpenAI</option>
+            <option value="ollama">Ollama (local)</option>
+          </select>
+        </div>
+      </div>
+      <div class="set-section" id="set-anthropic-section">
+        <div class="set-sh">Anthropic</div>
+        <div class="set-row">
+          <span class="set-lbl">API Key</span>
+          <input id="set-api-key" class="set-ctrl" type="password" placeholder="sk-ant-..." autocomplete="off"/>
+        </div>
+        <div class="set-row">
+          <span class="set-lbl">Fast model (Haiku)</span>
+          <input id="set-fast-model" class="set-ctrl" type="text" placeholder="claude-haiku-4-5-20251001"/>
+        </div>
+        <div class="set-row">
+          <span class="set-lbl">Smart model (Sonnet)</span>
+          <input id="set-smart-model" class="set-ctrl" type="text" placeholder="claude-sonnet-4-6"/>
+        </div>
+      </div>
+      <div class="set-section" id="set-gemini-section" style="display:none">
+        <div class="set-sh">Google Gemini</div>
+        <div class="set-row">
+          <span class="set-lbl">API Key</span>
+          <input id="set-gemini-key" class="set-ctrl" type="password" placeholder="AIza..." autocomplete="off"/>
+        </div>
+        <div class="set-row">
+          <span class="set-lbl">Fast model</span>
+          <input id="set-gemini-fast" class="set-ctrl" type="text" placeholder="gemini-2.0-flash-lite"/>
+        </div>
+        <div class="set-row">
+          <span class="set-lbl">Smart model</span>
+          <input id="set-gemini-smart" class="set-ctrl" type="text" placeholder="gemini-2.0-flash"/>
+        </div>
+      </div>
+      <div class="set-section" id="set-openai-section" style="display:none">
+        <div class="set-sh">OpenAI</div>
+        <div class="set-row">
+          <span class="set-lbl">API Key</span>
+          <input id="set-openai-key" class="set-ctrl" type="password" placeholder="sk-..." autocomplete="off"/>
+        </div>
+        <div class="set-row">
+          <span class="set-lbl">Model</span>
+          <input id="set-openai-model" class="set-ctrl" type="text" placeholder="gpt-5.5"/>
+        </div>
+      </div>
+      <div class="set-section" id="set-ollama-section" style="display:none">
+        <div class="set-sh">Ollama</div>
+        <div class="set-row">
+          <span class="set-lbl">Server URL</span>
+          <input id="set-ollama-url" class="set-ctrl" type="text" placeholder="http://localhost:11434"/>
+        </div>
+        <div class="set-row">
+          <span class="set-lbl">Fast model</span>
+          <input id="set-ollama-fast" class="set-ctrl" type="text" placeholder="llama3.2"/>
+        </div>
+        <div class="set-row">
+          <span class="set-lbl">Smart model</span>
+          <input id="set-ollama-smart" class="set-ctrl" type="text" placeholder="llama3.1:70b"/>
+        </div>
+      </div>
+      <div class="set-section">
+        <div class="set-sh">Connection</div>
+        <div class="set-test-row">
+          <button class="btn btn-sm" onclick="testLLMConn()">Test connection</button>
+          <span id="set-test-status"></span>
+        </div>
+      </div>
+      <div class="set-section">
+        <div class="set-sh">Default visible layers</div>
+        <div class="set-layer-ck" id="set-layers-ck"></div>
+      </div>
+    </div>
+    <div class="set-footer">
+      <button class="btn" onclick="closeSettings()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveSettings()">Save</button>
+    </div>
+  </div>
+</div>
+<script>
+const _SET_LAYERS = [
+  {id:'process',   label:'Process equipment'},
+  {id:'pumps',     label:'Pumps'},
+  {id:'ctrlvalves',label:'Control valves'},
+  {id:'instruments',label:'Instruments'},
+  {id:'signals',   label:'Signals'},
+  {id:'pipes',     label:'Pipes'},
+  {id:'handvalves',label:'Hand valves'},
+  {id:'checkvalves',label:'Check valves'},
+  {id:'relief',    label:'Relief valves'},
+  {id:'isolation', label:'Isolation valves'},
+];
+
+function openSettings(){
+  fetch('/api/settings').then(r=>r.json()).then(cfg=>{
+    document.getElementById('set-provider').value = cfg.llm_provider || 'anthropic';
+    document.getElementById('set-api-key').value   = cfg.anthropic_api_key || '';
+    document.getElementById('set-fast-model').value  = cfg.anthropic_model_fast || '';
+    document.getElementById('set-smart-model').value = cfg.anthropic_model_smart || '';
+    document.getElementById('set-gemini-key').value   = cfg.gemini_api_key || '';
+    document.getElementById('set-gemini-fast').value  = cfg.gemini_model_fast || '';
+    document.getElementById('set-gemini-smart').value = cfg.gemini_model_smart || '';
+    document.getElementById('set-openai-key').value   = cfg.openai_api_key || '';
+    document.getElementById('set-openai-model').value = cfg.openai_model_smart || '';
+    document.getElementById('set-ollama-url').value   = cfg.ollama_url || '';
+    document.getElementById('set-ollama-fast').value  = cfg.ollama_model_fast || '';
+    document.getElementById('set-ollama-smart').value = cfg.ollama_model_smart || '';
+    const activeLayers = new Set(cfg.default_layers || []);
+    const ck = document.getElementById('set-layers-ck');
+    ck.innerHTML = _SET_LAYERS.map(l=>`
+      <label><input type="checkbox" value="${l.id}" ${activeLayers.has(l.id)?'checked':''}> ${l.label}</label>
+    `).join('');
+    onProviderChange();
+    document.getElementById('set-test-status').textContent = '';
+    document.getElementById('set-overlay').classList.add('open');
+  });
+}
+
+function closeSettings(){
+  document.getElementById('set-overlay').classList.remove('open');
+}
+
+function onProviderChange(){
+  const p = document.getElementById('set-provider').value;
+  document.getElementById('set-anthropic-section').style.display = p==='anthropic'    ? '' : 'none';
+  document.getElementById('set-gemini-section').style.display    = p==='gemini'       ? '' : 'none';
+  document.getElementById('set-openai-section').style.display    = p==='openai'       ? '' : 'none';
+  document.getElementById('set-ollama-section').style.display    = p==='ollama'       ? '' : 'none';
+}
+
+// ── Upload toolbar provider switcher ─────────────────────────────────────────
+let _activeProvider = 'anthropic';
+
+function _updateProviderButtons(provider) {
+  _activeProvider = provider;
+  ['anthropic','gemini','openai'].forEach(p => {
+    const btn = document.getElementById('provider-btn-' + p);
+    if (!btn) return;
+    const active = p === provider;
+    btn.style.background  = active ? 'var(--accent)'   : 'var(--bg-raised)';
+    btn.style.color       = active ? '#fff'             : 'var(--text-muted)';
+    btn.style.borderColor = active ? 'var(--accent)'   : 'var(--border-light)';
+    btn.style.fontWeight  = active ? '600'             : 'normal';
+  });
+}
+
+function switchProvider(name) {
+  fetch('/api/settings', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({llm_provider: name}),
+  }).then(r => r.json()).then(d => {
+    if (d.ok) {
+      _updateProviderButtons(name);
+    } else {
+      alert('Failed to switch provider: ' + (d.error || 'unknown error'));
+    }
+  }).catch(() => alert('Network error switching provider'));
+}
+
+function testLLMConn(){
+  const el = document.getElementById('set-test-status');
+  el.textContent = 'Testing...'; el.style.color='var(--text-muted)';
+  fetch('/api/settings/test-llm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(_collectSettings())})
+    .then(r=>r.json()).then(d=>{
+      if(d.ok){el.textContent=`OK — ${d.model}`;el.style.color='var(--success)';}
+      else{el.textContent=`Error: ${d.error}`;el.style.color='var(--danger)';}
+    }).catch(e=>{el.textContent='Network error';el.style.color='var(--danger)';});
+}
+
+function _collectSettings(){
+  const layers = [...document.querySelectorAll('#set-layers-ck input:checked')].map(i=>i.value);
+  return {
+    llm_provider:          document.getElementById('set-provider').value,
+    anthropic_api_key:     document.getElementById('set-api-key').value,
+    anthropic_model_fast:  document.getElementById('set-fast-model').value,
+    anthropic_model_smart: document.getElementById('set-smart-model').value,
+    gemini_api_key:           document.getElementById('set-gemini-key').value,
+    gemini_model_fast:        document.getElementById('set-gemini-fast').value,
+    gemini_model_smart:       document.getElementById('set-gemini-smart').value,
+    openai_api_key:           document.getElementById('set-openai-key').value,
+    openai_model_smart:       document.getElementById('set-openai-model').value,
+    ollama_url:               document.getElementById('set-ollama-url').value,
+    ollama_model_fast:        document.getElementById('set-ollama-fast').value,
+    ollama_model_smart:       document.getElementById('set-ollama-smart').value,
+    default_layers:        layers,
+  };
+}
+
+function saveSettings(){
+  const s = _collectSettings();
+  fetch('/api/settings',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)})
+    .then(r=>r.json()).then(d=>{
+      if(d.ok){
+        _updateProviderButtons(s.llm_provider);
+        closeSettings();
+      } else alert('Save failed: '+d.error);
+    });
+}
+
+// Initialise provider toolbar buttons from server config on page load
+fetch('/api/settings').then(r=>r.json()).then(cfg=>{
+  _updateProviderButtons(cfg.llm_provider || 'anthropic');
+}).catch(()=>{});
+
+// ── Usage tab ────────────────────────────────────────────────────────────────
+async function loadUsage() {
+  try {
+    const r = await fetch('/api/usage');
+    if (!r.ok) return;
+    const records = await r.json();
+    renderUsage(records);
+  } catch(e) {}
+}
+
+function renderUsage(records) {
+  const tbody = document.getElementById('usage-tbody');
+  if (!records || !records.length) {
+    tbody.innerHTML = '<tr><td colspan="8" style="padding:24px;text-align:center;color:var(--text-dim)">No usage data yet — run an extraction first.</td></tr>';
+    document.getElementById('tile-cost').textContent = '$0.00';
+    document.getElementById('tile-tokens-in').textContent = '0';
+    document.getElementById('tile-tokens-out').textContent = '0';
+    document.getElementById('tile-runs').textContent = '0';
+    document.getElementById('usage-total').textContent = '';
+    return;
+  }
+
+  let totalCost = 0, totalIn = 0, totalOut = 0;
+  records.forEach(r => {
+    totalCost += r.cost_usd || 0;
+    totalIn   += r.tokens_in || 0;
+    totalOut  += r.tokens_out || 0;
+  });
+
+  document.getElementById('tile-cost').textContent = '$' + totalCost.toFixed(4);
+  document.getElementById('tile-tokens-in').textContent = totalIn.toLocaleString();
+  document.getElementById('tile-tokens-out').textContent = totalOut.toLocaleString();
+  document.getElementById('tile-runs').textContent = records.length;
+  document.getElementById('usage-total').textContent = `${records.length} records · $${totalCost.toFixed(4)} total`;
+
+  const provColor = p => ({anthropic:'#c084fc', gemini:'#4ade80', openai:'#10a37f', ollama:'#fb923c'}[p] || 'var(--text-muted)');
+
+  tbody.innerHTML = [...records].reverse().map(rec => {
+    const ts = rec.timestamp ? new Date(rec.timestamp).toLocaleString() : '—';
+    const cost = rec.cost_usd ? '$' + rec.cost_usd.toFixed(4) : '—';
+    const prov = rec.provider || '—';
+    return `<tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:5px 10px;color:var(--text-muted);white-space:nowrap">${ts}</td>
+      <td style="padding:5px 10px;font-family:var(--font-mono);color:var(--text-primary)">${rec.pid || '—'}</td>
+      <td style="padding:5px 10px"><span style="color:${provColor(prov)};font-size:10px;font-weight:600">${prov}</span></td>
+      <td style="padding:5px 10px;font-family:var(--font-mono);font-size:10px;color:var(--text-muted)">${rec.model || '—'}</td>
+      <td style="padding:5px 10px;text-align:right;font-family:var(--font-mono)">${(rec.tokens_in||0).toLocaleString()}</td>
+      <td style="padding:5px 10px;text-align:right;font-family:var(--font-mono)">${(rec.tokens_out||0).toLocaleString()}</td>
+      <td style="padding:5px 10px;text-align:right;font-family:var(--font-mono);color:#4ade80;font-weight:600">${cost}</td>
+      <td style="padding:5px 10px;text-align:right;color:var(--text-muted)">${rec.nodes || '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+async function clearUsage() {
+  if (!confirm('Clear all usage records?')) return;
+  await fetch('/api/usage', {method:'DELETE'});
+  loadUsage();
+}
+</script>
+</body>
+</html>

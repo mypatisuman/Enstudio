@@ -1,0 +1,349 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <symbol id="sym-accumulator" viewBox="0 0 80 130" overflow="visible">
+    <g fill="none" stroke="#1d4ed8" stroke-width="1.5"><rect x="10" y="18" width="60" height="94"></rect><ellipse cx="40" cy="18" rx="30" ry="10"></ellipse><ellipse cx="40" cy="112" rx="30" ry="10"></ellipse></g><g stroke="#1d4ed8" stroke-width="1.5"><line x1="40" y1="8" x2="40" y2="2"></line><line x1="40" y1="122" x2="40" y2="128"></line></g><line x1="14" y1="70" x2="66" y2="70" stroke="#1d4ed8" stroke-width="1" stroke-dasharray="3 2" opacity="0.7"></line>
+  </symbol>
+  <symbol id="sym-actuated_valve_general" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><line x1="60" y1="32" x2="64" y2="32"></line><line x1="32" y1="16" x2="32" y2="8"></line><path d="M 20,8 L 44,8 L 44,2 L 20,2 Z"></path></g>
+  </symbol>
+  <symbol id="sym-alarm" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="32" x2="14" y2="32"></line><line x1="50" y1="32" x2="62" y2="32"></line><path d="M 32,10 L 32,4 M 46,16 L 51,11 M 52,32 L 58,32 M 46,48 L 51,53 M 18,16 L 13,11 M 18,48 L 13,53" stroke-dasharray="0"></path><circle cx="32" cy="32" r="18"></circle><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" stroke="none" fill="#F59E0B">OA</text></g>
+  </symbol>
+  <symbol id="sym-auto_man_selector" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="34" x2="24" y2="34"></line><line x1="42" y1="34" x2="60" y2="34"></line><circle cx="32" cy="34" r="10"></circle><path d="M 32,34 L 40,26 M 36,26 L 40,26 L 40,30"></path><text x="14" y="48" text-anchor="middle" dominant-baseline="central" font-size="8" font-weight="700" stroke="none" fill="#94A3B8">AUTO</text><text x="50" y="48" text-anchor="middle" dominant-baseline="central" font-size="8" font-weight="700" stroke="none" fill="#94A3B8">MAN</text></g>
+  </symbol>
+  <symbol id="sym-back_pressure_regulator" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><path d="M 64,32 L 58,32 M 62,29 L 58,32 L 62,35"></path><line x1="32" y1="16" x2="32" y2="10"></line><path d="M 20,10 A 12 6 0 0 1 44,10"></path><path d="M 38,10 L 38,4 M 34,4 Q 38,7 42,4 Q 46,7 34,2 Q 38,5 42,2"></path><path d="M 20,10 L 14,10 L 14,32" stroke-dasharray="2 2"></path></g>
+  </symbol>
+  <symbol id="sym-ball_valve" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><line x1="60" y1="32" x2="64" y2="32"></line><line x1="32" y1="16" x2="32" y2="6"></line><line x1="24" y1="6" x2="40" y2="6"></line><circle cx="32" cy="32" r="9"></circle><line x1="24" y1="32" x2="40" y2="32" transform="rotate(0 32 32)"></line></g>
+  </symbol>
+  <symbol id="sym-batch_reactor" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 25,0 L 39,0 L 34,6 L 30,6 Z"></path><rect x="20" y="16" width="24" height="32"></rect><ellipse cx="32" cy="16" rx="12" ry="8"></ellipse><ellipse cx="32" cy="48" rx="12" ry="8"></ellipse><path d="M 18,22 L 18,50 M 46,22 L 46,50" stroke-dasharray="1 2" opacity="0.6"></path><line x1="32" y1="6" x2="32" y2="46"></line><path d="M 26,29 L 32,33 L 26,37 Z M 38,29 L 32,33 L 38,37 Z"></path><path d="M 26,41 L 32,45 L 26,49 Z M 38,41 L 32,45 L 38,49 Z"></path><line x1="32" y1="56" x2="32" y2="63"></line><line x1="20" y1="24" x2="13" y2="24"></line><line x1="44" y1="24" x2="51" y2="24"></line></g>
+  </symbol>
+  <symbol id="sym-blower" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="30" r="18"></circle><path d="M 32,24 Q 37,27 32,30 Q 27,27 32,24"></path><path d="M 38,30 Q 35,35 32,30 Q 35,25 38,30"></path><path d="M 32,36 Q 27,33 32,30 Q 37,33 32,36"></path><path d="M 26,30 Q 29,25 32,30 Q 29,35 26,30"></path><line x1="6" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="58" y2="30"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-bubble_column_reactor" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="16" width="24" height="32"></rect><ellipse cx="32" cy="16" rx="12" ry="8"></ellipse><ellipse cx="32" cy="48" rx="12" ry="8"></ellipse><circle cx="25" cy="22" r="1"></circle><circle cx="30" cy="26" r="1"></circle><circle cx="36" cy="21" r="1"></circle><circle cx="39" cy="29" r="1"></circle><circle cx="27" cy="32" r="1"></circle><circle cx="34" cy="34" r="1"></circle><circle cx="24" cy="28" r="1"></circle><circle cx="40" cy="24" r="1"></circle><circle cx="30" cy="38" r="1"></circle><circle cx="37" cy="40" r="1"></circle><line x1="24" y1="44" x2="40" y2="44" stroke-dasharray="2 2"></line><line x1="32" y1="8" x2="32" y2="1"></line><line x1="32" y1="56" x2="32" y2="63"></line><line x1="20" y1="24" x2="13" y2="24"></line></g>
+  </symbol>
+  <symbol id="sym-bullet_tank" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="22" width="44" height="18"></rect><ellipse cx="10" cy="31" rx="9" ry="9"></ellipse><ellipse cx="54" cy="31" rx="9" ry="9"></ellipse><line x1="32" y1="22" x2="32" y2="14"></line><line x1="20" y1="40" x2="20" y2="48"></line><line x1="26" y1="40" x2="26" y2="48"></line><line x1="18" y1="48" x2="28" y2="48"></line><line x1="38" y1="40" x2="38" y2="48"></line><line x1="44" y1="40" x2="44" y2="48"></line><line x1="36" y1="48" x2="46" y2="48"></line></g>
+  </symbol>
+  <symbol id="sym-butterfly_valve" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><line x1="60" y1="32" x2="64" y2="32"></line><line x1="32" y1="16" x2="32" y2="6"></line><line x1="24" y1="6" x2="40" y2="6"></line><circle cx="32" cy="32" r="14"></circle><line x1="32" y1="18" x2="32" y2="46" transform="rotate(0 32 32)"></line></g>
+  </symbol>
+  <symbol id="sym-catalytic_cracker" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="8" width="10" height="44"></rect><ellipse cx="15" cy="8" rx="5" ry="4"></ellipse><ellipse cx="15" cy="52" rx="5" ry="4"></ellipse><path d="M 12,14 L 18,14 L 15,20 Z"></path><rect x="30" y="20" width="20" height="32"></rect><ellipse cx="40" cy="20" rx="10" ry="6"></ellipse><ellipse cx="40" cy="52" rx="10" ry="6"></ellipse><path d="M 34,26 L 46,26 L 40,34 Z"></path><line x1="20" y1="44" x2="30" y2="30"></line><line x1="30" y1="46" x2="20" y2="24"></line><line x1="15" y1="52" x2="15" y2="60"></line><line x1="40" y1="52" x2="40" y2="60"></line></g>
+  </symbol>
+  <symbol id="sym-centrifugal_blower" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 32,10 A 18 18 0 1 0 49,33 L 58,30 L 58,22 L 44,20 A 18 18 0 0 0 32,10 Z"></path><circle cx="30" cy="28" r="10"></circle><path d="M 30,28 L 34,20 M 30,28 L 38,26 M 30,28 L 36,34 M 30,28 L 26,36 M 30,28 L 22,32 M 30,28 L 22,22"></path><line x1="6" y1="28" x2="12" y2="28"></line><line x1="58" y1="26" x2="64" y2="26"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-centrifuge" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 14,44 L 14,28 Q 14,14 32,14 Q 50,14 50,28 L 50,44"></path><line x1="14" y1="44" x2="50" y2="44"></line><rect x="44" y="6" width="10" height="8"></rect><line x1="49" y1="14" x2="49" y2="18"></line><line x1="4" y1="24" x2="14" y2="24"></line><line x1="24" y1="44" x2="24" y2="52"></line><line x1="40" y1="44" x2="40" y2="52"></line></g>
+  </symbol>
+  <symbol id="sym-check_valve" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><line x1="60" y1="32" x2="64" y2="32"></line><path d="M 22,24 A 6 6 0 0 1 22,40"></path><line x1="22" y1="24" x2="34" y2="32"></line><path d="M 40,32 L 50,32 M 45,27 L 50,32 L 45,37"></path></g>
+  </symbol>
+  <symbol id="sym-clarifier" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 12,14 L 12,38 L 32,52 L 52,38 L 52,14"></path><line x1="10" y1="14" x2="54" y2="14"></line><line x1="32" y1="6" x2="32" y2="14"></line><line x1="14" y1="26" x2="50" y2="26"></line><path d="M 46,22 A 6 6 0 0 1 46,30"></path><line x1="32" y1="52" x2="32" y2="58"></line></g>
+  </symbol>
+  <symbol id="sym-coalescer" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="10" width="24" height="44"></rect><ellipse cx="32" cy="10" rx="12" ry="8"></ellipse><ellipse cx="32" cy="54" rx="12" ry="8"></ellipse><line x1="20" y1="20" x2="44" y2="20"></line><line x1="20" y1="38" x2="44" y2="38"></line><path d="M 20,20 L 44,38 M 44,20 L 20,38 M 20,26 L 44,26 M 20,32 L 44,32"></path><line x1="32" y1="2" x2="32" y2="10"></line><line x1="20" y1="46" x2="13" y2="46"></line></g>
+  </symbol>
+  <symbol id="sym-comp_cent" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="30" r="18"></circle><polygon points="24,20 42,30 24,40"></polygon><line x1="6" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="58" y2="30"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-comp_recip" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#6366F1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="30" r="18"></circle><rect x="30" y="23" width="14" height="14"></rect><line x1="30" y1="30" x2="18" y2="30"></line><circle cx="18" cy="30" r="2.5"></circle><line x1="6" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="58" y2="30"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-continuation_arrow" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="32" x2="50" y2="32"></line><path d="M 40,22 L 58,32 L 40,42 Z"></path></g>
+  </symbol>
+  <symbol id="sym-cryo_tank" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="14" width="40" height="40"></rect><rect x="19" y="21" width="26" height="26"></rect><line x1="14" y1="20" x2="17" y2="23"></line><line x1="14" y1="28" x2="17" y2="31"></line><line x1="14" y1="36" x2="17" y2="39"></line><line x1="14" y1="44" x2="17" y2="47"></line><line x1="47" y1="20" x2="50" y2="23"></line><line x1="47" y1="28" x2="50" y2="31"></line><line x1="47" y1="36" x2="50" y2="39"></line><line x1="47" y1="44" x2="50" y2="47"></line><line x1="32" y1="54" x2="32" y2="60"></line><line x1="52" y1="34" x2="58" y2="34"></line></g>
+  </symbol>
+  <symbol id="sym-cstr" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="27" y="0" width="10" height="6"></rect><rect x="20" y="16" width="24" height="32"></rect><ellipse cx="32" cy="16" rx="12" ry="8"></ellipse><ellipse cx="32" cy="48" rx="12" ry="8"></ellipse><line x1="32" y1="6" x2="32" y2="40"></line><path d="M 26,40 L 32,44 L 26,48 Z M 38,40 L 32,44 L 38,48 Z"></path><line x1="32" y1="8" x2="32" y2="1"></line><line x1="32" y1="56" x2="32" y2="63"></line><line x1="20" y1="24" x2="13" y2="24"></line><line x1="44" y1="24" x2="51" y2="24"></line></g>
+  </symbol>
+  <symbol id="sym-ctrl_controller" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#0EA5E9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="32" x2="14" y2="32"></line><line x1="50" y1="32" x2="62" y2="32"></line><circle cx="32" cy="32" r="18"></circle><line x1="14" y1="32" x2="50" y2="32"></line><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" stroke="none" fill="#0EA5E9">FIC</text></g>
+  </symbol>
+  <symbol id="sym-ctrl_dcs" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#06B6D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="32" height="32" stroke-dasharray="4 3"></rect><line x1="4" y1="24" x2="16" y2="24" stroke-dasharray="3 2"></line><line x1="4" y1="40" x2="16" y2="40" stroke-dasharray="3 2"></line><line x1="48" y1="24" x2="60" y2="24" stroke-dasharray="3 2"></line><line x1="48" y1="40" x2="60" y2="40" stroke-dasharray="3 2"></line><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" stroke="none" fill="#06B6D4">DCS</text></g>
+  </symbol>
+  <symbol id="sym-ctrl_high_switch" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="32" x2="14" y2="32"></line><line x1="50" y1="32" x2="62" y2="32"></line><circle cx="32" cy="32" r="18"></circle><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" stroke="none" fill="#F59E0B">HS</text></g>
+  </symbol>
+  <symbol id="sym-ctrl_low_switch" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="32" x2="14" y2="32"></line><line x1="50" y1="32" x2="62" y2="32"></line><circle cx="32" cy="32" r="18"></circle><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="700" stroke="none" fill="#F59E0B">LS</text></g>
+  </symbol>
+  <symbol id="sym-ctrl_plc" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#06B6D4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="32" height="32" stroke-dasharray="4 3"></rect><line x1="4" y1="24" x2="16" y2="24" stroke-dasharray="3 2"></line><line x1="4" y1="40" x2="16" y2="40" stroke-dasharray="3 2"></line><line x1="48" y1="24" x2="60" y2="24" stroke-dasharray="3 2"></line><line x1="48" y1="40" x2="60" y2="40" stroke-dasharray="3 2"></line><line x1="22" y1="16" x2="22" y2="10"></line><line x1="42" y1="16" x2="42" y2="10"></line><line x1="22" y1="48" x2="22" y2="54"></line><line x1="42" y1="48" x2="42" y2="54"></line><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" stroke="none" fill="#06B6D4">PLC</text></g>
+  </symbol>
+  <symbol id="sym-ctrl_recorder" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="32" x2="14" y2="32" stroke-dasharray="3 2"></line><line x1="50" y1="32" x2="62" y2="32" stroke-dasharray="3 2"></line><circle cx="32" cy="32" r="18"></circle><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="700" stroke="none" fill="#94A3B8">R</text></g>
+  </symbol>
+  <symbol id="sym-ctrl_sis" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#F43F5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="16" width="32" height="32" stroke-dasharray="4 3"></rect><line x1="4" y1="24" x2="16" y2="24" stroke-dasharray="3 2"></line><line x1="4" y1="40" x2="16" y2="40" stroke-dasharray="3 2"></line><line x1="48" y1="24" x2="60" y2="24" stroke-dasharray="3 2"></line><line x1="48" y1="40" x2="60" y2="40" stroke-dasharray="3 2"></line><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" stroke="none" fill="#F43F5E">SIS</text></g>
+  </symbol>
+  <symbol id="sym-cyclone" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 18,12 L 46,12 L 46,32 L 34,54 L 30,54 L 18,32 Z"></path><line x1="32" y1="12" x2="32" y2="4"></line><line x1="6" y1="18" x2="18" y2="18"></line><line x1="32" y1="54" x2="32" y2="60"></line></g>
+  </symbol>
+  <symbol id="sym-dcs_func" viewBox="0 0 50 50" overflow="visible">
+    <rect x="3" y="3" width="44" height="44" fill="none" stroke="#7e22ce" stroke-width="1.5"></rect><circle cx="25" cy="25" r="22" fill="none" stroke="#7e22ce" stroke-width="1.125" opacity="0.6"></circle>
+  </symbol>
+  <symbol id="sym-decanter" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="20" width="44" height="20"></rect><ellipse cx="8" cy="30" rx="10" ry="10"></ellipse><ellipse cx="52" cy="30" rx="10" ry="10"></ellipse><path d="M 14,22 L 20,30 L 14,38 M 20,22 L 26,30 L 20,38 M 26,22 L 32,30 L 26,38 M 32,22 L 38,30 L 32,38 M 38,22 L 44,30 L 38,38"></path><line x1="2" y1="30" x2="8" y2="30"></line><line x1="20" y1="40" x2="20" y2="46"></line><line x1="52" y1="30" x2="58" y2="30"></line><line x1="16" y1="46" x2="16" y2="52"></line><line x1="24" y1="46" x2="24" y2="52"></line></g>
+  </symbol>
+  <symbol id="sym-demister" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="10" width="24" height="44"></rect><ellipse cx="32" cy="10" rx="12" ry="8"></ellipse><ellipse cx="32" cy="54" rx="12" ry="8"></ellipse><line x1="20" y1="22" x2="44" y2="22"></line><line x1="20" y1="32" x2="44" y2="32"></line><path d="M 22,22 L 42,32 M 42,22 L 22,32 M 22,27 L 42,27"></path><line x1="32" y1="2" x2="32" y2="10"></line><line x1="20" y1="46" x2="13" y2="46"></line></g>
+  </symbol>
+  <symbol id="sym-diaphragm_pump" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="30" r="18"></circle><path d="M 32,14 Q 40,22 32,30 Q 24,38 32,46"></path><path d="M 8,30 L 14,30 L 11,26 Z M 8,30 L 14,30 L 11,34 Z"></path><path d="M 50,30 L 56,30 L 53,26 Z M 50,30 L 56,30 L 53,34 Z"></path><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-double_pipe_hx" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="20" x2="48" y2="20"></line><line x1="8" y1="44" x2="48" y2="44"></line><path d="M 48,20 A 12 12 0 0 1 48,44"></path><line x1="8" y1="27" x2="42" y2="27"></line><line x1="8" y1="37" x2="42" y2="37"></line><path d="M 42,27 A 5 5 0 0 1 42,37"></path><line x1="2" y1="27" x2="8" y2="27"></line><line x1="2" y1="37" x2="8" y2="37"></line><line x1="8" y1="20" x2="8" y2="14"></line><line x1="8" y1="44" x2="8" y2="50"></line></g>
+  </symbol>
+  <symbol id="sym-double_wall_tank" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="14" width="40" height="40"></rect><rect x="19" y="21" width="26" height="26"></rect><line x1="24" y1="10" x2="24" y2="14"></line><line x1="40" y1="10" x2="40" y2="14"></line><line x1="22" y1="10" x2="42" y2="10"></line><line x1="32" y1="54" x2="32" y2="60"></line><line x1="52" y1="34" x2="58" y2="34"></line></g>
+  </symbol>
+  <symbol id="sym-economizer" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="12" width="32" height="38"></rect><ellipse cx="32" cy="12" rx="16" ry="8"></ellipse><ellipse cx="32" cy="50" rx="16" ry="8"></ellipse><path d="M 22,18 Q 28,22 22,26 Q 28,30 22,34 Q 28,38 22,42"></path><path d="M 32,18 Q 38,22 32,26 Q 38,30 32,34 Q 38,38 32,42"></path><path d="M 42,18 Q 48,22 42,26 Q 48,30 42,34 Q 48,38 42,42"></path><path d="M 12,30 L 20,30 M 16,26 L 20,30 L 16,34"></path><line x1="32" y1="4" x2="32" y2="12"></line><line x1="32" y1="58" x2="32" y2="63"></line></g>
+  </symbol>
+  <symbol id="sym-ejector" viewBox="0 0 80 50" overflow="visible">
+    <line x1="40" y1="2" x2="40" y2="14" stroke="#15803d" stroke-width="1.5"></line><polygon points="4,6 36,22 36,28 4,44" fill="none" stroke="#15803d" stroke-width="1.5"></polygon><polygon points="44,22 76,8 76,42 44,28" fill="none" stroke="#15803d" stroke-width="1.5"></polygon><line x1="36" y1="22" x2="44" y2="22" stroke="#15803d" stroke-width="1.5"></line><line x1="36" y1="28" x2="44" y2="28" stroke="#15803d" stroke-width="1.5"></line>
+  </symbol>
+  <symbol id="sym-electric_motor" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="16" width="38" height="28"></rect><line x1="20" y1="16" x2="20" y2="44"></line><line x1="25" y1="16" x2="25" y2="44"></line><line x1="30" y1="16" x2="30" y2="44"></line><line x1="35" y1="16" x2="35" y2="44"></line><line x1="40" y1="16" x2="40" y2="44"></line><line x1="48" y1="30" x2="58" y2="30"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-esp" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 10,10 L 54,10 L 54,40 L 40,54 L 24,54 L 10,40 Z"></path><line x1="20" y1="12" x2="20" y2="40"></line><line x1="32" y1="12" x2="32" y2="44"></line><line x1="44" y1="12" x2="44" y2="40"></line><line x1="26" y1="14" x2="26" y2="38" stroke-dasharray="2 2"></line><line x1="38" y1="14" x2="38" y2="38" stroke-dasharray="2 2"></line><line x1="2" y1="24" x2="10" y2="24"></line><line x1="54" y1="24" x2="62" y2="24"></line><line x1="32" y1="54" x2="32" y2="60"></line></g>
+  </symbol>
+  <symbol id="sym-evaporator" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="12" width="32" height="38"></rect><ellipse cx="32" cy="12" rx="16" ry="8"></ellipse><ellipse cx="32" cy="50" rx="16" ry="8"></ellipse><line x1="24" y1="16" x2="24" y2="46"></line><line x1="29" y1="16" x2="29" y2="46"></line><line x1="34" y1="16" x2="34" y2="46"></line><line x1="39" y1="16" x2="39" y2="46"></line><line x1="32" y1="4" x2="32" y2="12"></line><line x1="32" y1="58" x2="32" y2="63"></line><line x1="16" y1="26" x2="9" y2="26"></line></g>
+  </symbol>
+  <symbol id="sym-filter" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="18" width="40" height="28"></rect><path d="M 20,18 L 24,46 L 28,18 L 32,46 L 36,18 L 40,46 L 44,18"></path><line x1="4" y1="32" x2="12" y2="32"></line><line x1="52" y1="32" x2="60" y2="32"></line></g>
+  </symbol>
+  <symbol id="sym-fixed_bed" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="16" width="24" height="32"></rect><ellipse cx="32" cy="16" rx="12" ry="8"></ellipse><ellipse cx="32" cy="48" rx="12" ry="8"></ellipse><line x1="20" y1="26" x2="44" y2="26"></line><line x1="20" y1="42" x2="44" y2="42"></line><path d="M 22,26 L 42,42 M 42,26 L 22,42"></path><line x1="32" y1="8" x2="32" y2="1"></line><line x1="32" y1="56" x2="32" y2="63"></line><line x1="20" y1="24" x2="13" y2="24"></line><line x1="44" y1="44" x2="51" y2="44"></line></g>
+  </symbol>
+  <symbol id="sym-flash_drum" viewBox="0 0 80 130" overflow="visible">
+    <g fill="none" stroke="#1d4ed8" stroke-width="1.5"><rect x="10" y="18" width="60" height="94"></rect><ellipse cx="40" cy="18" rx="30" ry="10"></ellipse><ellipse cx="40" cy="112" rx="30" ry="10"></ellipse></g><g stroke="#1d4ed8" stroke-width="1.5"><line x1="40" y1="8" x2="40" y2="2"></line><line x1="40" y1="122" x2="40" y2="128"></line><line x1="10" y1="60" x2="2" y2="60"></line></g>
+  </symbol>
+  <symbol id="sym-fluidized_bed" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="16" width="24" height="32"></rect><ellipse cx="32" cy="16" rx="12" ry="8"></ellipse><ellipse cx="32" cy="48" rx="12" ry="8"></ellipse><circle cx="25" cy="26" r="0.9"></circle><circle cx="30" cy="30" r="0.9"></circle><circle cx="36" cy="25" r="0.9"></circle><circle cx="39" cy="33" r="0.9"></circle><circle cx="27" cy="36" r="0.9"></circle><circle cx="34" cy="38" r="0.9"></circle><circle cx="24" cy="32" r="0.9"></circle><circle cx="40" cy="28" r="0.9"></circle><circle cx="30" cy="22" r="0.9"></circle><line x1="20" y1="42" x2="44" y2="42" stroke-dasharray="2 2"></line><path d="M 32,40 L 32,22 M 28,26 L 32,22 L 36,26"></path><line x1="32" y1="8" x2="32" y2="1"></line><line x1="20" y1="44" x2="13" y2="44"></line><line x1="32" y1="56" x2="32" y2="63"></line></g>
+  </symbol>
+  <symbol id="sym-furnace_reactor" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="28" y="4" width="8" height="14"></rect><path d="M 29,3 L 32,0 L 35,3"></path><rect x="14" y="18" width="36" height="36"></rect><path d="M 20,24 L 44,24 L 44,30 L 20,30 L 20,36 L 44,36 L 44,42 L 20,42 L 20,48 L 44,48"></path><path d="M 28,50 Q 32,44 32,50 Q 36,44 36,50"></path><line x1="8" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="56" y2="30"></line></g>
+  </symbol>
+  <symbol id="sym-gas_turbine" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 8,16 L 8,44 L 52,36 L 52,24 Z"></path><rect x="20" y="6" width="14" height="10"></rect><line x1="27" y1="16" x2="27" y2="20"></line><line x1="16" y1="18" x2="16" y2="42"></line><line x1="32" y1="21" x2="32" y2="39"></line><line x1="40" y1="23" x2="40" y2="37"></line><path d="M 2,30 L 8,30 M 4,26 L 8,30 L 4,34"></path><path d="M 52,30 L 60,30 M 56,26 L 60,30 L 56,34"></path></g>
+  </symbol>
+  <symbol id="sym-gate_valve" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><line x1="60" y1="32" x2="64" y2="32"></line><line x1="27" y1="20" x2="27" y2="44"></line><line x1="37" y1="20" x2="37" y2="44"></line><line x1="32" y1="20" x2="32" y2="6"></line><circle cx="32" cy="4" r="4"></circle></g>
+  </symbol>
+  <symbol id="sym-gear_pump" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="30" r="18"></circle><circle cx="25" cy="30" r="8"></circle><circle cx="39" cy="30" r="8"></circle><path d="M 25,22 L 25,18 M 25,42 L 25,38 M 17,30 L 13,30 M 33,30 L 37,30"></path><path d="M 39,22 L 39,18 M 39,42 L 39,38 M 47,30 L 51,30 M 31,30 L 27,30"></path><line x1="6" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="58" y2="30"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-gearbox" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="14" width="40" height="32"></rect><circle cx="24" cy="24" r="7"></circle><circle cx="38" cy="24" r="7"></circle><circle cx="31" cy="37" r="7"></circle><line x1="4" y1="24" x2="12" y2="24"></line><line x1="52" y1="24" x2="60" y2="24"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-hairpin_hx" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 10,14 L 40,14 A 12 12 0 0 1 40,38 L 14,38 A 8 8 0 0 0 14,54 L 40,54"></path><path d="M 10,22 L 34,22 A 4 4 0 0 1 34,30 L 22,30 A 4 4 0 0 0 22,46 L 40,46"></path><line x1="2" y1="14" x2="10" y2="14"></line><line x1="2" y1="22" x2="10" y2="22"></line><line x1="40" y1="54" x2="46" y2="54"></line><line x1="40" y1="46" x2="46" y2="46"></line></g>
+  </symbol>
+  <symbol id="sym-hand_valve" viewBox="0 0 44 32" overflow="visible">
+    <polygon points="2,8 2,30 22,19" fill="none" stroke="#b45309" stroke-width="1.5" stroke-linejoin="round"></polygon><polygon points="42,8 42,30 22,19" fill="none" stroke="#b45309" stroke-width="1.5" stroke-linejoin="round"></polygon><line x1="22" y1="19" x2="22" y2="4" stroke="#b45309" stroke-width="1.5"></line><line x1="16" y1="4" x2="28" y2="4" stroke="#b45309" stroke-width="1.5"></line>
+  </symbol>
+  <symbol id="sym-hopper" viewBox="0 0 82 110" overflow="visible">
+    <path d="M 12,8 L 70,8 L 70,60 L 41,100 L 12,60 Z" fill="none" stroke="#1d4ed8" stroke-width="1.5" stroke-linejoin="round"></path><line x1="41" y1="100" x2="41" y2="108" stroke="#1d4ed8" stroke-width="1.5"></line>
+  </symbol>
+  <symbol id="sym-horton_sphere" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="24" r="18"></circle><line x1="14" y1="24" x2="50" y2="24" stroke-dasharray="3 2"></line><line x1="32" y1="6" x2="32" y2="1"></line><line x1="50" y1="24" x2="56" y2="24"></line><line x1="20" y1="38" x2="12" y2="60"></line><line x1="44" y1="38" x2="52" y2="60"></line><line x1="24" y1="34" x2="18" y2="60"></line><line x1="40" y1="34" x2="46" y2="60"></line><line x1="14" y1="48" x2="50" y2="48"></line></g>
+  </symbol>
+  <symbol id="sym-hx_air_cooler" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="12" width="48" height="24"></rect><line x1="12" y1="18" x2="52" y2="18"></line><line x1="12" y1="30" x2="52" y2="30"></line><g><path d="M 32,26 Q 36,20 32,15 Q 28,20 32,26"></path><path d="M 32,26 Q 38,28 44,26 Q 38,22 32,26"></path><path d="M 32,26 Q 28,32 32,37 Q 36,32 32,26"></path><path d="M 32,26 Q 26,24 20,26 Q 26,30 32,26"></path></g><line x1="2" y1="24" x2="8" y2="24"></line><line x1="56" y1="24" x2="62" y2="24"></line></g>
+  </symbol>
+  <symbol id="sym-hx_boiler" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="14" width="24" height="34"></rect><ellipse cx="32" cy="14" rx="12" ry="8"></ellipse><ellipse cx="32" cy="48" rx="12" ry="8"></ellipse><line x1="32" y1="6" x2="32" y2="1"></line><line x1="22" y1="38" x2="42" y2="38" stroke-dasharray="2 2"></line><path d="M 22,48 Q 27,44 32,48 Q 37,44 42,48"></path><line x1="20" y1="24" x2="13" y2="24"></line><line x1="32" y1="56" x2="32" y2="62"></line></g>
+  </symbol>
+  <symbol id="sym-hx_condenser" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="22"></circle><path d="M 14,32 Q 20,20 26,32 T 38,32 T 50,32"></path><line x1="32" y1="10" x2="32" y2="3"></line><line x1="32" y1="54" x2="32" y2="61"></line><path d="M 4,32 L 10,32 M 8,29 L 10,32 L 8,35"></path><line x1="54" y1="32" x2="60" y2="32"></line></g>
+  </symbol>
+  <symbol id="sym-hx_fired_heater" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="28" y="4" width="8" height="14"></rect><path d="M 29,3 L 32,0 L 35,3"></path><rect x="14" y="18" width="36" height="36"></rect><line x1="22" y1="22" x2="22" y2="46"></line><line x1="42" y1="22" x2="42" y2="46"></line><path d="M 28,50 Q 32,42 32,50 Q 36,42 36,50"></path><line x1="8" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="56" y2="30"></line></g>
+  </symbol>
+  <symbol id="sym-hx_plate" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="12" width="36" height="40"></rect><line x1="18" y1="14" x2="24" y2="50"></line><line x1="24" y1="14" x2="30" y2="50"></line><line x1="30" y1="14" x2="36" y2="50"></line><line x1="36" y1="14" x2="42" y2="50"></line><line x1="42" y1="14" x2="48" y2="50"></line><line x1="8" y1="20" x2="14" y2="20"></line><line x1="8" y1="44" x2="14" y2="44"></line><line x1="50" y1="20" x2="56" y2="20"></line><line x1="50" y1="44" x2="56" y2="44"></line></g>
+  </symbol>
+  <symbol id="sym-hx_reboiler" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="22"></circle><path d="M 14,32 Q 20,20 26,32 T 38,32 T 50,32"></path><path d="M 40,14 L 46,8 M 43,8 L 46,8 L 46,11"></path><line x1="32" y1="54" x2="32" y2="61"></line><path d="M 4,32 L 10,32 M 8,29 L 10,32 L 8,35"></path><path d="M 60,32 L 54,32 M 56,29 L 54,32 L 56,35"></path></g>
+  </symbol>
+  <symbol id="sym-hx_shell_tube" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="20" width="48" height="24"></rect><ellipse cx="8" cy="32" rx="12" ry="12"></ellipse><ellipse cx="56" cy="32" rx="12" ry="12"></ellipse><line x1="14" y1="24" x2="50" y2="24"></line><line x1="14" y1="28" x2="50" y2="28"></line><line x1="14" y1="32" x2="50" y2="32"></line><line x1="14" y1="36" x2="50" y2="36"></line><line x1="14" y1="40" x2="50" y2="40"></line><line x1="20" y1="20" x2="20" y2="13"></line><line x1="44" y1="44" x2="44" y2="51"></line><line x1="2" y1="32" x2="8" y2="32"></line><line x1="56" y1="32" x2="62" y2="32"></line><line x1="20" y1="44" x2="20" y2="50"></line><line x1="26" y1="44" x2="26" y2="50"></line><line x1="18" y1="50" x2="28" y2="50"></line><line x1="38" y1="44" x2="38" y2="50"></line><line x1="44" y1="44" x2="44" y2="50"></line><line x1="36" y1="50" x2="46" y2="50"></line></g>
+  </symbol>
+  <symbol id="sym-instrument" viewBox="0 0 50 50" overflow="visible">
+    <circle cx="25" cy="25" r="22" fill="none" stroke="#7e22ce" stroke-width="1.5"></circle>
+  </symbol>
+  <symbol id="sym-knockout" viewBox="0 0 160 90" overflow="visible">
+    <g fill="none" stroke="#1d4ed8" stroke-width="1.5" stroke-linejoin="round"><rect x="40" y="15" width="80" height="60"></rect><ellipse cx="40" cy="45" rx="30" ry="30"></ellipse><ellipse cx="120" cy="45" rx="30" ry="30"></ellipse></g><g stroke="#1d4ed8" stroke-width="1.5"><line x1="80" y1="15" x2="80" y2="4"></line><line x1="0" y1="45" x2="10" y2="45"></line></g>
+  </symbol>
+  <symbol id="sym-level_glass" viewBox="0 0 16 50" overflow="visible">
+    <rect x="2" y="2" width="12" height="46" fill="none" stroke="#7e22ce" stroke-width="1.5"></rect>
+  </symbol>
+  <symbol id="sym-loop_reactor" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="10" width="16" height="36"></rect><ellipse cx="24" cy="10" rx="8" ry="6"></ellipse><ellipse cx="24" cy="46" rx="8" ry="6"></ellipse><line x1="32" y1="14" x2="48" y2="14"></line><line x1="48" y1="14" x2="48" y2="46"></line><line x1="48" y1="46" x2="32" y2="46"></line><circle cx="48" cy="30" r="6"></circle><line x1="42" y1="30" x2="54" y2="30"></line></g>
+  </symbol>
+  <symbol id="sym-membrane" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="18" width="40" height="28"></rect><line x1="18" y1="46" x2="30" y2="18"></line><line x1="26" y1="46" x2="38" y2="18"></line><line x1="34" y1="46" x2="46" y2="18"></line><line x1="4" y1="26" x2="12" y2="26"></line><line x1="52" y1="26" x2="60" y2="26"></line><line x1="32" y1="46" x2="32" y2="54"></line></g>
+  </symbol>
+  <symbol id="sym-membrane_reactor" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="16" width="24" height="32"></rect><ellipse cx="32" cy="16" rx="12" ry="8"></ellipse><ellipse cx="32" cy="48" rx="12" ry="8"></ellipse><line x1="24" y1="44" x2="34" y2="20"></line><line x1="30" y1="44" x2="40" y2="20"></line><line x1="32" y1="8" x2="32" y2="1"></line><line x1="20" y1="44" x2="13" y2="44"></line><line x1="44" y1="30" x2="51" y2="30"></line></g>
+  </symbol>
+  <symbol id="sym-mfm" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#0EA5E9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="32" x2="14" y2="32"></line><line x1="50" y1="32" x2="62" y2="32"></line><circle cx="32" cy="32" r="18"></circle><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-size="10" font-weight="700" stroke="none" fill="#0EA5E9">MFM</text></g>
+  </symbol>
+  <symbol id="sym-micron_filter" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="10" width="24" height="40"></rect><ellipse cx="32" cy="10" rx="12" ry="8"></ellipse><ellipse cx="32" cy="50" rx="12" ry="8"></ellipse><path d="M 22,20 L 42,42 M 42,20 L 22,42 M 22,26 L 36,42 M 28,20 L 42,36 M 22,32 L 30,42 M 34,20 L 42,30"></path><line x1="20" y1="24" x2="13" y2="24"></line><line x1="44" y1="30" x2="51" y2="30"></line><line x1="32" y1="2" x2="32" y2="10"></line><line x1="32" y1="58" x2="32" y2="62"></line></g>
+  </symbol>
+  <symbol id="sym-mixer" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="27" y="2" width="10" height="8"></rect><path d="M 21,4 A 6 6 0 0 0 21,10"></path><path d="M 21,4 L 18,4 L 20,7 Z"></path><line x1="32" y1="10" x2="32" y2="46"></line><path d="M 26,42 L 32,46 L 26,50 Z M 38,42 L 32,46 L 38,50 Z"></path><path d="M 12,20 L 12,52 Q 12,58 18,58 L 46,58 Q 52,58 52,52 L 52,20"></path></g>
+  </symbol>
+  <symbol id="sym-mixing_tube" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="32" x2="10" y2="32"></line><line x1="10" y1="20" x2="10" y2="44"></line><rect x="10" y="20" width="44" height="24"></rect><path d="M 14,22 L 22,42 M 22,22 L 14,42 M 24,22 L 32,42 M 32,22 L 24,42 M 34,22 L 42,42 M 42,22 L 34,42 M 44,22 L 50,38 M 50,22 L 44,38"></path><line x1="54" y1="20" x2="54" y2="44"></line><line x1="54" y1="32" x2="62" y2="32"></line></g>
+  </symbol>
+  <symbol id="sym-needle_valve" viewBox="0 0 40 32" overflow="visible">
+    <polygon points="2,2 2,30 38,16" fill="#b45309" stroke="#b45309" stroke-width="1.5" stroke-linejoin="round"></polygon><line x1="30" y1="8" x2="38" y2="24" stroke="#b45309" stroke-width="1.5"></line>
+  </symbol>
+  <symbol id="sym-normally_closed_valve" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><line x1="60" y1="32" x2="64" y2="32"></line><path d="M 32,16 L 32,10 M 27,10 Q 32,6 37,10 Q 32,14 27,10 Q 32,6 37,10"></path><text x="14" y="30" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" stroke="none" fill="#EAB308">NC</text></g>
+  </symbol>
+  <symbol id="sym-oil_water_sep" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="20" width="44" height="20"></rect><ellipse cx="8" cy="30" rx="10" ry="10"></ellipse><ellipse cx="52" cy="30" rx="10" ry="10"></ellipse><line x1="34" y1="24" x2="34" y2="40"></line><line x1="8" y1="26" x2="2" y2="26"></line><line x1="52" y1="34" x2="58" y2="34"></line></g>
+  </symbol>
+  <symbol id="sym-on_page_connector" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#64748B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="22"></circle><line x1="2" y1="32" x2="10" y2="32"></line><line x1="54" y1="32" x2="62" y2="32"></line></g>
+  </symbol>
+  <symbol id="sym-orifice" viewBox="0 0 36 32" overflow="visible">
+    <line x1="2" y1="16" x2="34" y2="16" stroke="#b45309" stroke-width="1.5"></line><line x1="18" y1="2" x2="18" y2="12" stroke="#b45309" stroke-width="3" stroke-linecap="square"></line><line x1="18" y1="20" x2="18" y2="30" stroke="#b45309" stroke-width="3" stroke-linecap="square"></line>
+  </symbol>
+  <symbol id="sym-pcv" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><path d="M 2,32 L 8,32 M 4,29 L 8,32 L 4,35"></path><line x1="60" y1="32" x2="64" y2="32"></line><line x1="32" y1="16" x2="32" y2="10"></line><path d="M 20,10 A 12 6 0 0 1 44,10"></path><path d="M 26,10 L 26,4 M 22,4 Q 26,7 30,4 Q 34,7 22,2 Q 26,5 30,2"></path><path d="M 44,10 L 50,10 L 50,32" stroke-dasharray="2 2"></path></g>
+  </symbol>
+  <symbol id="sym-peristaltic_pump" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="30" r="18"></circle><circle cx="32" cy="30" r="11"></circle><circle cx="32" cy="17" r="2.2"></circle><circle cx="43" cy="30" r="2.2"></circle><circle cx="32" cy="43" r="2.2"></circle><circle cx="21" cy="30" r="2.2"></circle><line x1="6" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="58" y2="30"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-pfr" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="26" width="52" height="12"></rect><ellipse cx="6" cy="32" rx="6" ry="6"></ellipse><ellipse cx="58" cy="32" rx="6" ry="6"></ellipse><line x1="0" y1="32" x2="6" y2="32"></line><line x1="58" y1="32" x2="64" y2="32"></line><path d="M 18,32 L 44,32 M 39,27 L 44,32 L 39,37"></path></g>
+  </symbol>
+  <symbol id="sym-plate_frame_hx" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44"></rect><line x1="20" y1="12" x2="20" y2="52"></line><line x1="26" y1="12" x2="26" y2="52"></line><line x1="32" y1="12" x2="32" y2="52"></line><line x1="38" y1="12" x2="38" y2="52"></line><line x1="44" y1="12" x2="44" y2="52"></line><circle cx="16" cy="12" r="1.6"></circle><circle cx="48" cy="12" r="1.6"></circle><circle cx="16" cy="52" r="1.6"></circle><circle cx="48" cy="52" r="1.6"></circle><line x1="8" y1="18" x2="14" y2="18"></line><line x1="50" y1="18" x2="56" y2="18"></line><line x1="8" y1="46" x2="14" y2="46"></line><line x1="50" y1="46" x2="56" y2="46"></line></g>
+  </symbol>
+  <symbol id="sym-plug_valve" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><line x1="60" y1="32" x2="64" y2="32"></line><line x1="32" y1="16" x2="32" y2="6"></line><line x1="24" y1="6" x2="40" y2="6"></line><circle cx="32" cy="32" r="6" fill="#EAB308"></circle></g>
+  </symbol>
+  <symbol id="sym-pump_cent" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="30" r="18"></circle><path d="M 24,20 Q 40,22 40,30 Q 40,38 24,40"></path><path d="M 22,30 L 38,30 M 33,25 L 38,30 L 33,35"></path><line x1="6" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="58" y2="30"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-pump_pd" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="30" r="18"></circle><path d="M 20,18 Q 32,30 20,42"></path><path d="M 44,18 Q 32,30 44,42"></path><line x1="6" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="58" y2="30"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-reactor_column" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#A855F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="8" width="20" height="40"></rect><ellipse cx="32" cy="8" rx="10" ry="6"></ellipse><ellipse cx="32" cy="48" rx="10" ry="6"></ellipse><line x1="22" y1="20" x2="42" y2="20"></line><line x1="22" y1="44" x2="42" y2="44"></line><path d="M 22,20 L 42,44 M 42,20 L 22,44"></path><line x1="32" y1="8" x2="32" y2="2"></line><line x1="32" y1="54" x2="32" y2="60"></line></g>
+  </symbol>
+  <symbol id="sym-regulator" viewBox="0 0 52 46" overflow="visible">
+    <line x1="26" y1="16" x2="26" y2="9" stroke="#b45309" stroke-width="1.5"></line><path d="M 16,9 A 10 7 0 0 1 36,9 Z" fill="none" stroke="#b45309" stroke-width="1.5"></path><polygon points="2,16 2,44 26,30" fill="none" stroke="#b45309" stroke-width="1.5" stroke-linejoin="round"></polygon><polygon points="50,16 50,44 26,30" fill="none" stroke="#b45309" stroke-width="1.5" stroke-linejoin="round"></polygon>
+  </symbol>
+  <symbol id="sym-relief_valve" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="30" width="20" height="16"></rect><line x1="32" y1="46" x2="32" y2="58"></line><path d="M 42,36 L 52,36 M 47,31 L 52,36 L 47,41"></path><rect x="26" y="14" width="12" height="16"></rect><path d="M 26,16 Q 32,20 38,16 Q 32,22 26,18 Q 32,24 38,20"></path></g>
+  </symbol>
+  <symbol id="sym-roots_blower" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="14" width="40" height="32"></rect><circle cx="32" cy="23" r="7"></circle><circle cx="32" cy="37" r="7"></circle><circle cx="24" cy="30" r="7"></circle><circle cx="40" cy="30" r="7"></circle><line x1="6" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="58" y2="30"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-rupture_disc" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="32" x2="60" y2="32"></line><line x1="24" y1="24" x2="24" y2="40"></line><line x1="40" y1="24" x2="40" y2="40"></line><path d="M 24,32 Q 32,20 40,32"></path></g>
+  </symbol>
+  <symbol id="sym-screw_pump" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="24"></rect><path d="M 14,22 L 22,30 L 14,38 M 22,22 L 30,30 L 22,38 M 30,22 L 38,30 L 30,38 M 38,22 L 46,30 L 38,38 M 46,22 L 50,26"></path><line x1="6" y1="30" x2="14" y2="30"></line><line x1="50" y1="30" x2="58" y2="30"></line><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-settling_tank" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 14,10 L 14,36 L 32,54 L 50,36 L 50,10"></path><line x1="50" y1="18" x2="57" y2="18"></line><line x1="32" y1="54" x2="32" y2="60"></line></g>
+  </symbol>
+  <symbol id="sym-sis_func" viewBox="0 0 50 50" overflow="visible">
+    <polygon points="25,2 48,25 25,48 2,25" fill="none" stroke="#7e22ce" stroke-width="1.5"></polygon>
+  </symbol>
+  <symbol id="sym-slurry_reactor" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="16" width="24" height="32"></rect><ellipse cx="32" cy="16" rx="12" ry="8"></ellipse><ellipse cx="32" cy="48" rx="12" ry="8"></ellipse><line x1="32" y1="6" x2="32" y2="34"></line><path d="M 26,31 L 32,35 L 26,39 Z M 38,31 L 32,35 L 38,39 Z"></path><circle cx="26" cy="42" r="1"></circle><circle cx="31" cy="45" r="1"></circle><circle cx="36" cy="41" r="1"></circle><circle cx="29" cy="38" r="1"></circle><circle cx="34" cy="47" r="1"></circle><circle cx="24" cy="46" r="1"></circle><line x1="32" y1="8" x2="32" y2="1"></line><line x1="32" y1="56" x2="32" y2="63"></line><line x1="20" y1="24" x2="13" y2="24"></line></g>
+  </symbol>
+  <symbol id="sym-solenoid_valve" viewBox="0 0 52 40" overflow="visible">
+    <polygon points="2,14 2,38 26,26" fill="none" stroke="#b45309" stroke-width="1.5" stroke-linejoin="round"></polygon><polygon points="50,14 50,38 26,26" fill="none" stroke="#b45309" stroke-width="1.5" stroke-linejoin="round"></polygon><rect x="16" y="2" width="20" height="10" fill="none" stroke="#b45309" stroke-width="1.2"></rect><line x1="26" y1="12" x2="26" y2="14" stroke="#b45309" stroke-width="1.2"></line>
+  </symbol>
+  <symbol id="sym-sphere_vessel" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="22"></circle><line x1="10" y1="32" x2="54" y2="32" stroke-dasharray="3 2"></line><line x1="32" y1="10" x2="32" y2="3"></line><line x1="32" y1="54" x2="32" y2="61"></line><line x1="54" y1="32" x2="60" y2="32"></line><line x1="16" y1="48" x2="10" y2="60"></line><line x1="48" y1="48" x2="54" y2="60"></line></g>
+  </symbol>
+  <symbol id="sym-spiral_hx" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="24"></circle><path d="M 32,32 m 0,-16 a 16 16 0 0 1 16,16 a 12 12 0 0 1 -12,12 a 8 8 0 0 1 -8,-8 a 4 4 0 0 1 4,-4"></path><line x1="8" y1="32" x2="2" y2="32"></line><line x1="56" y1="32" x2="62" y2="32"></line></g>
+  </symbol>
+  <symbol id="sym-steam_turbine" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 8,16 L 8,44 L 52,36 L 52,24 Z"></path><line x1="16" y1="18" x2="16" y2="42"></line><line x1="24" y1="19" x2="24" y2="41"></line><line x1="32" y1="21" x2="32" y2="39"></line><line x1="40" y1="23" x2="40" y2="37"></line><line x1="16" y1="6" x2="16" y2="18"></line><path d="M 52,30 L 60,30 M 56,26 L 60,30 L 56,34"></path></g>
+  </symbol>
+  <symbol id="sym-superheater" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="16" y="12" width="32" height="30"></rect><ellipse cx="32" cy="12" rx="16" ry="8"></ellipse><ellipse cx="32" cy="42" rx="16" ry="8"></ellipse><path d="M 22,18 Q 28,22 22,26 Q 28,30 22,34"></path><path d="M 32,18 Q 38,22 32,26 Q 38,30 32,34"></path><path d="M 42,18 Q 48,22 42,26 Q 48,30 42,34"></path><line x1="16" y1="42" x2="48" y2="42"></line><path d="M 20,42 L 24,50 M 28,42 L 32,50 M 36,42 L 40,50 M 44,42 L 48,50"></path><line x1="16" y1="50" x2="48" y2="50"></line><line x1="32" y1="4" x2="32" y2="12"></line></g>
+  </symbol>
+  <symbol id="sym-tank" viewBox="0 0 110 130" overflow="visible">
+    <path d="M 12,26 L 12,118 L 98,118 L 98,26" fill="none" stroke="#1d4ed8" stroke-width="1.5" stroke-linejoin="round"></path><path d="M 12,26 Q 55,8 98,26" fill="none" stroke="#1d4ed8" stroke-width="1.5"></path><line x1="4" y1="118" x2="106" y2="118" stroke="#1d4ed8" stroke-width="1.5"></line>
+  </symbol>
+  <symbol id="sym-tank_cone_roof" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 16,18 L 16,54 L 48,54 L 48,18"></path><line x1="10" y1="54" x2="54" y2="54"></line><path d="M 16,18 L 32,4 L 48,18"></path></g>
+  </symbol>
+  <symbol id="sym-tank_dome_roof" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 16,16 L 16,54 L 48,54 L 48,16"></path><line x1="10" y1="54" x2="54" y2="54"></line><path d="M 16,16 Q 32,4 48,16"></path></g>
+  </symbol>
+  <symbol id="sym-tank_floating_roof" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 16,12 L 16,54 L 48,54 L 48,12"></path><line x1="10" y1="54" x2="54" y2="54"></line><path d="M 16,20 L 20,16 L 44,16 L 48,20"></path><line x1="16" y1="28" x2="48" y2="28" stroke-dasharray="2 2"></line></g>
+  </symbol>
+  <symbol id="sym-tank_ifr" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 16,12 L 16,54 L 48,54 L 48,12"></path><line x1="10" y1="54" x2="54" y2="54"></line><line x1="16" y1="12" x2="48" y2="12"></line><path d="M 20,26 L 24,22 L 28,26 M 30,26 L 34,22 L 38,26 M 40,26 L 44,22"></path></g>
+  </symbol>
+  <symbol id="sym-td" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="32" x2="14" y2="32"></line><line x1="50" y1="32" x2="62" y2="32"></line><circle cx="32" cy="32" r="18"></circle><text x="32" y="32" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="700" stroke="none" fill="#EF4444">TD</text></g>
+  </symbol>
+  <symbol id="sym-three_phase_sep" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="20" width="44" height="20"></rect><ellipse cx="8" cy="30" rx="10" ry="10"></ellipse><ellipse cx="52" cy="30" rx="10" ry="10"></ellipse><line x1="34" y1="22" x2="34" y2="34"></line><line x1="20" y1="14" x2="20" y2="20"></line><line x1="44" y1="20" x2="44" y2="14"></line><line x1="52" y1="26" x2="58" y2="26"></line><line x1="8" y1="34" x2="2" y2="34"></line></g>
+  </symbol>
+  <symbol id="sym-three_way_solenoid_valve" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><polygon points="20,56 44,56 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><line x1="60" y1="32" x2="64" y2="32"></line><line x1="32" y1="56" x2="32" y2="62"></line><line x1="32" y1="16" x2="32" y2="10"></line><rect x="24" y="2" width="16" height="8"></rect><line x1="24" y1="2" x2="40" y2="10"></line></g>
+  </symbol>
+  <symbol id="sym-three_way_valve" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><polygon points="20,56 44,56 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><line x1="60" y1="32" x2="64" y2="32"></line><line x1="32" y1="56" x2="32" y2="62"></line><line x1="32" y1="16" x2="32" y2="6"></line><line x1="24" y1="6" x2="40" y2="6"></line></g>
+  </symbol>
+  <symbol id="sym-transducer" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#0EA5E9" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="26" x2="14" y2="26"></line><line x1="50" y1="26" x2="62" y2="26"></line><circle cx="32" cy="26" r="16"></circle><text x="32" y="26" text-anchor="middle" dominant-baseline="central" font-size="9" font-weight="700" stroke="none" fill="#0EA5E9">TY</text><line x1="32" y1="42" x2="32" y2="48"></line><rect x="27" y="48" width="10" height="10"></rect></g>
+  </symbol>
+  <symbol id="sym-trickle_bed_reactor" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="20" y="16" width="24" height="32"></rect><ellipse cx="32" cy="16" rx="12" ry="8"></ellipse><ellipse cx="32" cy="48" rx="12" ry="8"></ellipse><path d="M 23,20 L 23,24 M 28,20 L 28,24 M 36,20 L 36,24 M 41,20 L 41,24"></path><line x1="20" y1="26" x2="44" y2="26"></line><line x1="20" y1="42" x2="44" y2="42"></line><path d="M 22,26 L 42,42 M 42,26 L 22,42"></path><path d="M 26,48 L 32,54 L 38,48"></path><line x1="32" y1="8" x2="32" y2="1"></line><line x1="32" y1="56" x2="32" y2="63"></line><line x1="20" y1="22" x2="13" y2="22"></line></g>
+  </symbol>
+  <symbol id="sym-turbine" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M 8,16 L 8,44 L 52,36 L 52,24 Z"></path><line x1="16" y1="18" x2="16" y2="42"></line><line x1="24" y1="19" x2="24" y2="41"></line><line x1="32" y1="21" x2="32" y2="39"></line><line x1="40" y1="23" x2="40" y2="37"></line><line x1="4" y1="30" x2="8" y2="30"></line><line x1="52" y1="30" x2="58" y2="30"></line></g>
+  </symbol>
+  <symbol id="sym-vacuum_pump" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="18" width="48" height="24"></rect><line x1="24" y1="18" x2="24" y2="42"></line><line x1="30" y1="18" x2="30" y2="42"></line><line x1="36" y1="18" x2="36" y2="42"></line><line x1="42" y1="18" x2="42" y2="42"></line><path d="M 56,30 L 62,30 M 58,26 L 62,30 L 58,34"></path><path d="M 20,48 L 16,58 L 48,58 L 44,48"></path></g>
+  </symbol>
+  <symbol id="sym-vacuum_tower" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#A855F7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="22" y="8" width="20" height="40"></rect><ellipse cx="32" cy="8" rx="10" ry="6"></ellipse><ellipse cx="32" cy="48" rx="10" ry="6"></ellipse><line x1="24" y1="16" x2="40" y2="16" stroke-dasharray="3 2"></line><line x1="24" y1="24" x2="40" y2="24" stroke-dasharray="3 2"></line><line x1="24" y1="32" x2="40" y2="32" stroke-dasharray="3 2"></line><line x1="24" y1="40" x2="40" y2="40" stroke-dasharray="3 2"></line><line x1="24" y1="48" x2="40" y2="48" stroke-dasharray="3 2"></line><line x1="32" y1="8" x2="32" y2="2"></line><line x1="32" y1="54" x2="32" y2="60"></line><line x1="42" y1="10" x2="50" y2="4"></line></g>
+  </symbol>
+  <symbol id="sym-valve" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#EAB308" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="4,16 4,48 32,32"></polygon><polygon points="60,16 60,48 32,32"></polygon><line x1="0" y1="32" x2="4" y2="32"></line><line x1="60" y1="32" x2="64" y2="32"></line><line x1="32" y1="16" x2="32" y2="6"></line><path d="M 20,6 A 12 8 0 0 1 44,6 Z"></path><line x1="32" y1="16" x2="32" y2="26"></line><path d="M 27,26 L 32,32 L 37,26"></path></g>
+  </symbol>
+  <symbol id="sym-vessel_h" viewBox="0 0 160 90" overflow="visible">
+    <g fill="none" stroke="#1d4ed8" stroke-width="1.5" stroke-linejoin="round"><rect x="40" y="15" width="80" height="60"></rect><ellipse cx="40" cy="45" rx="30" ry="30"></ellipse><ellipse cx="120" cy="45" rx="30" ry="30"></ellipse></g><g stroke="#1d4ed8" stroke-width="1.5"><line x1="80" y1="15" x2="80" y2="4"></line><line x1="0" y1="45" x2="10" y2="45"></line></g>
+  </symbol>
+  <symbol id="sym-vessel_v" viewBox="0 0 80 130" overflow="visible">
+    <g fill="none" stroke="#1d4ed8" stroke-width="1.5"><rect x="10" y="18" width="60" height="94"></rect><ellipse cx="40" cy="18" rx="30" ry="10"></ellipse><ellipse cx="40" cy="112" rx="30" ry="10"></ellipse></g><g stroke="#1d4ed8" stroke-width="1.5"><line x1="40" y1="8" x2="40" y2="2"></line><line x1="40" y1="122" x2="40" y2="128"></line><line x1="10" y1="40" x2="2" y2="40"></line><line x1="70" y1="90" x2="78" y2="90"></line></g>
+  </symbol>
+  <symbol id="sym-waste_heat_boiler" viewBox="0 0 64 64" overflow="visible">
+    <g fill="none" stroke="#22C55E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="14" r="8" stroke-dasharray="2 2"></circle><line x1="24" y1="22" x2="24" y2="28"></line><rect x="10" y="28" width="44" height="26"></rect><path d="M 12,30 L 52,52 M 12,38 L 44,52 M 12,46 L 36,52 M 20,30 L 52,44"></path><line x1="4" y1="41" x2="10" y2="41"></line><line x1="54" y1="41" x2="60" y2="41"></line><line x1="24" y1="2" x2="24" y2="6"></line></g>
+  </symbol>
+</defs>
+</svg>

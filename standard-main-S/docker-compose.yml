@@ -1,0 +1,21 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: enstudio-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - FLASK_HOST=0.0.0.0
+      - FLASK_PORT=8000
+      - FLASK_SKIP_OPEN_BROWSER=true
+      - ENGINEERING_HUB=/app/EngineeringHub/EngineeringHub
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./EngineeringHub:/app/EngineeringHub
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped

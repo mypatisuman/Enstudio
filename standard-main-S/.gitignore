@@ -1,0 +1,62 @@
+# Dependencies & build outputs
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+*.log
+.DS_Store
+Thumbs.db
+
+# Python virtual environments & packages
+.venv/
+venv/
+env/
+.env/
+*.egg-info/
+build/
+*.py[cod]
+__pycache__/
+**/__pycache__/
+.pytest_cache/
+**/.pytest_cache/
+.benchmarks/
+**/.benchmarks/
+# Benchmark runs: throwaway hubs hold copied provider settings (API keys).
+backend/benchmarks/results/
+
+# Environment variable files (keep *.example committed)
+.env
+**/.env
+!**/.env.example
+# Secret-bearing env files that are NOT named exactly ".env" were slipping
+# through the two patterns above — mongo.env in the repo root held live
+# Stripe/Azure/Mongo/SMTP/Redis credentials in plaintext. Ignore every
+# *.env file and whitelist only the templates.
+*.env
+**/*.env
+!*.env.example
+!**/*.env.example
+
+# SQLite databases & temp journals
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Stale extraction cache JSONs (belong in project cache folders, not source root)
+*_extraction.json
+
+# LLM debug / scratch output
+last_response.txt
+studio_config.json
+
+# Tauri / Rust build output
+frontend/src-tauri/target/
+src-tauri/target/
+
+# ML model weights (large binary files)
+weights/
+**/weights/
+
+# IDE / Agent caches
+.claude/

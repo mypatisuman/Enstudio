@@ -1,0 +1,29 @@
+{
+  "timestamp": "2026-09-29T09:39:34.907334+00:00",
+  "pid": "p",
+  "agent_type": "greenfield",
+  "user_message": "Designed. Check: incomplete control loop(s) ORPHAN-L200.",
+  "accuracy_score": 71.9,
+  "rating": "FAIR",
+  "metrics": {
+    "total_nodes": 9,
+    "total_edges": 6,
+    "total_loops": 0,
+    "connectivity_score": 77.8,
+    "tag_compliance_score": 88.9,
+    "loop_completeness_score": null,
+    "hierarchy_score": 0.0
+  },
+  "issues": [
+    "2 orphan node(s) with no piping or signal connections: ['LT-200', 'TK-200']",
+    "1 non-standard or unclassified tag(s): ['N2-HDR']",
+    "9 node(s) not yet mapped into a plant subsystem."
+  ],
+  "prompt_refinement_hints": [
+    "DIAGNOSTIC FOCUS - DISCONNECTED PIPING: The following equipment nodes appear disconnected: ['LT-200', 'TK-200']. Examine all suction, discharge, inlet, and outlet nozzles connecting these items to adjacent equipment.",
+    "DIAGNOSTIC FOCUS - TAG OCR CONVENTIONS: Non-standard tags detected (['N2-HDR']). Ensure ISA-5.1 standard tagging: 2-3 letter variable+function code followed by loop number (e.g. PT-101, PIC-101, PV-101)."
+  ],
+  "metadata": {
+    "ops_count": 1
+  }
+}

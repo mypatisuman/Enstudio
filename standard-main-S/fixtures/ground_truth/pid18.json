@@ -1,0 +1,8892 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "diagram_type": "PID",
+    "generated_at": "2026-07-21T05:43:10.281539+00:00",
+    "node_count": 184,
+    "edge_count": 177,
+    "line_count": 208,
+    "node_types": {
+      "equipment": 4,
+      "valve": 37,
+      "safety_valve": 3,
+      "regulator": 2,
+      "mechanical": 2,
+      "instrument": 33,
+      "inline_component": 14,
+      "boundary": 12,
+      "t_junction": 37,
+      "endpoint_share": 23,
+      "crossover": 11,
+      "open_endpoint": 6
+    },
+    "control_loops_count": 6,
+    "loop_groups_count": 0,
+    "signal_paths_count": 9,
+    "spatial_clusters_count": 0,
+    "electric_heat_trace_count": 6
+  },
+  "nodes": {
+    "HE-112": {
+      "type": "equipment",
+      "point": [
+        3826.5,
+        909.0
+      ],
+      "label": "HE-112",
+      "bbox": [
+        3714,
+        861,
+        3939,
+        957
+      ]
+    },
+    "V-113": {
+      "type": "equipment",
+      "point": [
+        4164.0,
+        1126.0
+      ],
+      "label": "V-113",
+      "bbox": [
+        4106,
+        1024,
+        4222,
+        1228
+      ]
+    },
+    "Reactor 1": {
+      "type": "equipment",
+      "point": [
+        1922.5,
+        1451.0
+      ],
+      "label": "Reactor 1",
+      "bbox": [
+        1851,
+        1226,
+        1994,
+        1676
+      ]
+    },
+    "R-110 B": {
+      "type": "equipment",
+      "point": [
+        3023.5,
+        1449.5
+      ],
+      "label": "R-110 B",
+      "bbox": [
+        2960,
+        1221,
+        3087,
+        1678
+      ]
+    },
+    "XY-1156": {
+      "type": "valve",
+      "point": [
+        3188.5,
+        2092.0
+      ],
+      "label": "XY-1156",
+      "bbox": [
+        3164,
+        2054,
+        3213,
+        2130
+      ]
+    },
+    "HV-1171": {
+      "type": "valve",
+      "point": [
+        699.0,
+        2260.0
+      ],
+      "label": "HV-1171",
+      "bbox": [
+        672,
+        2242,
+        726,
+        2278
+      ]
+    },
+    "CK-1114": {
+      "type": "valve",
+      "point": [
+        911.5,
+        2332.5
+      ],
+      "label": "CK-1114",
+      "bbox": [
+        896,
+        2301,
+        927,
+        2364
+      ]
+    },
+    "CK-1150": {
+      "type": "valve",
+      "point": [
+        4480.5,
+        628.5
+      ],
+      "label": "CK-1150",
+      "bbox": [
+        4461,
+        597,
+        4500,
+        660
+      ]
+    },
+    "HV-1143": {
+      "type": "valve",
+      "point": [
+        4543.5,
+        957.0
+      ],
+      "label": "HV-1143",
+      "bbox": [
+        4515,
+        938,
+        4572,
+        976
+      ]
+    },
+    "HV-1175": {
+      "type": "valve",
+      "point": [
+        4229.5,
+        2386.0
+      ],
+      "label": "HV-1175",
+      "bbox": [
+        4191,
+        2368,
+        4268,
+        2404
+      ]
+    },
+    "HV-1066": {
+      "type": "valve",
+      "point": [
+        264.0,
+        304.0
+      ],
+      "label": "HV-1066",
+      "bbox": [
+        238,
+        286,
+        290,
+        322
+      ]
+    },
+    "HV-1125": {
+      "type": "valve",
+      "point": [
+        913.0,
+        2448.0
+      ],
+      "label": "HV-1125",
+      "bbox": [
+        892,
+        2409,
+        934,
+        2487
+      ]
+    },
+    "HV-1152": {
+      "type": "valve",
+      "point": [
+        1918.5,
+        771.0
+      ],
+      "label": "HV-1152",
+      "bbox": [
+        1902,
+        744,
+        1935,
+        798
+      ]
+    },
+    "CK-1124": {
+      "type": "valve",
+      "point": [
+        911.5,
+        2540.0
+      ],
+      "label": "CK-1124",
+      "bbox": [
+        897,
+        2512,
+        926,
+        2568
+      ]
+    },
+    "Xy-1151": {
+      "type": "valve",
+      "point": [
+        2137.5,
+        2186.5
+      ],
+      "label": "Xy-1151",
+      "bbox": [
+        2112,
+        2144,
+        2163,
+        2229
+      ]
+    },
+    "HV-1150": {
+      "type": "valve",
+      "point": [
+        1691.0,
+        613.0
+      ],
+      "label": "HV-1150",
+      "bbox": [
+        1664,
+        596,
+        1718,
+        630
+      ]
+    },
+    "HV-1166": {
+      "type": "valve",
+      "point": [
+        2839.5,
+        2293.0
+      ],
+      "label": "HV-1166",
+      "bbox": [
+        2814,
+        2276,
+        2865,
+        2310
+      ]
+    },
+    "HV-1153": {
+      "type": "valve",
+      "point": [
+        2204.0,
+        650.5
+      ],
+      "label": "HV-1153",
+      "bbox": [
+        2188,
+        620,
+        2220,
+        681
+      ]
+    },
+    "HV-1114": {
+      "type": "valve",
+      "point": [
+        3776.0,
+        566.5
+      ],
+      "label": "HV-1114",
+      "bbox": [
+        3748,
+        549,
+        3804,
+        584
+      ]
+    },
+    "HV-1113": {
+      "type": "valve",
+      "point": [
+        3777.0,
+        471.0
+      ],
+      "label": "HV-1113",
+      "bbox": [
+        3752,
+        453,
+        3802,
+        489
+      ]
+    },
+    "HV-1154": {
+      "type": "valve",
+      "point": [
+        1918.5,
+        1952.0
+      ],
+      "label": "HV-1154",
+      "bbox": [
+        1902,
+        1924,
+        1935,
+        1980
+      ]
+    },
+    "XY-1155": {
+      "type": "valve",
+      "point": [
+        3003.0,
+        669.0
+      ],
+      "label": "XY-1155",
+      "bbox": [
+        2965,
+        646,
+        3041,
+        692
+      ]
+    },
+    "CK-1171": {
+      "type": "valve",
+      "point": [
+        3024.0,
+        834.0
+      ],
+      "label": "CK-1171",
+      "bbox": [
+        3006,
+        806,
+        3042,
+        862
+      ]
+    },
+    "HV-1155": {
+      "type": "valve",
+      "point": [
+        2853.0,
+        547.5
+      ],
+      "label": "HV-1155",
+      "bbox": [
+        2826,
+        531,
+        2880,
+        564
+      ]
+    },
+    "XY-1165": {
+      "type": "valve",
+      "point": [
+        3307.0,
+        886.5
+      ],
+      "label": "XY-1165",
+      "bbox": [
+        3280,
+        847,
+        3334,
+        926
+      ]
+    },
+    "CK-1152": {
+      "type": "valve",
+      "point": [
+        1920.0,
+        857.0
+      ],
+      "label": "CK-1152",
+      "bbox": [
+        1900,
+        828,
+        1940,
+        886
+      ]
+    },
+    "XY-1150": {
+      "type": "valve",
+      "point": [
+        1894.0,
+        666.0
+      ],
+      "label": "XY-1150",
+      "bbox": [
+        1852,
+        640,
+        1936,
+        692
+      ]
+    },
+    "NV-1144": {
+      "type": "valve",
+      "point": [
+        4634.0,
+        958.5
+      ],
+      "label": "NV-1144",
+      "bbox": [
+        4608,
+        936,
+        4660,
+        981
+      ]
+    },
+    "HV-1151": {
+      "type": "valve",
+      "point": [
+        2136.5,
+        2077.0
+      ],
+      "label": "HV-1151",
+      "bbox": [
+        2122,
+        2048,
+        2151,
+        2106
+      ]
+    },
+    "HV-1141": {
+      "type": "valve",
+      "point": [
+        4358.0,
+        1080.5
+      ],
+      "label": "HV-1141",
+      "bbox": [
+        4344,
+        1054,
+        4372,
+        1107
+      ]
+    },
+    "HV-1161": {
+      "type": "valve",
+      "point": [
+        1709.0,
+        2292.5
+      ],
+      "label": "HV-1161",
+      "bbox": [
+        1682,
+        2277,
+        1736,
+        2308
+      ]
+    },
+    "XY-1181": {
+      "type": "valve",
+      "point": [
+        1898.0,
+        2289.5
+      ],
+      "label": "XY-1181",
+      "bbox": [
+        1858,
+        2265,
+        1938,
+        2314
+      ]
+    },
+    "XY-1160": {
+      "type": "valve",
+      "point": [
+        2202.5,
+        983.5
+      ],
+      "label": "XY-1160",
+      "bbox": [
+        2175,
+        944,
+        2230,
+        1023
+      ]
+    },
+    "HV-1176": {
+      "type": "valve",
+      "point": [
+        4143.0,
+        2745.5
+      ],
+      "label": "HV-1176",
+      "bbox": [
+        4128,
+        2716,
+        4158,
+        2775
+      ]
+    },
+    "HV-1158": {
+      "type": "valve",
+      "point": [
+        3113.0,
+        2008.0
+      ],
+      "label": "HV-1158",
+      "bbox": [
+        3092,
+        1994,
+        3134,
+        2022
+      ]
+    },
+    "HV-1123": {
+      "type": "valve",
+      "point": [
+        909.5,
+        2745.0
+      ],
+      "label": "HV-1123",
+      "bbox": [
+        891,
+        2720,
+        928,
+        2770
+      ]
+    },
+    "HV-1165": {
+      "type": "valve",
+      "point": [
+        3308.5,
+        776.5
+      ],
+      "label": "HV-1165",
+      "bbox": [
+        3291,
+        747,
+        3326,
+        806
+      ]
+    },
+    "HV-1173": {
+      "type": "valve",
+      "point": [
+        4167.0,
+        1349.0
+      ],
+      "label": "HV-1173",
+      "bbox": [
+        4150,
+        1312,
+        4184,
+        1386
+      ]
+    },
+    "XY-1166": {
+      "type": "valve",
+      "point": [
+        3000.0,
+        2292.0
+      ],
+      "label": "XY-1166",
+      "bbox": [
+        2962,
+        2268,
+        3038,
+        2316
+      ]
+    },
+    "HV-1156": {
+      "type": "valve",
+      "point": [
+        3028.0,
+        1953.5
+      ],
+      "label": "HV-1156",
+      "bbox": [
+        3012,
+        1924,
+        3044,
+        1983
+      ]
+    },
+    "HV-1170": {
+      "type": "valve",
+      "point": [
+        3025.5,
+        753.5
+      ],
+      "label": "HV-1170",
+      "bbox": [
+        3009,
+        724,
+        3042,
+        783
+      ]
+    },
+    "PSV-1100": {
+      "type": "safety_valve",
+      "point": [
+        3094.0,
+        831.0
+      ],
+      "label": "PSV-1100",
+      "bbox": [
+        3064,
+        800,
+        3124,
+        862
+      ]
+    },
+    "PSV-1111": {
+      "type": "safety_valve",
+      "point": [
+        714.5,
+        388.0
+      ],
+      "label": "PSV-1111",
+      "bbox": [
+        687,
+        356,
+        742,
+        420
+      ]
+    },
+    "PSV-1140": {
+      "type": "safety_valve",
+      "point": [
+        1992.0,
+        927.5
+      ],
+      "label": "PSV-1140",
+      "bbox": [
+        1964,
+        897,
+        2020,
+        958
+      ]
+    },
+    "BPR-1130": {
+      "type": "regulator",
+      "point": [
+        4143.0,
+        2222.0
+      ],
+      "label": "BPR-1130",
+      "bbox": [
+        4116,
+        2190,
+        4170,
+        2254
+      ]
+    },
+    "PCV-1172": {
+      "type": "regulator",
+      "point": [
+        4116.0,
+        2538.0
+      ],
+      "label": "PCV-1172",
+      "bbox": [
+        4072,
+        2506,
+        4160,
+        2570
+      ]
+    },
+    "FC THERMAL": {
+      "type": "mechanical",
+      "point": [
+        1456.5,
+        2423.0
+      ],
+      "label": "FC THERMAL",
+      "bbox": [
+        1428,
+        2386,
+        1485,
+        2460
+      ]
+    },
+    "Control Valve 1": {
+      "type": "mechanical",
+      "point": [
+        896.5,
+        2670.5
+      ],
+      "label": "Control Valve 1",
+      "bbox": [
+        866,
+        2638,
+        927,
+        2703
+      ]
+    },
+    "TI-1107": {
+      "type": "instrument",
+      "point": [
+        2803.0,
+        1755.0
+      ],
+      "label": "TI-1107",
+      "bbox": [
+        2758,
+        1708,
+        2848,
+        1802
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1107",
+        "loop_name": "T1107"
+      }
+    },
+    "TI-1103": {
+      "type": "instrument",
+      "point": [
+        1701.0,
+        1755.0
+      ],
+      "label": "TI-1103",
+      "bbox": [
+        1654,
+        1708,
+        1748,
+        1802
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1103",
+        "loop_name": "T1103"
+      }
+    },
+    "TE-1105": {
+      "type": "instrument",
+      "point": [
+        3197.0,
+        1069.0
+      ],
+      "label": "TE-1105",
+      "bbox": [
+        3152,
+        1024,
+        3242,
+        1114
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1105",
+        "loop_name": "T1105"
+      }
+    },
+    "TE-1102 A": {
+      "type": "instrument",
+      "point": [
+        2093.5,
+        1067.5
+      ],
+      "label": "TE-1102 A",
+      "bbox": [
+        2049,
+        1023,
+        2138,
+        1112
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1102",
+        "loop_name": "T1102"
+      }
+    },
+    "TE-1121": {
+      "type": "instrument",
+      "point": [
+        3638.5,
+        843.0
+      ],
+      "label": "TE-1121",
+      "bbox": [
+        3596,
+        798,
+        3681,
+        888
+      ]
+    },
+    "FIC-1108": {
+      "type": "instrument",
+      "point": [
+        1281.0,
+        2325.0
+      ],
+      "label": "FIC-1108",
+      "bbox": [
+        1238,
+        2278,
+        1324,
+        2372
+      ],
+      "control_loop": {
+        "loop_type": "Flow",
+        "loop_id": "1108",
+        "loop_name": "F1108"
+      }
+    },
+    "FE-1108": {
+      "type": "instrument",
+      "point": [
+        1378.0,
+        2326.0
+      ],
+      "label": "FE-1108",
+      "bbox": [
+        1336,
+        2282,
+        1420,
+        2370
+      ],
+      "control_loop": {
+        "loop_type": "Flow",
+        "loop_id": "1108",
+        "loop_name": "F1108"
+      }
+    },
+    "PIT-1104 A": {
+      "type": "instrument",
+      "point": [
+        2949.5,
+        1069.0
+      ],
+      "label": "PIT-1104 A",
+      "bbox": [
+        2907,
+        1026,
+        2992,
+        1112
+      ],
+      "control_loop": {
+        "loop_type": "Pressure",
+        "loop_id": "1104",
+        "loop_name": "P1104"
+      }
+    },
+    "TE-1122": {
+      "type": "instrument",
+      "point": [
+        4016.0,
+        843.0
+      ],
+      "label": "TE-1122",
+      "bbox": [
+        3972,
+        798,
+        4060,
+        888
+      ]
+    },
+    "FTC-1108": {
+      "type": "instrument",
+      "point": [
+        1460.0,
+        2323.0
+      ],
+      "label": "FTC-1108",
+      "bbox": [
+        1420,
+        2278,
+        1500,
+        2368
+      ],
+      "control_loop": {
+        "loop_type": "Flow",
+        "loop_id": "1108",
+        "loop_name": "F1108"
+      }
+    },
+    "PIT-1101": {
+      "type": "instrument",
+      "point": [
+        1847.5,
+        1070.0
+      ],
+      "label": "PIT-1101",
+      "bbox": [
+        1803,
+        1028,
+        1892,
+        1112
+      ]
+    },
+    "PIT-1104 B": {
+      "type": "instrument",
+      "point": [
+        2840.5,
+        1067.5
+      ],
+      "label": "PIT-1104 B",
+      "bbox": [
+        2799,
+        1023,
+        2882,
+        1112
+      ],
+      "control_loop": {
+        "loop_type": "Pressure",
+        "loop_id": "1104",
+        "loop_name": "P1104"
+      }
+    },
+    "TI-1107B": {
+      "type": "instrument",
+      "point": [
+        2533.0,
+        1592.0
+      ],
+      "label": "TI-1107B",
+      "bbox": [
+        2486,
+        1544,
+        2580,
+        1640
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1107",
+        "loop_name": "T1107"
+      }
+    },
+    "TI-1103B": {
+      "type": "instrument",
+      "point": [
+        1428.0,
+        1594.0
+      ],
+      "label": "TI-1103B",
+      "bbox": [
+        1383,
+        1548,
+        1473,
+        1640
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1103",
+        "loop_name": "T1103"
+      }
+    },
+    "PI-1180": {
+      "type": "instrument",
+      "point": [
+        950.0,
+        400.0
+      ],
+      "label": "PI-1180",
+      "bbox": [
+        906,
+        354,
+        994,
+        446
+      ]
+    },
+    "TI-1107A": {
+      "type": "instrument",
+      "point": [
+        2422.0,
+        1593.0
+      ],
+      "label": "TI-1107A",
+      "bbox": [
+        2376,
+        1545,
+        2468,
+        1641
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1107",
+        "loop_name": "T1107"
+      }
+    },
+    "TI-1103F A": {
+      "type": "instrument",
+      "point": [
+        1427.0,
+        1921.5
+      ],
+      "label": "TI-1103F A",
+      "bbox": [
+        1384,
+        1878,
+        1470,
+        1965
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1103",
+        "loop_name": "T1103"
+      }
+    },
+    "TI-1107H": {
+      "type": "instrument",
+      "point": [
+        2531.0,
+        1921.0
+      ],
+      "label": "TI-1107H",
+      "bbox": [
+        2486,
+        1876,
+        2576,
+        1966
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1107",
+        "loop_name": "T1107"
+      }
+    },
+    "TI-1103D": {
+      "type": "instrument",
+      "point": [
+        1426.0,
+        1704.5
+      ],
+      "label": "TI-1103D",
+      "bbox": [
+        1382,
+        1659,
+        1470,
+        1750
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1103",
+        "loop_name": "T1103"
+      }
+    },
+    "TI-1103A": {
+      "type": "instrument",
+      "point": [
+        1320.0,
+        1592.0
+      ],
+      "label": "TI-1103A",
+      "bbox": [
+        1275,
+        1546,
+        1365,
+        1638
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1103",
+        "loop_name": "T1103"
+      }
+    },
+    "TI-1107G": {
+      "type": "instrument",
+      "point": [
+        2424.0,
+        1923.0
+      ],
+      "label": "TI-1107G",
+      "bbox": [
+        2379,
+        1880,
+        2469,
+        1966
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1107",
+        "loop_name": "T1107"
+      }
+    },
+    "PI-1120": {
+      "type": "instrument",
+      "point": [
+        838.5,
+        2598.5
+      ],
+      "label": "PI-1120",
+      "bbox": [
+        795,
+        2554,
+        882,
+        2643
+      ]
+    },
+    "PI-1110": {
+      "type": "instrument",
+      "point": [
+        1136.5,
+        688.5
+      ],
+      "label": "PI-1110",
+      "bbox": [
+        1094,
+        642,
+        1179,
+        735
+      ]
+    },
+    "TI-1107D": {
+      "type": "instrument",
+      "point": [
+        2531.0,
+        1704.0
+      ],
+      "label": "TI-1107D",
+      "bbox": [
+        2486,
+        1658,
+        2576,
+        1750
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1107",
+        "loop_name": "T1107"
+      }
+    },
+    "TI-1107C": {
+      "type": "instrument",
+      "point": [
+        2423.5,
+        1704.0
+      ],
+      "label": "TI-1107C",
+      "bbox": [
+        2379,
+        1659,
+        2468,
+        1749
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1107",
+        "loop_name": "T1107"
+      }
+    },
+    "TI-1103F B": {
+      "type": "instrument",
+      "point": [
+        1428.0,
+        1817.5
+      ],
+      "label": "TI-1103F B",
+      "bbox": [
+        1380,
+        1767,
+        1476,
+        1868
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1103",
+        "loop_name": "T1103"
+      }
+    },
+    "TI-1107E": {
+      "type": "instrument",
+      "point": [
+        2424.0,
+        1812.0
+      ],
+      "label": "TI-1107E",
+      "bbox": [
+        2376,
+        1767,
+        2472,
+        1857
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1107",
+        "loop_name": "T1107"
+      }
+    },
+    "TE-1102 B": {
+      "type": "instrument",
+      "point": [
+        1993.0,
+        1067.0
+      ],
+      "label": "TE-1102 B",
+      "bbox": [
+        1948,
+        1018,
+        2038,
+        1116
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1102",
+        "loop_name": "T1102"
+      }
+    },
+    "TI-1103C": {
+      "type": "instrument",
+      "point": [
+        1320.5,
+        1704.0
+      ],
+      "label": "TI-1103C",
+      "bbox": [
+        1276,
+        1656,
+        1365,
+        1752
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1103",
+        "loop_name": "T1103"
+      }
+    },
+    "TI-1107F": {
+      "type": "instrument",
+      "point": [
+        2532.0,
+        1812.0
+      ],
+      "label": "TI-1107F",
+      "bbox": [
+        2482,
+        1766,
+        2582,
+        1858
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1107",
+        "loop_name": "T1107"
+      }
+    },
+    "TI-1103E": {
+      "type": "instrument",
+      "point": [
+        1321.5,
+        1815.0
+      ],
+      "label": "TI-1103E",
+      "bbox": [
+        1275,
+        1768,
+        1368,
+        1862
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1103",
+        "loop_name": "T1103"
+      }
+    },
+    "TI-1103G": {
+      "type": "instrument",
+      "point": [
+        1320.5,
+        1922.0
+      ],
+      "label": "TI-1103G",
+      "bbox": [
+        1276,
+        1878,
+        1365,
+        1966
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1103",
+        "loop_name": "T1103"
+      }
+    },
+    "TI-1105": {
+      "type": "instrument",
+      "point": [
+        3096.0,
+        1069.5
+      ],
+      "label": "TI-1105",
+      "bbox": [
+        3051,
+        1023,
+        3141,
+        1116
+      ],
+      "control_loop": {
+        "loop_type": "Temperature",
+        "loop_id": "1105",
+        "loop_name": "T1105"
+      }
+    },
+    "Filter 1": {
+      "type": "inline_component",
+      "point": [
+        2055.5,
+        1448.0
+      ],
+      "label": "Filter 1",
+      "bbox": [
+        2032,
+        1396,
+        2079,
+        1500
+      ]
+    },
+    "Micron Filter 1": {
+      "type": "inline_component",
+      "point": [
+        4355.0,
+        952.5
+      ],
+      "label": "Micron Filter 1",
+      "bbox": [
+        4324,
+        924,
+        4386,
+        981
+      ]
+    },
+    "F-111": {
+      "type": "inline_component",
+      "point": [
+        3879.0,
+        2209.0
+      ],
+      "label": "F-111",
+      "bbox": [
+        3850,
+        2186,
+        3908,
+        2232
+      ]
+    },
+    "F-114": {
+      "type": "inline_component",
+      "point": [
+        1198.0,
+        2439.0
+      ],
+      "label": "F-114",
+      "bbox": [
+        1170,
+        2414,
+        1226,
+        2464
+      ]
+    },
+    "Filter 2": {
+      "type": "inline_component",
+      "point": [
+        3158.5,
+        1447.5
+      ],
+      "label": "Filter 2",
+      "bbox": [
+        3135,
+        1395,
+        3182,
+        1500
+      ]
+    },
+    "IHP-1101": {
+      "type": "inline_component",
+      "point": [
+        1684.5,
+        1075.0
+      ],
+      "label": "IHP-1101",
+      "bbox": [
+        1629,
+        1040,
+        1740,
+        1110
+      ]
+    },
+    "M-106": {
+      "type": "inline_component",
+      "point": [
+        1492.0,
+        468.0
+      ],
+      "label": "M-106",
+      "bbox": [
+        1406,
+        448,
+        1578,
+        488
+      ]
+    },
+    "sym_92": {
+      "type": "inline_component",
+      "point": [
+        1920.0,
+        1854.0
+      ],
+      "label": "sym_92",
+      "bbox": [
+        1902,
+        1832,
+        1938,
+        1876
+      ]
+    },
+    "sym_93": {
+      "type": "inline_component",
+      "point": [
+        1922.5,
+        1753.0
+      ],
+      "label": "sym_93",
+      "bbox": [
+        1905,
+        1728,
+        1940,
+        1778
+      ]
+    },
+    "sym_95": {
+      "type": "inline_component",
+      "point": [
+        3025.0,
+        1154.0
+      ],
+      "label": "sym_95",
+      "bbox": [
+        3010,
+        1124,
+        3040,
+        1184
+      ]
+    },
+    "IHP-1104": {
+      "type": "inline_component",
+      "point": [
+        2675.5,
+        1072.0
+      ],
+      "label": "IHP-1104",
+      "bbox": [
+        2631,
+        1048,
+        2720,
+        1096
+      ]
+    },
+    "sym_97": {
+      "type": "inline_component",
+      "point": [
+        1924.0,
+        1150.5
+      ],
+      "label": "sym_97",
+      "bbox": [
+        1906,
+        1125,
+        1942,
+        1176
+      ]
+    },
+    "sym_98": {
+      "type": "inline_component",
+      "point": [
+        3024.0,
+        1751.0
+      ],
+      "label": "sym_98",
+      "bbox": [
+        3008,
+        1722,
+        3040,
+        1780
+      ]
+    },
+    "sym_99": {
+      "type": "inline_component",
+      "point": [
+        3023.0,
+        1854.0
+      ],
+      "label": "sym_99",
+      "bbox": [
+        3006,
+        1822,
+        3040,
+        1886
+      ]
+    },
+    "REACTOR FEED HEADER 1-1-120": {
+      "type": "boundary",
+      "point": [
+        354.0,
+        476.5
+      ],
+      "label": "REACTOR FEED HEADER 1-1-120",
+      "bbox": [
+        224,
+        452,
+        484,
+        501
+      ],
+      "flow_direction": "inlet"
+    },
+    "C2H4/C2H6 HEADER 1-1-110": {
+      "type": "boundary",
+      "point": [
+        356.5,
+        911.0
+      ],
+      "label": "C2H4/C2H6 HEADER 1-1-110",
+      "bbox": [
+        225,
+        890,
+        488,
+        932
+      ],
+      "flow_direction": "inlet"
+    },
+    "URILITY AIR_HEADER 1-1-110": {
+      "type": "boundary",
+      "point": [
+        354.0,
+        1190.0
+      ],
+      "label": "URILITY AIR_HEADER 1-1-110",
+      "bbox": [
+        224,
+        1160,
+        484,
+        1220
+      ],
+      "flow_direction": "inlet"
+    },
+    "CWS HEADER": {
+      "type": "boundary",
+      "point": [
+        3622.5,
+        1082.0
+      ],
+      "label": "CWS HEADER",
+      "bbox": [
+        3543,
+        1064,
+        3702,
+        1100
+      ],
+      "flow_direction": "inlet"
+    },
+    "CWR HEADER": {
+      "type": "boundary",
+      "point": [
+        3632.0,
+        1156.0
+      ],
+      "label": "CWR HEADER",
+      "bbox": [
+        3550,
+        1134,
+        3714,
+        1178
+      ],
+      "flow_direction": "outlet"
+    },
+    "ANALYTICS 1-1-150 A": {
+      "type": "boundary",
+      "point": [
+        4775.5,
+        959.0
+      ],
+      "label": "ANALYTICS 1-1-150 A",
+      "bbox": [
+        4700,
+        936,
+        4851,
+        982
+      ],
+      "flow_direction": "outlet"
+    },
+    "RELIEF VENT HEADER 1-1-140": {
+      "type": "boundary",
+      "point": [
+        4713.0,
+        306.5
+      ],
+      "label": "RELIEF VENT HEADER 1-1-140",
+      "bbox": [
+        4563,
+        280,
+        4863,
+        333
+      ],
+      "flow_direction": "outlet"
+    },
+    "REACTOR FEED BYPASS TO FE -1205 1-1-140": {
+      "type": "boundary",
+      "point": [
+        4111.5,
+        473.5
+      ],
+      "label": "REACTOR FEED BYPASS TO FE -1205 1-1-140",
+      "bbox": [
+        4026,
+        452,
+        4197,
+        495
+      ],
+      "flow_direction": "outlet"
+    },
+    "ANALYTICS 1-1-150 B": {
+      "type": "boundary",
+      "point": [
+        4118.5,
+        576.0
+      ],
+      "label": "ANALYTICS 1-1-150 B",
+      "bbox": [
+        4034,
+        555,
+        4203,
+        597
+      ],
+      "flow_direction": "outlet"
+    },
+    "N2/02 HEADER 1-1-110": {
+      "type": "boundary",
+      "point": [
+        352.5,
+        2263.0
+      ],
+      "label": "N2/02 HEADER 1-1-110",
+      "bbox": [
+        228,
+        2240,
+        477,
+        2286
+      ],
+      "flow_direction": "inlet"
+    },
+    "N2 HEADER 1-1-110": {
+      "type": "boundary",
+      "point": [
+        352.5,
+        2826.0
+      ],
+      "label": "N2 HEADER 1-1-110",
+      "bbox": [
+        228,
+        2804,
+        477,
+        2848
+      ],
+      "flow_direction": "inlet"
+    },
+    "REACTOR EFFULENT 1-1-140": {
+      "type": "boundary",
+      "point": [
+        4710.0,
+        2211.5
+      ],
+      "label": "REACTOR EFFULENT 1-1-140",
+      "bbox": [
+        4562,
+        2187,
+        4858,
+        2236
+      ],
+      "flow_direction": "outlet"
+    },
+    "JX_T_000": {
+      "type": "t_junction",
+      "point": [
+        4482.0,
+        306.0
+      ],
+      "label": "T000"
+    },
+    "JX_T_001": {
+      "type": "t_junction",
+      "point": [
+        3210.0,
+        306.0
+      ],
+      "label": "T001"
+    },
+    "JX_T_002": {
+      "type": "t_junction",
+      "point": [
+        3309.0,
+        550.0
+      ],
+      "label": "T002"
+    },
+    "JX_T_003": {
+      "type": "t_junction",
+      "point": [
+        1065.0,
+        472.0
+      ],
+      "label": "T003"
+    },
+    "JX_T_004": {
+      "type": "t_junction",
+      "point": [
+        3668.0,
+        472.0
+      ],
+      "label": "T004"
+    },
+    "JX_T_005": {
+      "type": "t_junction",
+      "point": [
+        1922.0,
+        2209.0
+      ],
+      "label": "T005"
+    },
+    "JX_T_006": {
+      "type": "t_junction",
+      "point": [
+        4482.0,
+        958.0
+      ],
+      "label": "T006"
+    },
+    "JX_T_007": {
+      "type": "t_junction",
+      "point": [
+        3024.0,
+        909.0
+      ],
+      "label": "T007"
+    },
+    "JX_T_008": {
+      "type": "t_junction",
+      "point": [
+        1513.8,
+        616.0
+      ],
+      "label": "T008"
+    },
+    "JX_T_009": {
+      "type": "t_junction",
+      "point": [
+        3336.0,
+        2211.0
+      ],
+      "label": "T009"
+    },
+    "JX_T_010": {
+      "type": "t_junction",
+      "point": [
+        1922.0,
+        1006.0
+      ],
+      "label": "T010"
+    },
+    "JX_T_011": {
+      "type": "t_junction",
+      "point": [
+        3024.0,
+        472.0
+      ],
+      "label": "T011"
+    },
+    "JX_T_012": {
+      "type": "t_junction",
+      "point": [
+        3486.0,
+        908.6
+      ],
+      "label": "T012"
+    },
+    "JX_T_013": {
+      "type": "t_junction",
+      "point": [
+        1584.0,
+        2294.0
+      ],
+      "label": "T013"
+    },
+    "JX_T_014": {
+      "type": "t_junction",
+      "point": [
+        2106.0,
+        306.0
+      ],
+      "label": "T014"
+    },
+    "JX_T_015": {
+      "type": "t_junction",
+      "point": [
+        1106.0,
+        1191.4
+      ],
+      "label": "T015"
+    },
+    "JX_T_016": {
+      "type": "t_junction",
+      "point": [
+        1106.0,
+        2012.0
+      ],
+      "label": "T016"
+    },
+    "JX_T_017": {
+      "type": "t_junction",
+      "point": [
+        4167.0,
+        957.0
+      ],
+      "label": "T017"
+    },
+    "JX_T_018": {
+      "type": "t_junction",
+      "point": [
+        1922.0,
+        472.0
+      ],
+      "label": "T018"
+    },
+    "JX_T_019": {
+      "type": "t_junction",
+      "point": [
+        1923.0,
+        2444.0
+      ],
+      "label": "T019"
+    },
+    "JX_T_020": {
+      "type": "t_junction",
+      "point": [
+        3026.0,
+        2114.0
+      ],
+      "label": "T020"
+    },
+    "JX_T_021": {
+      "type": "t_junction",
+      "point": [
+        2205.0,
+        549.0
+      ],
+      "label": "T021"
+    },
+    "JX_T_022": {
+      "type": "t_junction",
+      "point": [
+        828.0,
+        306.0
+      ],
+      "label": "T022"
+    },
+    "JX_T_023": {
+      "type": "t_junction",
+      "point": [
+        1988.0,
+        1005.7
+      ],
+      "label": "T023"
+    },
+    "JX_T_024": {
+      "type": "t_junction",
+      "point": [
+        4143.5,
+        2391.0
+      ],
+      "label": "T024"
+    },
+    "JX_T_025": {
+      "type": "t_junction",
+      "point": [
+        912.0,
+        2822.0
+      ],
+      "label": "T025"
+    },
+    "JX_T_026": {
+      "type": "t_junction",
+      "point": [
+        1065.0,
+        690.0
+      ],
+      "label": "T026"
+    },
+    "JX_T_027": {
+      "type": "t_junction",
+      "point": [
+        3092.0,
+        909.0
+      ],
+      "label": "T027"
+    },
+    "JX_T_028": {
+      "type": "t_junction",
+      "point": [
+        3639.0,
+        908.2
+      ],
+      "label": "T028"
+    },
+    "JX_T_029": {
+      "type": "t_junction",
+      "point": [
+        3190.0,
+        2012.0
+      ],
+      "label": "T029"
+    },
+    "JX_T_030": {
+      "type": "t_junction",
+      "point": [
+        710.0,
+        472.0
+      ],
+      "label": "T030"
+    },
+    "JX_T_031": {
+      "type": "t_junction",
+      "point": [
+        4018.0,
+        909.0
+      ],
+      "label": "T031"
+    },
+    "JX_T_032": {
+      "type": "t_junction",
+      "point": [
+        950.0,
+        472.0
+      ],
+      "label": "T032"
+    },
+    "JX_T_033": {
+      "type": "t_junction",
+      "point": [
+        2139.0,
+        2012.0
+      ],
+      "label": "T033"
+    },
+    "JX_T_034": {
+      "type": "t_junction",
+      "point": [
+        910.9,
+        2604.0
+      ],
+      "label": "T034"
+    },
+    "JX_T_035": {
+      "type": "t_junction",
+      "point": [
+        3024.0,
+        1073.0
+      ],
+      "label": "T035"
+    },
+    "JX_T_036": {
+      "type": "t_junction",
+      "point": [
+        1922.0,
+        1072.0
+      ],
+      "label": "T036"
+    },
+    "EP_SHARE_000": {
+      "type": "endpoint_share",
+      "point": [
+        4143.5,
+        2821.0
+      ],
+      "label": "EP0"
+    },
+    "EP_SHARE_001": {
+      "type": "endpoint_share",
+      "point": [
+        3023.0,
+        2445.0
+      ],
+      "label": "EP1"
+    },
+    "EP_SHARE_002": {
+      "type": "endpoint_share",
+      "point": [
+        1511.0,
+        1190.5
+      ],
+      "label": "EP2"
+    },
+    "EP_SHARE_003": {
+      "type": "endpoint_share",
+      "point": [
+        1514.5,
+        550.0
+      ],
+      "label": "EP3"
+    },
+    "EP_SHARE_004": {
+      "type": "endpoint_share",
+      "point": [
+        1065.5,
+        908.5
+      ],
+      "label": "EP4"
+    },
+    "EP_SHARE_005": {
+      "type": "endpoint_share",
+      "point": [
+        912.0,
+        2264.5
+      ],
+      "label": "EP5"
+    },
+    "EP_SHARE_006": {
+      "type": "endpoint_share",
+      "point": [
+        1870.0,
+        617.5
+      ],
+      "label": "EP6"
+    },
+    "EP_SHARE_007": {
+      "type": "endpoint_share",
+      "point": [
+        3668.0,
+        567.5
+      ],
+      "label": "EP7"
+    },
+    "EP_SHARE_008": {
+      "type": "endpoint_share",
+      "point": [
+        3485.0,
+        1004.5
+      ],
+      "label": "EP8"
+    },
+    "EP_SHARE_009": {
+      "type": "endpoint_share",
+      "point": [
+        1584.0,
+        2390.5
+      ],
+      "label": "EP9"
+    },
+    "EP_SHARE_010": {
+      "type": "endpoint_share",
+      "point": [
+        1583.0,
+        2211.5
+      ],
+      "label": "EP10"
+    },
+    "EP_SHARE_011": {
+      "type": "endpoint_share",
+      "point": [
+        3211.0,
+        827.0
+      ],
+      "label": "EP11"
+    },
+    "EP_SHARE_012": {
+      "type": "endpoint_share",
+      "point": [
+        3741.0,
+        1080.0
+      ],
+      "label": "EP12"
+    },
+    "EP_SHARE_013": {
+      "type": "endpoint_share",
+      "point": [
+        4166.5,
+        909.5
+      ],
+      "label": "EP13"
+    },
+    "EP_SHARE_014": {
+      "type": "endpoint_share",
+      "point": [
+        1106.0,
+        2211.0
+      ],
+      "label": "EP14"
+    },
+    "EP_SHARE_015": {
+      "type": "endpoint_share",
+      "point": [
+        3334.5,
+        2114.5
+      ],
+      "label": "EP15"
+    },
+    "EP_SHARE_016": {
+      "type": "endpoint_share",
+      "point": [
+        2973.5,
+        550.5
+      ],
+      "label": "EP16"
+    },
+    "EP_SHARE_017": {
+      "type": "endpoint_share",
+      "point": [
+        2107.0,
+        925.0
+      ],
+      "label": "EP17"
+    },
+    "EP_SHARE_018": {
+      "type": "endpoint_share",
+      "point": [
+        2720.0,
+        2391.5
+      ],
+      "label": "EP18"
+    },
+    "EP_SHARE_019": {
+      "type": "endpoint_share",
+      "point": [
+        2720.5,
+        2295.0
+      ],
+      "label": "EP19"
+    },
+    "EP_SHARE_020": {
+      "type": "endpoint_share",
+      "point": [
+        3912.0,
+        1153.0
+      ],
+      "label": "EP20"
+    },
+    "EP_SHARE_021": {
+      "type": "endpoint_share",
+      "point": [
+        830.0,
+        384.0
+      ],
+      "label": "EP21"
+    },
+    "EP_SHARE_025": {
+      "type": "endpoint_share",
+      "point": [
+        4425.5,
+        1070.0
+      ],
+      "label": "EP25"
+    },
+    "CROSSOVER_000": {
+      "type": "crossover",
+      "point": [
+        3009.0,
+        1006.0
+      ],
+      "label": "XO0"
+    },
+    "CROSSOVER_001": {
+      "type": "crossover",
+      "point": [
+        3210.0,
+        475.5
+      ],
+      "label": "XO1"
+    },
+    "CROSSOVER_002": {
+      "type": "crossover",
+      "point": [
+        1915.0,
+        550.0
+      ],
+      "label": "XO2"
+    },
+    "CROSSOVER_003": {
+      "type": "crossover",
+      "point": [
+        3024.0,
+        2211.0
+      ],
+      "label": "XO3"
+    },
+    "CROSSOVER_004": {
+      "type": "crossover",
+      "point": [
+        2107.5,
+        549.5
+      ],
+      "label": "XO4"
+    },
+    "CROSSOVER_005": {
+      "type": "crossover",
+      "point": [
+        3211.0,
+        550.0
+      ],
+      "label": "XO5"
+    },
+    "CROSSOVER_006": {
+      "type": "crossover",
+      "point": [
+        3011.0,
+        549.0
+      ],
+      "label": "XO6"
+    },
+    "CROSSOVER_007": {
+      "type": "crossover",
+      "point": [
+        2108.0,
+        474.5
+      ],
+      "label": "XO7"
+    },
+    "CROSSOVER_008": {
+      "type": "crossover",
+      "point": [
+        1920.0,
+        2391.0
+      ],
+      "label": "XO8"
+    },
+    "CROSSOVER_009": {
+      "type": "crossover",
+      "point": [
+        1922.5,
+        2012.0
+      ],
+      "label": "XO9"
+    },
+    "CROSSOVER_010": {
+      "type": "crossover",
+      "point": [
+        3023.5,
+        2011.0
+      ],
+      "label": "XO10"
+    },
+    "line_49_end_open": {
+      "type": "open_endpoint",
+      "point": [
+        3384.0,
+        550.0
+      ],
+      "label": "Open End"
+    },
+    "line_90_start_open": {
+      "type": "open_endpoint",
+      "point": [
+        3264.0,
+        2012.0
+      ],
+      "label": "Open End"
+    },
+    "line_120_start_open": {
+      "type": "open_endpoint",
+      "point": [
+        3160.0,
+        1569.0
+      ],
+      "label": "Open End"
+    },
+    "line_131_end_open": {
+      "type": "open_endpoint",
+      "point": [
+        2058.0,
+        1572.0
+      ],
+      "label": "Open End"
+    },
+    "line_169_start_open": {
+      "type": "open_endpoint",
+      "point": [
+        4359.0,
+        1138.0
+      ],
+      "label": "Open End"
+    },
+    "line_173_start_open": {
+      "type": "open_endpoint",
+      "point": [
+        4390.0,
+        1034.0
+      ],
+      "label": "Open End"
+    }
+  },
+  "edges": [
+    {
+      "id": "E_0000",
+      "from": "N2 HEADER 1-1-110",
+      "to": "JX_T_025",
+      "line_id": "line_0",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_025": "incoming"
+      }
+    },
+    {
+      "id": "E_0001",
+      "from": "JX_T_025",
+      "to": "EP_SHARE_000",
+      "line_id": "line_0",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_025)",
+      "_jx_roles": {
+        "JX_T_025": "outgoing"
+      }
+    },
+    {
+      "id": "E_0002",
+      "from": "FC THERMAL",
+      "to": "JX_T_019",
+      "line_id": "line_1",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(F-114)",
+      "_jx_roles": {
+        "JX_T_019": "incoming"
+      }
+    },
+    {
+      "id": "E_0003",
+      "from": "JX_T_019",
+      "to": "EP_SHARE_001",
+      "line_id": "line_1",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_019)",
+      "_jx_roles": {
+        "JX_T_019": "outgoing"
+      }
+    },
+    {
+      "id": "E_0004",
+      "from": "F-111",
+      "to": "BPR-1130",
+      "line_id": "line_2",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(F-111)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0005",
+      "from": "XY-1165",
+      "to": "JX_T_012",
+      "line_id": "line_3",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(XY-1165)",
+      "_jx_roles": {
+        "XY-1165": "outgoing"
+      }
+    },
+    {
+      "id": "E_0006",
+      "from": "JX_T_012",
+      "to": "JX_T_028",
+      "line_id": "line_3",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_012)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0007",
+      "from": "JX_T_028",
+      "to": "HE-112",
+      "line_id": "line_3",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_028)",
+      "_jx_roles": {
+        "HE-112": "incoming"
+      }
+    },
+    {
+      "id": "E_0008",
+      "from": "URILITY AIR_HEADER 1-1-110",
+      "to": "JX_T_015",
+      "line_id": "line_5",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_015": "incoming"
+      }
+    },
+    {
+      "id": "E_0009",
+      "from": "JX_T_015",
+      "to": "EP_SHARE_002",
+      "line_id": "line_5",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_015)",
+      "_jx_roles": {
+        "JX_T_015": "outgoing"
+      }
+    },
+    {
+      "id": "E_0010",
+      "from": "XY-1160",
+      "to": "CROSSOVER_000",
+      "line_id": "line_6",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(XY-1160)",
+      "_jx_roles": {
+        "XY-1160": "outgoing"
+      }
+    },
+    {
+      "id": "E_0011",
+      "from": "EP_SHARE_002",
+      "to": "JX_T_008",
+      "line_id": "line_7",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(EP_SHARE_002)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0012",
+      "from": "JX_T_008",
+      "to": "EP_SHARE_003",
+      "line_id": "line_7",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(JX_T_008)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0013",
+      "from": "CK-1150",
+      "to": "JX_T_000",
+      "line_id": "line_9",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_000": "incoming"
+      }
+    },
+    {
+      "id": "E_0014",
+      "from": "JX_T_035",
+      "to": "sym_95",
+      "line_id": "line_10",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(sym_95)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0015",
+      "from": "JX_T_007",
+      "to": "JX_T_035",
+      "line_id": "line_10",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_035)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0016",
+      "from": "CK-1171",
+      "to": "JX_T_007",
+      "line_id": "line_10",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(XY-1155)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0017",
+      "from": "PCV-1172",
+      "to": "JX_T_024",
+      "line_id": "line_11",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(EP_SHARE_000)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0018",
+      "from": "BPR-1130",
+      "to": "JX_T_024",
+      "line_id": "line_11",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(BPR-1130)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0019",
+      "from": "CROSSOVER_001",
+      "to": "JX_T_001",
+      "line_id": "line_12",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_001": "incoming"
+      }
+    },
+    {
+      "id": "E_0020",
+      "from": "JX_T_002",
+      "to": "HV-1165",
+      "line_id": "line_13",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(HV-1165)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0021",
+      "from": "EP_SHARE_004",
+      "to": "JX_T_026",
+      "line_id": "line_15",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(EP_SHARE_004)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0022",
+      "from": "JX_T_026",
+      "to": "JX_T_003",
+      "line_id": "line_15",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_003": "incoming"
+      }
+    },
+    {
+      "id": "E_0023",
+      "from": "HV-1171",
+      "to": "EP_SHARE_005",
+      "line_id": "line_16",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(HV-1171)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0024",
+      "from": "HV-1114",
+      "to": "ANALYTICS 1-1-150 B",
+      "line_id": "line_17",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_007)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0025",
+      "from": "HV-1153",
+      "to": "XY-1160",
+      "line_id": "line_18",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "XY-1160": "incoming"
+      }
+    },
+    {
+      "id": "E_0026",
+      "from": "HV-1113",
+      "to": "REACTOR FEED BYPASS TO FE -1205 1-1-140",
+      "line_id": "line_19",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_004)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0027",
+      "from": "EP_SHARE_003",
+      "to": "CROSSOVER_002",
+      "line_id": "line_20",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_003)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0028",
+      "from": "C2H4/C2H6 HEADER 1-1-110",
+      "to": "EP_SHARE_004",
+      "line_id": "line_21",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0029",
+      "from": "HV-1150",
+      "to": "EP_SHARE_006",
+      "line_id": "line_22",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0030",
+      "from": "JX_T_004",
+      "to": "EP_SHARE_007",
+      "line_id": "line_25",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_004)",
+      "_jx_roles": {
+        "JX_T_004": "outgoing"
+      }
+    },
+    {
+      "id": "E_0031",
+      "from": "Xy-1151",
+      "to": "CROSSOVER_003",
+      "line_id": "line_26",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(Xy-1151)",
+      "_jx_roles": {
+        "Xy-1151": "outgoing"
+      }
+    },
+    {
+      "id": "E_0032",
+      "from": "CROSSOVER_000",
+      "to": "EP_SHARE_008",
+      "line_id": "line_27",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(XY-1160)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0033",
+      "from": "JX_T_013",
+      "to": "EP_SHARE_009",
+      "line_id": "line_28",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_013)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0034",
+      "from": "EP_SHARE_010",
+      "to": "JX_T_013",
+      "line_id": "line_28",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_010)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0035",
+      "from": "EP_SHARE_011",
+      "to": "CROSSOVER_001",
+      "line_id": "line_29",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "propagation(CROSSOVER_001)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0036",
+      "from": "EP_SHARE_012",
+      "to": "HE-112",
+      "line_id": "line_30",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "HE-112": "incoming"
+      }
+    },
+    {
+      "id": "E_0037",
+      "from": "BPR-1130",
+      "to": "REACTOR EFFULENT 1-1-140",
+      "line_id": "line_31",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(F-111)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0038",
+      "from": "M-106",
+      "to": "JX_T_018",
+      "line_id": "line_32",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(M-106)",
+      "_jx_roles": {
+        "JX_T_018": "incoming"
+      }
+    },
+    {
+      "id": "E_0039",
+      "from": "JX_T_018",
+      "to": "JX_T_011",
+      "line_id": "line_32",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_018)",
+      "_jx_roles": {
+        "JX_T_011": "incoming",
+        "JX_T_018": "outgoing"
+      }
+    },
+    {
+      "id": "E_0040",
+      "from": "JX_T_011",
+      "to": "JX_T_004",
+      "line_id": "line_32",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_004": "incoming",
+        "JX_T_011": "outgoing"
+      }
+    },
+    {
+      "id": "E_0041",
+      "from": "JX_T_004",
+      "to": "HV-1113",
+      "line_id": "line_32",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_004)",
+      "_jx_roles": {
+        "JX_T_004": "outgoing"
+      }
+    },
+    {
+      "id": "E_0042",
+      "from": "CROSSOVER_003",
+      "to": "JX_T_009",
+      "line_id": "line_33",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(Xy-1151)",
+      "_jx_roles": {
+        "JX_T_009": "incoming"
+      }
+    },
+    {
+      "id": "E_0043",
+      "from": "JX_T_009",
+      "to": "F-111",
+      "line_id": "line_33",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_009": "outgoing"
+      }
+    },
+    {
+      "id": "E_0044",
+      "from": "CROSSOVER_004",
+      "to": "JX_T_021",
+      "line_id": "line_34",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_003)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0045",
+      "from": "JX_T_021",
+      "to": "HV-1155",
+      "line_id": "line_34",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_021)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0046",
+      "from": "JX_T_017",
+      "to": "V-113",
+      "line_id": "line_35",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_017)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0047",
+      "from": "EP_SHARE_013",
+      "to": "JX_T_017",
+      "line_id": "line_35",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_013)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0048",
+      "from": "EP_SHARE_014",
+      "to": "EP_SHARE_010",
+      "line_id": "line_36",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_014)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0049",
+      "from": "HE-112",
+      "to": "JX_T_031",
+      "line_id": "line_37",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(HE-112)",
+      "_jx_roles": {
+        "HE-112": "outgoing"
+      }
+    },
+    {
+      "id": "E_0050",
+      "from": "JX_T_031",
+      "to": "EP_SHARE_013",
+      "line_id": "line_37",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_031)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0051",
+      "from": "HV-1161",
+      "to": "XY-1181",
+      "line_id": "line_38",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "XY-1181": "incoming"
+      }
+    },
+    {
+      "id": "E_0052",
+      "from": "JX_T_005",
+      "to": "Xy-1151",
+      "line_id": "line_39",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_005": "outgoing",
+        "Xy-1151": "incoming"
+      }
+    },
+    {
+      "id": "E_0053",
+      "from": "F-114",
+      "to": "FC THERMAL",
+      "line_id": "line_40",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(F-114)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0054",
+      "from": "JX_T_006",
+      "to": "CK-1150",
+      "line_id": "line_42",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "propagation(JX_T_006)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0055",
+      "from": "N2/02 HEADER 1-1-110",
+      "to": "HV-1171",
+      "line_id": "line_43",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0056",
+      "from": "HV-1125",
+      "to": "F-114",
+      "line_id": "line_44",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "HV-1125": "outgoing"
+      }
+    },
+    {
+      "id": "E_0057",
+      "from": "CROSSOVER_006",
+      "to": "CROSSOVER_005",
+      "line_id": "line_45",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule23b(CROSSOVER_006)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0058",
+      "from": "JX_T_007",
+      "to": "JX_T_027",
+      "line_id": "line_46",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_007)",
+      "_jx_roles": {
+        "JX_T_027": "incoming"
+      }
+    },
+    {
+      "id": "E_0059",
+      "from": "JX_T_027",
+      "to": "XY-1165",
+      "line_id": "line_46",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_027": "outgoing",
+        "XY-1165": "incoming"
+      }
+    },
+    {
+      "id": "E_0060",
+      "from": "JX_T_008",
+      "to": "HV-1150",
+      "line_id": "line_47",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_008)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0061",
+      "from": "EP_SHARE_015",
+      "to": "JX_T_009",
+      "line_id": "line_48",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_015)",
+      "_jx_roles": {
+        "JX_T_009": "incoming"
+      }
+    },
+    {
+      "id": "E_0062",
+      "from": "CROSSOVER_005",
+      "to": "JX_T_002",
+      "line_id": "line_49",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule23b(CROSSOVER_005)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0063",
+      "from": "line_49_end_open",
+      "to": "JX_T_002",
+      "line_id": "line_49",
+      "direction": "right_to_left",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "Rule23(JX_T_002)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0064",
+      "from": "JX_T_010",
+      "to": "JX_T_023",
+      "line_id": "line_52",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_010)",
+      "_jx_roles": {
+        "JX_T_023": "incoming"
+      }
+    },
+    {
+      "id": "E_0065",
+      "from": "JX_T_023",
+      "to": "XY-1160",
+      "line_id": "line_52",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_023": "outgoing",
+        "XY-1160": "incoming"
+      }
+    },
+    {
+      "id": "E_0066",
+      "from": "JX_T_011",
+      "to": "XY-1155",
+      "line_id": "line_53",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "XY-1155": "incoming",
+        "JX_T_011": "outgoing"
+      }
+    },
+    {
+      "id": "E_0067",
+      "from": "HV-1176",
+      "to": "PCV-1172",
+      "line_id": "line_54",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(EP_SHARE_000)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0068",
+      "from": "EP_SHARE_008",
+      "to": "JX_T_012",
+      "line_id": "line_56",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "Rule23(EP_SHARE_008)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0069",
+      "from": "CROSSOVER_002",
+      "to": "CROSSOVER_004",
+      "line_id": "line_57",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_003)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0071",
+      "from": "JX_T_013",
+      "to": "HV-1161",
+      "line_id": "line_62",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_013)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0072",
+      "from": "EP_SHARE_017",
+      "to": "CROSSOVER_007",
+      "line_id": "line_64",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "propagation(CROSSOVER_007)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0073",
+      "from": "CROSSOVER_007",
+      "to": "JX_T_014",
+      "line_id": "line_65",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_014": "incoming"
+      }
+    },
+    {
+      "id": "E_0074",
+      "from": "EP_SHARE_001",
+      "to": "XY-1166",
+      "line_id": "line_66",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "XY-1166": "incoming"
+      }
+    },
+    {
+      "id": "E_0075",
+      "from": "HV-1156",
+      "to": "JX_T_020",
+      "line_id": "line_67",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(R-110 B)",
+      "_jx_roles": {
+        "JX_T_020": "incoming"
+      }
+    },
+    {
+      "id": "E_0076",
+      "from": "XY-1166",
+      "to": "JX_T_020",
+      "line_id": "line_67",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(XY-1166)",
+      "_jx_roles": {
+        "JX_T_020": "incoming",
+        "XY-1166": "outgoing"
+      }
+    },
+    {
+      "id": "E_0077",
+      "from": "JX_T_016",
+      "to": "EP_SHARE_014",
+      "line_id": "line_69",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_016)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0078",
+      "from": "JX_T_015",
+      "to": "JX_T_016",
+      "line_id": "line_69",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_015)",
+      "_jx_roles": {
+        "JX_T_015": "outgoing"
+      }
+    },
+    {
+      "id": "E_0079",
+      "from": "CROSSOVER_008",
+      "to": "EP_SHARE_018",
+      "line_id": "line_70",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_009)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0080",
+      "from": "EP_SHARE_019",
+      "to": "HV-1166",
+      "line_id": "line_71",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(HV-1166)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0081",
+      "from": "EP_SHARE_009",
+      "to": "CROSSOVER_008",
+      "line_id": "line_72",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_009)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0082",
+      "from": "PSV-1100",
+      "to": "EP_SHARE_011",
+      "line_id": "line_74",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule23(PSV-1100)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0083",
+      "from": "EP_SHARE_020",
+      "to": "CWR HEADER",
+      "line_id": "line_75",
+      "direction": "right_to_left",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(EP_SHARE_020)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0084",
+      "from": "JX_T_016",
+      "to": "CROSSOVER_009",
+      "line_id": "line_76",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_016)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0085",
+      "from": "JX_T_017",
+      "to": "Micron Filter 1",
+      "line_id": "line_77",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_017)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0086",
+      "from": "JX_T_003",
+      "to": "M-106",
+      "line_id": "line_78",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_003": "outgoing"
+      }
+    },
+    {
+      "id": "E_0087",
+      "from": "JX_T_032",
+      "to": "JX_T_003",
+      "line_id": "line_78",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_032)",
+      "_jx_roles": {
+        "JX_T_003": "incoming"
+      }
+    },
+    {
+      "id": "E_0088",
+      "from": "JX_T_030",
+      "to": "JX_T_032",
+      "line_id": "line_78",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_030)",
+      "_jx_roles": {
+        "JX_T_030": "outgoing"
+      }
+    },
+    {
+      "id": "E_0089",
+      "from": "REACTOR FEED HEADER 1-1-120",
+      "to": "JX_T_030",
+      "line_id": "line_78",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_030": "incoming"
+      }
+    },
+    {
+      "id": "E_0090",
+      "from": "JX_T_006",
+      "to": "HV-1143",
+      "line_id": "line_79",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_006)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0091",
+      "from": "Micron Filter 1",
+      "to": "JX_T_006",
+      "line_id": "line_79",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_017)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0092",
+      "from": "CROSSOVER_009",
+      "to": "JX_T_033",
+      "line_id": "line_80",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_016)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0093",
+      "from": "JX_T_033",
+      "to": "CROSSOVER_010",
+      "line_id": "line_80",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_033)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0094",
+      "from": "HE-112",
+      "to": "EP_SHARE_020",
+      "line_id": "line_81",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "HE-112": "outgoing"
+      }
+    },
+    {
+      "id": "E_0095",
+      "from": "JX_T_000",
+      "to": "RELIEF VENT HEADER 1-1-140",
+      "line_id": "line_82",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_000)",
+      "_jx_roles": {
+        "JX_T_000": "outgoing"
+      }
+    },
+    {
+      "id": "E_0096",
+      "from": "JX_T_001",
+      "to": "JX_T_000",
+      "line_id": "line_82",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule19b-mainline(line_82->RELIEF VENT HEADER 1-1-140)",
+      "_jx_roles": {
+        "JX_T_001": "outgoing",
+        "JX_T_000": "incoming"
+      }
+    },
+    {
+      "id": "E_0097",
+      "from": "JX_T_014",
+      "to": "JX_T_001",
+      "line_id": "line_82",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule19b-mainline(line_82->RELIEF VENT HEADER 1-1-140)",
+      "_jx_roles": {
+        "JX_T_001": "incoming",
+        "JX_T_014": "outgoing"
+      }
+    },
+    {
+      "id": "E_0098",
+      "from": "JX_T_022",
+      "to": "JX_T_014",
+      "line_id": "line_82",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule19b-mainline(line_82->RELIEF VENT HEADER 1-1-140)",
+      "_jx_roles": {
+        "JX_T_022": "outgoing",
+        "JX_T_014": "incoming"
+      }
+    },
+    {
+      "id": "E_0099",
+      "from": "HV-1066",
+      "to": "JX_T_022",
+      "line_id": "line_82",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule19b-mainline(line_82->RELIEF VENT HEADER 1-1-140)",
+      "_jx_roles": {
+        "JX_T_022": "incoming"
+      }
+    },
+    {
+      "id": "E_0100",
+      "from": "JX_T_018",
+      "to": "XY-1150",
+      "line_id": "line_85",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_018": "outgoing",
+        "XY-1150": "incoming"
+      }
+    },
+    {
+      "id": "E_0101",
+      "from": "CK-1152",
+      "to": "JX_T_010",
+      "line_id": "line_86",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(XY-1150)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0102",
+      "from": "JX_T_010",
+      "to": "JX_T_036",
+      "line_id": "line_86",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_010)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0103",
+      "from": "JX_T_036",
+      "to": "sym_97",
+      "line_id": "line_86",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_036)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0104",
+      "from": "HV-1154",
+      "to": "JX_T_005",
+      "line_id": "line_87",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(Reactor 1)",
+      "_jx_roles": {
+        "JX_T_005": "incoming"
+      }
+    },
+    {
+      "id": "E_0105",
+      "from": "XY-1181",
+      "to": "JX_T_005",
+      "line_id": "line_87",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(XY-1181)",
+      "_jx_roles": {
+        "XY-1181": "outgoing",
+        "JX_T_005": "incoming"
+      }
+    },
+    {
+      "id": "E_0106",
+      "from": "JX_T_019",
+      "to": "XY-1181",
+      "line_id": "line_88",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_019": "outgoing",
+        "XY-1181": "incoming"
+      }
+    },
+    {
+      "id": "E_0107",
+      "from": "EP_SHARE_018",
+      "to": "EP_SHARE_019",
+      "line_id": "line_89",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "propagation(EP_SHARE_018)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0108",
+      "from": "JX_T_029",
+      "to": "line_90_start_open",
+      "line_id": "line_90",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_029)",
+      "_jx_roles": {
+        "JX_T_029": "outgoing"
+      }
+    },
+    {
+      "id": "E_0109",
+      "from": "HV-1158",
+      "to": "JX_T_029",
+      "line_id": "line_90",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_033)",
+      "_jx_roles": {
+        "JX_T_029": "incoming"
+      }
+    },
+    {
+      "id": "E_0110",
+      "from": "JX_T_020",
+      "to": "XY-1156",
+      "line_id": "line_91",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_020": "outgoing",
+        "XY-1156": "incoming"
+      }
+    },
+    {
+      "id": "E_0111",
+      "from": "XY-1156",
+      "to": "EP_SHARE_015",
+      "line_id": "line_92",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(XY-1156)",
+      "_jx_roles": {
+        "XY-1156": "outgoing"
+      }
+    },
+    {
+      "id": "E_0112",
+      "from": "PSV-1111",
+      "to": "EP_SHARE_021",
+      "line_id": "line_99",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(PSV-1111)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0113",
+      "from": "EP_SHARE_016",
+      "to": "XY-1155",
+      "line_id": "line_100",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "XY-1155": "incoming",
+        "EP_SHARE_016": "outgoing"
+      }
+    },
+    {
+      "id": "E_0114",
+      "from": "HV-1166",
+      "to": "XY-1166",
+      "line_id": "line_101",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "XY-1166": "incoming"
+      }
+    },
+    {
+      "id": "E_0115",
+      "from": "EP_SHARE_007",
+      "to": "HV-1114",
+      "line_id": "line_104",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_007)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0116",
+      "from": "JX_T_021",
+      "to": "HV-1153",
+      "line_id": "line_105",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(HV-1153)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0117",
+      "from": "JX_T_035",
+      "to": "PIT-1104 A",
+      "line_id": "line_106",
+      "direction": "right_to_left",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "propagation(JX_T_035)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0118",
+      "from": "JX_T_035",
+      "to": "TI-1105",
+      "line_id": "line_106",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_035)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0119",
+      "from": "PSV-1140",
+      "to": "EP_SHARE_017",
+      "line_id": "line_109",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule23(EP_SHARE_017)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0120",
+      "from": "Control Valve 1",
+      "to": "JX_T_034",
+      "line_id": "line_111",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(JX_T_025)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0121",
+      "from": "JX_T_034",
+      "to": "CK-1124",
+      "line_id": "line_111",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "propagation(JX_T_034)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0122",
+      "from": "EP_SHARE_021",
+      "to": "JX_T_022",
+      "line_id": "line_112",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_022": "incoming"
+      }
+    },
+    {
+      "id": "E_0123",
+      "from": "Micron Filter 1",
+      "to": "HV-1141",
+      "line_id": "line_113",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(Micron Filter 1)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0124",
+      "from": "JX_T_036",
+      "to": "PIT-1101",
+      "line_id": "line_115",
+      "direction": "right_to_left",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "propagation(PIT-1101)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0125",
+      "from": "JX_T_036",
+      "to": "TE-1102 B",
+      "line_id": "line_115",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_036)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0126",
+      "from": "V-113",
+      "to": "HV-1173",
+      "line_id": "line_118",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0127",
+      "from": "line_120_start_open",
+      "to": "Filter 2",
+      "line_id": "line_120",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "Rule21-geometric-fallback",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0128",
+      "from": "CK-1114",
+      "to": "HV-1125",
+      "line_id": "line_123",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "HV-1125": "incoming"
+      }
+    },
+    {
+      "id": "E_0129",
+      "from": "XY-1150",
+      "to": "HV-1152",
+      "line_id": "line_128",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(XY-1150)",
+      "_jx_roles": {
+        "XY-1150": "outgoing"
+      }
+    },
+    {
+      "id": "E_0130",
+      "from": "Filter 1",
+      "to": "line_131_end_open",
+      "line_id": "line_131",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule21-geometric-fallback",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0131",
+      "from": "Reactor 1",
+      "to": "sym_93",
+      "line_id": "line_134",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(Reactor 1)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0132",
+      "from": "sym_95",
+      "to": "R-110 B",
+      "line_id": "line_140",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0133",
+      "from": "sym_97",
+      "to": "Reactor 1",
+      "line_id": "line_143",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0134",
+      "from": "PIT-1101",
+      "to": "IHP-1101",
+      "line_id": "line_144",
+      "direction": "right_to_left",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0135",
+      "from": "JX_T_023",
+      "to": "PSV-1140",
+      "line_id": "line_147",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "Rule23(PSV-1140)",
+      "_jx_roles": {
+        "JX_T_023": "outgoing"
+      }
+    },
+    {
+      "id": "E_0136",
+      "from": "R-110 B",
+      "to": "sym_98",
+      "line_id": "line_148",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(R-110 B)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0137",
+      "from": "EP_SHARE_005",
+      "to": "CK-1114",
+      "line_id": "line_149",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(EP_SHARE_005)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0138",
+      "from": "JX_T_024",
+      "to": "HV-1175",
+      "line_id": "line_150",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_024)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0139",
+      "from": "CWS HEADER",
+      "to": "EP_SHARE_012",
+      "line_id": "line_151",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0141",
+      "from": "EP_SHARE_000",
+      "to": "HV-1176",
+      "line_id": "line_152",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(EP_SHARE_000)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0142",
+      "from": "JX_T_025",
+      "to": "HV-1123",
+      "line_id": "line_154",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(JX_T_025)",
+      "_jx_roles": {
+        "JX_T_025": "outgoing"
+      }
+    },
+    {
+      "id": "E_0143",
+      "from": "JX_T_026",
+      "to": "PI-1110",
+      "line_id": "line_155",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(JX_T_026)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0144",
+      "from": "JX_T_027",
+      "to": "PSV-1100",
+      "line_id": "line_156",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "propagation(JX_T_027)",
+      "_jx_roles": {
+        "JX_T_027": "outgoing"
+      }
+    },
+    {
+      "id": "E_0145",
+      "from": "HV-1170",
+      "to": "CK-1171",
+      "line_id": "line_157",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(XY-1155)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0146",
+      "from": "HV-1165",
+      "to": "XY-1165",
+      "line_id": "line_158",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "XY-1165": "incoming"
+      }
+    },
+    {
+      "id": "E_0147",
+      "from": "JX_T_028",
+      "to": "TE-1121",
+      "line_id": "line_159",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(JX_T_028)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0148",
+      "from": "HV-1151",
+      "to": "Xy-1151",
+      "line_id": "line_161",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "Xy-1151": "incoming"
+      }
+    },
+    {
+      "id": "E_0149",
+      "from": "JX_T_029",
+      "to": "XY-1156",
+      "line_id": "line_162",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "JX_T_029": "outgoing",
+        "XY-1156": "incoming"
+      }
+    },
+    {
+      "id": "E_0150",
+      "from": "JX_T_030",
+      "to": "PSV-1111",
+      "line_id": "line_163",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(JX_T_030)",
+      "_jx_roles": {
+        "JX_T_030": "outgoing"
+      }
+    },
+    {
+      "id": "E_0151",
+      "from": "NV-1144",
+      "to": "ANALYTICS 1-1-150 A",
+      "line_id": "line_167",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_006)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0152",
+      "from": "HV-1141",
+      "to": "line_169_start_open",
+      "line_id": "line_169",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(Micron Filter 1)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0153",
+      "from": "CK-1124",
+      "to": "HV-1125",
+      "line_id": "line_170",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "arrow-preassign",
+      "_jx_roles": {
+        "HV-1125": "incoming"
+      }
+    },
+    {
+      "id": "E_0154",
+      "from": "HV-1143",
+      "to": "NV-1144",
+      "line_id": "line_172",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_006)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0155",
+      "from": "line_173_start_open",
+      "to": "EP_SHARE_025",
+      "line_id": "line_173",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule21-geometric-fallback",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0156",
+      "from": "JX_T_031",
+      "to": "TE-1122",
+      "line_id": "line_174",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(JX_T_031)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0157",
+      "from": "TI-1105",
+      "to": "TE-1105",
+      "line_id": "line_175",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_035)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0158",
+      "from": "PIT-1104 A",
+      "to": "PIT-1104 B",
+      "line_id": "line_176",
+      "direction": "right_to_left",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "propagation(JX_T_035)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0159",
+      "from": "XY-1155",
+      "to": "HV-1170",
+      "line_id": "line_177",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(XY-1155)",
+      "_jx_roles": {
+        "XY-1155": "outgoing"
+      }
+    },
+    {
+      "id": "E_0160",
+      "from": "JX_T_032",
+      "to": "PI-1180",
+      "line_id": "line_179",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(JX_T_032)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0161",
+      "from": "TE-1102 B",
+      "to": "TE-1102 A",
+      "line_id": "line_180",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_036)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0162",
+      "from": "HV-1152",
+      "to": "CK-1152",
+      "line_id": "line_181",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(XY-1150)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0163",
+      "from": "sym_93",
+      "to": "sym_92",
+      "line_id": "line_182",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(Reactor 1)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0164",
+      "from": "sym_92",
+      "to": "HV-1154",
+      "line_id": "line_183",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(Reactor 1)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0165",
+      "from": "CROSSOVER_010",
+      "to": "HV-1158",
+      "line_id": "line_184",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_033)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0166",
+      "from": "JX_T_033",
+      "to": "HV-1151",
+      "line_id": "line_185",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_033)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0167",
+      "from": "sym_98",
+      "to": "sym_99",
+      "line_id": "line_186",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(R-110 B)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0168",
+      "from": "sym_99",
+      "to": "HV-1156",
+      "line_id": "line_187",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "BFS(R-110 B)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0169",
+      "from": "FC THERMAL",
+      "to": "FTC-1108",
+      "line_id": "line_188",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(FC THERMAL)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0170",
+      "from": "FIC-1108",
+      "to": "FE-1108",
+      "line_id": "line_189",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule21-geometric-fallback",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0171",
+      "from": "JX_T_034",
+      "to": "PI-1120",
+      "line_id": "line_190",
+      "direction": "right_to_left",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "propagation(JX_T_034)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0172",
+      "from": "HV-1123",
+      "to": "Control Valve 1",
+      "line_id": "line_191",
+      "direction": "bottom_to_top",
+      "is_expansion_joint": false,
+      "_logical": "backward",
+      "_source": "BFS(JX_T_025)",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0173",
+      "from": "TI-1103A",
+      "to": "TI-1103C",
+      "line_id": "line_198",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule21-geometric-fallback",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0174",
+      "from": "TI-1103B",
+      "to": "TI-1103D",
+      "line_id": "line_199",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule21-geometric-fallback",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0175",
+      "from": "TI-1103F B",
+      "to": "TI-1103F A",
+      "line_id": "line_202",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule21-geometric-fallback",
+      "_jx_roles": {}
+    },
+    {
+      "id": "E_0176",
+      "from": "EP_SHARE_006",
+      "to": "XY-1150",
+      "line_id": "line_207",
+      "direction": "top_to_bottom",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule23(EP_SHARE_006)",
+      "_jx_roles": {
+        "XY-1150": "incoming"
+      }
+    },
+    {
+      "id": "E_0177",
+      "from": "HV-1155",
+      "to": "EP_SHARE_016",
+      "line_id": "line_61",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "propagation(JX_T_021)",
+      "_jx_roles": {
+        "EP_SHARE_016": "incoming"
+      }
+    },
+    {
+      "id": "E_0178",
+      "from": "EP_SHARE_016",
+      "to": "CROSSOVER_006",
+      "line_id": "line_61",
+      "direction": "left_to_right",
+      "is_expansion_joint": false,
+      "_logical": "forward",
+      "_source": "Rule23b(EP_SHARE_016)",
+      "_jx_roles": {
+        "EP_SHARE_016": "outgoing"
+      }
+    }
+  ],
+  "lines": {
+    "line_0": {
+      "id": "line_0",
+      "type": "process",
+      "points": [
+        [
+          478.0,
+          2822.0
+        ],
+        [
+          4143.0,
+          2822.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_1": {
+      "id": "line_1",
+      "type": "process",
+      "points": [
+        [
+          1480.0,
+          2444.0
+        ],
+        [
+          3022.0,
+          2444.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_2": {
+      "id": "line_2",
+      "type": "process",
+      "points": [
+        [
+          3906.0,
+          2210.0
+        ],
+        [
+          4119.0,
+          2211.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_3": {
+      "id": "line_3",
+      "type": "process",
+      "points": [
+        [
+          3329.0,
+          909.0
+        ],
+        [
+          3729.0,
+          908.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_4": {
+      "id": "line_4",
+      "type": "signal",
+      "points": [
+        [
+          1906.0,
+          2226.0
+        ],
+        [
+          4564.0,
+          2226.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_5": {
+      "id": "line_5",
+      "type": "process",
+      "points": [
+        [
+          484.0,
+          1192.0
+        ],
+        [
+          1510.0,
+          1191.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_6": {
+      "id": "line_6",
+      "type": "process",
+      "points": [
+        [
+          2225.0,
+          1004.0
+        ],
+        [
+          2964.0,
+          1006.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_7": {
+      "id": "line_7",
+      "type": "process",
+      "points": [
+        [
+          1512.0,
+          1190.0
+        ],
+        [
+          1514.0,
+          550.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_8": {
+      "id": "line_8",
+      "type": "signal",
+      "points": [
+        [
+          3009.0,
+          1131.0
+        ],
+        [
+          3008.0,
+          489.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_9": {
+      "id": "line_9",
+      "type": "process",
+      "points": [
+        [
+          4482.0,
+          610.0
+        ],
+        [
+          4482.0,
+          310.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_10": {
+      "id": "line_10",
+      "type": "process",
+      "points": [
+        [
+          3024.0,
+          1128.0
+        ],
+        [
+          3024.0,
+          864.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_11": {
+      "id": "line_11",
+      "type": "process",
+      "points": [
+        [
+          4143.0,
+          2512.0
+        ],
+        [
+          4144.0,
+          2256.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "mixed"
+    },
+    "line_12": {
+      "id": "line_12",
+      "type": "process",
+      "points": [
+        [
+          3210.0,
+          438.0
+        ],
+        [
+          3210.0,
+          310.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_13": {
+      "id": "line_13",
+      "type": "process",
+      "points": [
+        [
+          3309.0,
+          759.0
+        ],
+        [
+          3309.0,
+          550.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_14": {
+      "id": "line_14",
+      "type": "signal",
+      "points": [
+        [
+          1494.0,
+          1758.0
+        ],
+        [
+          1664.0,
+          1756.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_15": {
+      "id": "line_15",
+      "type": "process",
+      "points": [
+        [
+          1065.0,
+          908.0
+        ],
+        [
+          1065.0,
+          473.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_16": {
+      "id": "line_16",
+      "type": "process",
+      "points": [
+        [
+          724.0,
+          2264.0
+        ],
+        [
+          912.0,
+          2264.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_17": {
+      "id": "line_17",
+      "type": "process",
+      "points": [
+        [
+          3801.0,
+          568.0
+        ],
+        [
+          4042.0,
+          568.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_18": {
+      "id": "line_18",
+      "type": "process",
+      "points": [
+        [
+          2205.0,
+          942.0
+        ],
+        [
+          2204.0,
+          668.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_19": {
+      "id": "line_19",
+      "type": "process",
+      "points": [
+        [
+          3800.0,
+          472.0
+        ],
+        [
+          4040.0,
+          472.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_20": {
+      "id": "line_20",
+      "type": "process",
+      "points": [
+        [
+          1515.0,
+          550.0
+        ],
+        [
+          1880.0,
+          550.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_21": {
+      "id": "line_21",
+      "type": "process",
+      "points": [
+        [
+          489.0,
+          909.0
+        ],
+        [
+          1066.0,
+          909.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_22": {
+      "id": "line_22",
+      "type": "process",
+      "points": [
+        [
+          1712.0,
+          616.0
+        ],
+        [
+          1870.0,
+          617.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_23": {
+      "id": "line_23",
+      "type": "signal",
+      "points": [
+        [
+          2889.0,
+          1332.0
+        ],
+        [
+          2890.0,
+          1569.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_24": {
+      "id": "line_24",
+      "type": "signal",
+      "points": [
+        [
+          2364.0,
+          1970.0
+        ],
+        [
+          2364.0,
+          1546.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_25": {
+      "id": "line_25",
+      "type": "process",
+      "points": [
+        [
+          3668.0,
+          567.0
+        ],
+        [
+          3668.0,
+          474.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_26": {
+      "id": "line_26",
+      "type": "process",
+      "points": [
+        [
+          2162.0,
+          2211.0
+        ],
+        [
+          2991.0,
+          2211.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_27": {
+      "id": "line_27",
+      "type": "process",
+      "points": [
+        [
+          3054.0,
+          1006.0
+        ],
+        [
+          3484.0,
+          1005.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_28": {
+      "id": "line_28",
+      "type": "process",
+      "points": [
+        [
+          1584.0,
+          2390.0
+        ],
+        [
+          1584.0,
+          2212.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_29": {
+      "id": "line_29",
+      "type": "process",
+      "points": [
+        [
+          3210.0,
+          826.0
+        ],
+        [
+          3210.0,
+          513.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_30": {
+      "id": "line_30",
+      "type": "process",
+      "points": [
+        [
+          3741.0,
+          1080.0
+        ],
+        [
+          3741.0,
+          947.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_31": {
+      "id": "line_31",
+      "type": "process",
+      "points": [
+        [
+          4167.0,
+          2211.0
+        ],
+        [
+          4563.0,
+          2211.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_32": {
+      "id": "line_32",
+      "type": "process",
+      "points": [
+        [
+          1562.0,
+          472.0
+        ],
+        [
+          3752.0,
+          472.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_33": {
+      "id": "line_33",
+      "type": "process",
+      "points": [
+        [
+          3057.0,
+          2211.0
+        ],
+        [
+          3856.0,
+          2211.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_34": {
+      "id": "line_34",
+      "type": "process",
+      "points": [
+        [
+          2160.0,
+          549.0
+        ],
+        [
+          2835.0,
+          549.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_35": {
+      "id": "line_35",
+      "type": "process",
+      "points": [
+        [
+          4167.0,
+          1023.0
+        ],
+        [
+          4167.0,
+          910.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_36": {
+      "id": "line_36",
+      "type": "process",
+      "points": [
+        [
+          1106.0,
+          2211.0
+        ],
+        [
+          1582.0,
+          2211.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_37": {
+      "id": "line_37",
+      "type": "process",
+      "points": [
+        [
+          3927.0,
+          909.0
+        ],
+        [
+          4166.0,
+          909.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_38": {
+      "id": "line_38",
+      "type": "process",
+      "points": [
+        [
+          1731.0,
+          2294.0
+        ],
+        [
+          1861.0,
+          2294.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_39": {
+      "id": "line_39",
+      "type": "process",
+      "points": [
+        [
+          1923.0,
+          2209.0
+        ],
+        [
+          2114.0,
+          2210.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_40": {
+      "id": "line_40",
+      "type": "process",
+      "points": [
+        [
+          1222.0,
+          2445.0
+        ],
+        [
+          1432.0,
+          2445.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_41": {
+      "id": "line_41",
+      "type": "signal",
+      "points": [
+        [
+          3650.0,
+          584.0
+        ],
+        [
+          3648.0,
+          460.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_42": {
+      "id": "line_42",
+      "type": "process",
+      "points": [
+        [
+          4482.0,
+          958.0
+        ],
+        [
+          4482.0,
+          654.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_43": {
+      "id": "line_43",
+      "type": "process",
+      "points": [
+        [
+          478.0,
+          2263.0
+        ],
+        [
+          676.0,
+          2264.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_44": {
+      "id": "line_44",
+      "type": "process",
+      "points": [
+        [
+          938.0,
+          2444.0
+        ],
+        [
+          1176.0,
+          2445.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_45": {
+      "id": "line_45",
+      "type": "process",
+      "points": [
+        [
+          3049.0,
+          549.0
+        ],
+        [
+          3186.0,
+          550.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_46": {
+      "id": "line_46",
+      "type": "process",
+      "points": [
+        [
+          3027.0,
+          909.0
+        ],
+        [
+          3285.0,
+          909.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_47": {
+      "id": "line_47",
+      "type": "process",
+      "points": [
+        [
+          1518.0,
+          616.0
+        ],
+        [
+          1665.0,
+          616.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_48": {
+      "id": "line_48",
+      "type": "process",
+      "points": [
+        [
+          3336.0,
+          2210.0
+        ],
+        [
+          3336.0,
+          2115.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_49": {
+      "id": "line_49",
+      "type": "process",
+      "points": [
+        [
+          3236.0,
+          550.0
+        ],
+        [
+          3384.0,
+          550.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "mixed"
+    },
+    "line_50": {
+      "id": "line_50",
+      "type": "signal",
+      "points": [
+        [
+          2596.0,
+          1968.0
+        ],
+        [
+          2595.0,
+          1548.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_51": {
+      "id": "line_51",
+      "type": "signal",
+      "points": [
+        [
+          3009.0,
+          2224.0
+        ],
+        [
+          3009.0,
+          1774.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_52": {
+      "id": "line_52",
+      "type": "process",
+      "points": [
+        [
+          1923.0,
+          1006.0
+        ],
+        [
+          2182.0,
+          1005.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_53": {
+      "id": "line_53",
+      "type": "process",
+      "points": [
+        [
+          3024.0,
+          474.0
+        ],
+        [
+          3025.0,
+          648.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_54": {
+      "id": "line_54",
+      "type": "process",
+      "points": [
+        [
+          4144.0,
+          2721.0
+        ],
+        [
+          4143.0,
+          2558.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_55": {
+      "id": "line_55",
+      "type": "signal",
+      "points": [
+        [
+          1786.0,
+          1569.0
+        ],
+        [
+          1785.0,
+          1332.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_56": {
+      "id": "line_56",
+      "type": "process",
+      "points": [
+        [
+          3486.0,
+          1004.0
+        ],
+        [
+          3486.0,
+          910.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_57": {
+      "id": "line_57",
+      "type": "process",
+      "points": [
+        [
+          1950.0,
+          550.0
+        ],
+        [
+          2055.0,
+          550.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_58": {
+      "id": "line_58",
+      "type": "signal",
+      "points": [
+        [
+          1745.0,
+          1756.0
+        ],
+        [
+          1910.0,
+          1756.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_59": {
+      "id": "line_59",
+      "type": "signal",
+      "points": [
+        [
+          2849.0,
+          1756.0
+        ],
+        [
+          3009.0,
+          1758.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_60": {
+      "id": "line_60",
+      "type": "signal",
+      "points": [
+        [
+          2598.0,
+          1758.0
+        ],
+        [
+          2765.0,
+          1757.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_61": {
+      "id": "line_61",
+      "type": "process",
+      "points": [
+        [
+          2876.0,
+          549.0
+        ],
+        [
+          2973.0,
+          549.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_62": {
+      "id": "line_62",
+      "type": "process",
+      "points": [
+        [
+          1586.0,
+          2294.0
+        ],
+        [
+          1690.0,
+          2295.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_63": {
+      "id": "line_63",
+      "type": "signal",
+      "points": [
+        [
+          3651.0,
+          585.0
+        ],
+        [
+          4042.0,
+          585.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_64": {
+      "id": "line_64",
+      "type": "process",
+      "points": [
+        [
+          2108.0,
+          508.0
+        ],
+        [
+          2108.0,
+          926.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_65": {
+      "id": "line_65",
+      "type": "process",
+      "points": [
+        [
+          2106.0,
+          307.0
+        ],
+        [
+          2108.0,
+          441.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_66": {
+      "id": "line_66",
+      "type": "process",
+      "points": [
+        [
+          3026.0,
+          2317.0
+        ],
+        [
+          3024.0,
+          2446.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_67": {
+      "id": "line_67",
+      "type": "process",
+      "points": [
+        [
+          3026.0,
+          1976.0
+        ],
+        [
+          3026.0,
+          2274.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "mixed"
+    },
+    "line_68": {
+      "id": "line_68",
+      "type": "signal",
+      "points": [
+        [
+          3646.0,
+          459.0
+        ],
+        [
+          4032.0,
+          458.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_69": {
+      "id": "line_69",
+      "type": "process",
+      "points": [
+        [
+          1106.0,
+          2211.0
+        ],
+        [
+          1106.0,
+          1191.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_70": {
+      "id": "line_70",
+      "type": "process",
+      "points": [
+        [
+          1962.0,
+          2391.0
+        ],
+        [
+          2720.0,
+          2391.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_71": {
+      "id": "line_71",
+      "type": "process",
+      "points": [
+        [
+          2721.0,
+          2295.0
+        ],
+        [
+          2820.0,
+          2295.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_72": {
+      "id": "line_72",
+      "type": "process",
+      "points": [
+        [
+          1584.0,
+          2391.0
+        ],
+        [
+          1878.0,
+          2391.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_73": {
+      "id": "line_73",
+      "type": "signal",
+      "points": [
+        [
+          1906.0,
+          2226.0
+        ],
+        [
+          1905.0,
+          1773.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_74": {
+      "id": "line_74",
+      "type": "process",
+      "points": [
+        [
+          3120.0,
+          828.0
+        ],
+        [
+          3212.0,
+          828.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_75": {
+      "id": "line_75",
+      "type": "process",
+      "points": [
+        [
+          3712.0,
+          1154.0
+        ],
+        [
+          3912.0,
+          1154.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "right_to_left"
+    },
+    "line_76": {
+      "id": "line_76",
+      "type": "process",
+      "points": [
+        [
+          1108.0,
+          2012.0
+        ],
+        [
+          1892.0,
+          2012.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_77": {
+      "id": "line_77",
+      "type": "process",
+      "points": [
+        [
+          4170.0,
+          957.0
+        ],
+        [
+          4335.0,
+          958.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_78": {
+      "id": "line_78",
+      "type": "process",
+      "points": [
+        [
+          1414.0,
+          472.0
+        ],
+        [
+          488.0,
+          472.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_79": {
+      "id": "line_79",
+      "type": "process",
+      "points": [
+        [
+          4524.0,
+          958.0
+        ],
+        [
+          4382.0,
+          958.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_80": {
+      "id": "line_80",
+      "type": "process",
+      "points": [
+        [
+          1953.0,
+          2012.0
+        ],
+        [
+          3009.0,
+          2012.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_81": {
+      "id": "line_81",
+      "type": "process",
+      "points": [
+        [
+          3912.0,
+          1152.0
+        ],
+        [
+          3912.0,
+          946.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_82": {
+      "id": "line_82",
+      "type": "process",
+      "points": [
+        [
+          4562.0,
+          306.0
+        ],
+        [
+          284.0,
+          306.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_83": {
+      "id": "line_83",
+      "type": "signal",
+      "points": [
+        [
+          3650.0,
+          488.0
+        ],
+        [
+          474.0,
+          488.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_84": {
+      "id": "line_84",
+      "type": "signal",
+      "points": [
+        [
+          1905.0,
+          490.0
+        ],
+        [
+          1905.0,
+          1136.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_85": {
+      "id": "line_85",
+      "type": "process",
+      "points": [
+        [
+          1922.0,
+          472.0
+        ],
+        [
+          1922.0,
+          646.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_86": {
+      "id": "line_86",
+      "type": "process",
+      "points": [
+        [
+          1922.0,
+          879.0
+        ],
+        [
+          1922.0,
+          1131.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_87": {
+      "id": "line_87",
+      "type": "process",
+      "points": [
+        [
+          1922.0,
+          1972.0
+        ],
+        [
+          1922.0,
+          2274.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "mixed"
+    },
+    "line_88": {
+      "id": "line_88",
+      "type": "process",
+      "points": [
+        [
+          1922.0,
+          2312.0
+        ],
+        [
+          1923.0,
+          2444.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_89": {
+      "id": "line_89",
+      "type": "process",
+      "points": [
+        [
+          2720.0,
+          2392.0
+        ],
+        [
+          2720.0,
+          2295.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_90": {
+      "id": "line_90",
+      "type": "process",
+      "points": [
+        [
+          3264.0,
+          2012.0
+        ],
+        [
+          3135.0,
+          2012.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_91": {
+      "id": "line_91",
+      "type": "process",
+      "points": [
+        [
+          3026.0,
+          2114.0
+        ],
+        [
+          3170.0,
+          2114.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_92": {
+      "id": "line_92",
+      "type": "process",
+      "points": [
+        [
+          3212.0,
+          2114.0
+        ],
+        [
+          3333.0,
+          2114.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_93": {
+      "id": "line_93",
+      "type": "signal",
+      "points": [
+        [
+          2364.0,
+          1544.0
+        ],
+        [
+          2594.0,
+          1544.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_94": {
+      "id": "line_94",
+      "type": "signal",
+      "points": [
+        [
+          2364.0,
+          1971.0
+        ],
+        [
+          2598.0,
+          1971.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_95": {
+      "id": "line_95",
+      "type": "signal",
+      "points": [
+        [
+          1260.0,
+          1544.0
+        ],
+        [
+          1260.0,
+          1970.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_96": {
+      "id": "line_96",
+      "type": "signal",
+      "points": [
+        [
+          1491.0,
+          1971.0
+        ],
+        [
+          1262.0,
+          1971.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_97": {
+      "id": "line_97",
+      "type": "signal",
+      "points": [
+        [
+          1492.0,
+          1545.0
+        ],
+        [
+          1492.0,
+          1971.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_98": {
+      "id": "line_98",
+      "type": "signal",
+      "points": [
+        [
+          1262.0,
+          1544.0
+        ],
+        [
+          1492.0,
+          1544.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_99": {
+      "id": "line_99",
+      "type": "process",
+      "points": [
+        [
+          736.0,
+          384.0
+        ],
+        [
+          830.0,
+          384.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_100": {
+      "id": "line_100",
+      "type": "process",
+      "points": [
+        [
+          2973.0,
+          658.0
+        ],
+        [
+          2974.0,
+          552.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_101": {
+      "id": "line_101",
+      "type": "process",
+      "points": [
+        [
+          2866.0,
+          2295.0
+        ],
+        [
+          2962.0,
+          2295.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_102": {
+      "id": "line_102",
+      "type": "signal",
+      "points": [
+        [
+          1790.0,
+          1570.0
+        ],
+        [
+          1870.0,
+          1570.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_103": {
+      "id": "line_103",
+      "type": "signal",
+      "points": [
+        [
+          2892.0,
+          1570.0
+        ],
+        [
+          2973.0,
+          1570.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_104": {
+      "id": "line_104",
+      "type": "process",
+      "points": [
+        [
+          3668.0,
+          568.0
+        ],
+        [
+          3754.0,
+          568.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_105": {
+      "id": "line_105",
+      "type": "process",
+      "points": [
+        [
+          2204.0,
+          626.0
+        ],
+        [
+          2205.0,
+          552.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_106": {
+      "id": "line_106",
+      "type": "process",
+      "points": [
+        [
+          2992.0,
+          1074.0
+        ],
+        [
+          3056.0,
+          1072.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "mixed"
+    },
+    "line_107": {
+      "id": "line_107",
+      "type": "signal",
+      "points": [
+        [
+          1976.0,
+          1570.0
+        ],
+        [
+          2055.0,
+          1570.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_108": {
+      "id": "line_108",
+      "type": "signal",
+      "points": [
+        [
+          1974.0,
+          1334.0
+        ],
+        [
+          2054.0,
+          1334.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_109": {
+      "id": "line_109",
+      "type": "process",
+      "points": [
+        [
+          2106.0,
+          924.0
+        ],
+        [
+          2018.0,
+          924.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_110": {
+      "id": "line_110",
+      "type": "signal",
+      "points": [
+        [
+          1992.0,
+          1638.0
+        ],
+        [
+          1992.0,
+          1575.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_111": {
+      "id": "line_111",
+      "type": "process",
+      "points": [
+        [
+          912.0,
+          2650.0
+        ],
+        [
+          910.0,
+          2564.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_112": {
+      "id": "line_112",
+      "type": "process",
+      "points": [
+        [
+          830.0,
+          384.0
+        ],
+        [
+          828.0,
+          304.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_113": {
+      "id": "line_113",
+      "type": "process",
+      "points": [
+        [
+          4358.0,
+          1064.0
+        ],
+        [
+          4358.0,
+          978.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_114": {
+      "id": "line_114",
+      "type": "signal",
+      "points": [
+        [
+          1785.0,
+          1334.0
+        ],
+        [
+          1870.0,
+          1335.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_115": {
+      "id": "line_115",
+      "type": "process",
+      "points": [
+        [
+          1888.0,
+          1072.0
+        ],
+        [
+          1953.0,
+          1072.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "mixed"
+    },
+    "line_116": {
+      "id": "line_116",
+      "type": "signal",
+      "points": [
+        [
+          3096.0,
+          1334.0
+        ],
+        [
+          3096.0,
+          1268.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_117": {
+      "id": "line_117",
+      "type": "signal",
+      "points": [
+        [
+          2955.0,
+          1334.0
+        ],
+        [
+          2955.0,
+          1268.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_118": {
+      "id": "line_118",
+      "type": "process",
+      "points": [
+        [
+          4167.0,
+          1326.0
+        ],
+        [
+          4167.0,
+          1232.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_119": {
+      "id": "line_119",
+      "type": "signal",
+      "points": [
+        [
+          1851.0,
+          1334.0
+        ],
+        [
+          1852.0,
+          1268.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_120": {
+      "id": "line_120",
+      "type": "process",
+      "points": [
+        [
+          3160.0,
+          1569.0
+        ],
+        [
+          3160.0,
+          1494.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_121": {
+      "id": "line_121",
+      "type": "signal",
+      "points": [
+        [
+          3078.0,
+          1570.0
+        ],
+        [
+          3159.0,
+          1570.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_122": {
+      "id": "line_122",
+      "type": "signal",
+      "points": [
+        [
+          2056.0,
+          1404.0
+        ],
+        [
+          2056.0,
+          1336.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_123": {
+      "id": "line_123",
+      "type": "process",
+      "points": [
+        [
+          911.0,
+          2421.0
+        ],
+        [
+          910.0,
+          2358.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_124": {
+      "id": "line_124",
+      "type": "signal",
+      "points": [
+        [
+          3096.0,
+          1572.0
+        ],
+        [
+          3096.0,
+          1636.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_125": {
+      "id": "line_125",
+      "type": "signal",
+      "points": [
+        [
+          1992.0,
+          1330.0
+        ],
+        [
+          1992.0,
+          1268.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_126": {
+      "id": "line_126",
+      "type": "signal",
+      "points": [
+        [
+          1852.0,
+          1575.0
+        ],
+        [
+          1852.0,
+          1638.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_127": {
+      "id": "line_127",
+      "type": "signal",
+      "points": [
+        [
+          2955.0,
+          1636.0
+        ],
+        [
+          2955.0,
+          1575.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_128": {
+      "id": "line_128",
+      "type": "process",
+      "points": [
+        [
+          1922.0,
+          688.0
+        ],
+        [
+          1922.0,
+          750.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_129": {
+      "id": "line_129",
+      "type": "signal",
+      "points": [
+        [
+          1935.0,
+          1221.0
+        ],
+        [
+          1994.0,
+          1268.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_130": {
+      "id": "line_130",
+      "type": "signal",
+      "points": [
+        [
+          1906.0,
+          1222.0
+        ],
+        [
+          1851.0,
+          1268.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_131": {
+      "id": "line_131",
+      "type": "process",
+      "points": [
+        [
+          2055.0,
+          1491.0
+        ],
+        [
+          2058.0,
+          1572.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_132": {
+      "id": "line_132",
+      "type": "signal",
+      "points": [
+        [
+          1936.0,
+          1680.0
+        ],
+        [
+          1992.0,
+          1640.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_133": {
+      "id": "line_133",
+      "type": "signal",
+      "points": [
+        [
+          1906.0,
+          1680.0
+        ],
+        [
+          1852.0,
+          1640.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_134": {
+      "id": "line_134",
+      "type": "process",
+      "points": [
+        [
+          1922.0,
+          1660.0
+        ],
+        [
+          1922.0,
+          1736.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_135": {
+      "id": "line_135",
+      "type": "signal",
+      "points": [
+        [
+          3159.0,
+          1332.0
+        ],
+        [
+          3160.0,
+          1404.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_136": {
+      "id": "line_136",
+      "type": "signal",
+      "points": [
+        [
+          3078.0,
+          1332.0
+        ],
+        [
+          3160.0,
+          1335.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_137": {
+      "id": "line_137",
+      "type": "signal",
+      "points": [
+        [
+          2892.0,
+          1334.0
+        ],
+        [
+          2972.0,
+          1335.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_138": {
+      "id": "line_138",
+      "type": "signal",
+      "points": [
+        [
+          3009.0,
+          1222.0
+        ],
+        [
+          2955.0,
+          1266.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_139": {
+      "id": "line_139",
+      "type": "signal",
+      "points": [
+        [
+          3038.0,
+          1222.0
+        ],
+        [
+          3098.0,
+          1268.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_140": {
+      "id": "line_140",
+      "type": "process",
+      "points": [
+        [
+          3024.0,
+          1174.0
+        ],
+        [
+          3024.0,
+          1240.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_141": {
+      "id": "line_141",
+      "type": "signal",
+      "points": [
+        [
+          3039.0,
+          1680.0
+        ],
+        [
+          3098.0,
+          1638.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_142": {
+      "id": "line_142",
+      "type": "signal",
+      "points": [
+        [
+          3009.0,
+          1680.0
+        ],
+        [
+          2954.0,
+          1638.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_143": {
+      "id": "line_143",
+      "type": "process",
+      "points": [
+        [
+          1922.0,
+          1243.0
+        ],
+        [
+          1922.0,
+          1176.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_144": {
+      "id": "line_144",
+      "type": "process",
+      "points": [
+        [
+          1732.0,
+          1076.0
+        ],
+        [
+          1808.0,
+          1076.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "right_to_left"
+    },
+    "line_145": {
+      "id": "line_145",
+      "type": "signal",
+      "points": [
+        [
+          2725.0,
+          1074.0
+        ],
+        [
+          2804.0,
+          1074.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_146": {
+      "id": "line_146",
+      "type": "process",
+      "points": [
+        [
+          2979.0,
+          1858.0
+        ],
+        [
+          2948.0,
+          1858.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_147": {
+      "id": "line_147",
+      "type": "process",
+      "points": [
+        [
+          1988.0,
+          950.0
+        ],
+        [
+          1988.0,
+          1004.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_148": {
+      "id": "line_148",
+      "type": "process",
+      "points": [
+        [
+          3024.0,
+          1674.0
+        ],
+        [
+          3024.0,
+          1734.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_149": {
+      "id": "line_149",
+      "type": "process",
+      "points": [
+        [
+          912.0,
+          2312.0
+        ],
+        [
+          912.0,
+          2265.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_150": {
+      "id": "line_150",
+      "type": "process",
+      "points": [
+        [
+          4146.0,
+          2391.0
+        ],
+        [
+          4196.0,
+          2392.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_151": {
+      "id": "line_151",
+      "type": "process",
+      "points": [
+        [
+          3706.0,
+          1080.0
+        ],
+        [
+          3741.0,
+          1080.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_152": {
+      "id": "line_152",
+      "type": "process",
+      "points": [
+        [
+          4143.0,
+          2772.0
+        ],
+        [
+          4144.0,
+          2820.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_153": {
+      "id": "line_153",
+      "type": "process",
+      "points": [
+        [
+          1200.0,
+          2530.0
+        ],
+        [
+          1227.0,
+          2530.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_154": {
+      "id": "line_154",
+      "type": "process",
+      "points": [
+        [
+          912.0,
+          2820.0
+        ],
+        [
+          912.0,
+          2770.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_155": {
+      "id": "line_155",
+      "type": "process",
+      "points": [
+        [
+          1066.0,
+          690.0
+        ],
+        [
+          1094.0,
+          690.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_156": {
+      "id": "line_156",
+      "type": "process",
+      "points": [
+        [
+          3092.0,
+          908.0
+        ],
+        [
+          3092.0,
+          856.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_157": {
+      "id": "line_157",
+      "type": "process",
+      "points": [
+        [
+          3024.0,
+          819.0
+        ],
+        [
+          3024.0,
+          777.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_158": {
+      "id": "line_158",
+      "type": "process",
+      "points": [
+        [
+          3309.0,
+          849.0
+        ],
+        [
+          3309.0,
+          796.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_159": {
+      "id": "line_159",
+      "type": "process",
+      "points": [
+        [
+          3639.0,
+          908.0
+        ],
+        [
+          3639.0,
+          882.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_160": {
+      "id": "line_160",
+      "type": "process",
+      "points": [
+        [
+          3880.0,
+          2296.0
+        ],
+        [
+          3880.0,
+          2271.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_161": {
+      "id": "line_161",
+      "type": "process",
+      "points": [
+        [
+          2139.0,
+          2147.0
+        ],
+        [
+          2138.0,
+          2102.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_162": {
+      "id": "line_162",
+      "type": "process",
+      "points": [
+        [
+          3191.0,
+          2051.0
+        ],
+        [
+          3190.0,
+          2013.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_163": {
+      "id": "line_163",
+      "type": "process",
+      "points": [
+        [
+          710.0,
+          472.0
+        ],
+        [
+          708.0,
+          417.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_164": {
+      "id": "line_164",
+      "type": "process",
+      "points": [
+        [
+          1198.0,
+          2529.0
+        ],
+        [
+          1198.0,
+          2504.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_165": {
+      "id": "line_165",
+      "type": "process",
+      "points": [
+        [
+          558.0,
+          544.0
+        ],
+        [
+          580.0,
+          544.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_166": {
+      "id": "line_166",
+      "type": "process",
+      "points": [
+        [
+          4426.0,
+          1070.0
+        ],
+        [
+          4454.0,
+          1070.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_167": {
+      "id": "line_167",
+      "type": "process",
+      "points": [
+        [
+          4708.0,
+          958.0
+        ],
+        [
+          4654.0,
+          958.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_168": {
+      "id": "line_168",
+      "type": "process",
+      "points": [
+        [
+          3780.0,
+          640.0
+        ],
+        [
+          3802.0,
+          640.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_169": {
+      "id": "line_169",
+      "type": "process",
+      "points": [
+        [
+          4359.0,
+          1138.0
+        ],
+        [
+          4358.0,
+          1107.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_170": {
+      "id": "line_170",
+      "type": "process",
+      "points": [
+        [
+          912.0,
+          2518.0
+        ],
+        [
+          911.0,
+          2465.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_171": {
+      "id": "line_171",
+      "type": "process",
+      "points": [
+        [
+          3882.0,
+          2298.0
+        ],
+        [
+          3902.0,
+          2296.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_172": {
+      "id": "line_172",
+      "type": "process",
+      "points": [
+        [
+          4610.0,
+          958.0
+        ],
+        [
+          4568.0,
+          958.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_173": {
+      "id": "line_173",
+      "type": "process",
+      "points": [
+        [
+          4390.0,
+          1034.0
+        ],
+        [
+          4425.0,
+          1070.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_174": {
+      "id": "line_174",
+      "type": "process",
+      "points": [
+        [
+          4018.0,
+          882.0
+        ],
+        [
+          4018.0,
+          908.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_175": {
+      "id": "line_175",
+      "type": "signal",
+      "points": [
+        [
+          3138.0,
+          1072.0
+        ],
+        [
+          3160.0,
+          1071.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_176": {
+      "id": "line_176",
+      "type": "signal",
+      "points": [
+        [
+          2880.0,
+          1072.0
+        ],
+        [
+          2913.0,
+          1072.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "right_to_left"
+    },
+    "line_177": {
+      "id": "line_177",
+      "type": "process",
+      "points": [
+        [
+          3024.0,
+          688.0
+        ],
+        [
+          3024.0,
+          732.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_178": {
+      "id": "line_178",
+      "type": "process",
+      "points": [
+        [
+          556.0,
+          518.0
+        ],
+        [
+          556.0,
+          544.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_179": {
+      "id": "line_179",
+      "type": "process",
+      "points": [
+        [
+          950.0,
+          436.0
+        ],
+        [
+          950.0,
+          470.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_180": {
+      "id": "line_180",
+      "type": "signal",
+      "points": [
+        [
+          2056.0,
+          1070.0
+        ],
+        [
+          2036.0,
+          1071.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_181": {
+      "id": "line_181",
+      "type": "process",
+      "points": [
+        [
+          1922.0,
+          792.0
+        ],
+        [
+          1922.0,
+          840.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_182": {
+      "id": "line_182",
+      "type": "process",
+      "points": [
+        [
+          1922.0,
+          1778.0
+        ],
+        [
+          1922.0,
+          1834.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_183": {
+      "id": "line_183",
+      "type": "process",
+      "points": [
+        [
+          1922.0,
+          1878.0
+        ],
+        [
+          1922.0,
+          1930.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_184": {
+      "id": "line_184",
+      "type": "process",
+      "points": [
+        [
+          3038.0,
+          2010.0
+        ],
+        [
+          3094.0,
+          2012.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_185": {
+      "id": "line_185",
+      "type": "process",
+      "points": [
+        [
+          2139.0,
+          2012.0
+        ],
+        [
+          2139.0,
+          2056.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_186": {
+      "id": "line_186",
+      "type": "process",
+      "points": [
+        [
+          3024.0,
+          1778.0
+        ],
+        [
+          3024.0,
+          1838.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_187": {
+      "id": "line_187",
+      "type": "process",
+      "points": [
+        [
+          3024.0,
+          1878.0
+        ],
+        [
+          3024.0,
+          1932.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_188": {
+      "id": "line_188",
+      "type": "process",
+      "points": [
+        [
+          1456.0,
+          2364.0
+        ],
+        [
+          1456.0,
+          2396.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_189": {
+      "id": "line_189",
+      "type": "signal",
+      "points": [
+        [
+          1320.0,
+          2325.0
+        ],
+        [
+          1346.0,
+          2325.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "left_to_right"
+    },
+    "line_190": {
+      "id": "line_190",
+      "type": "process",
+      "points": [
+        [
+          879.0,
+          2602.0
+        ],
+        [
+          912.0,
+          2604.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "right_to_left"
+    },
+    "line_191": {
+      "id": "line_191",
+      "type": "process",
+      "points": [
+        [
+          910.0,
+          2692.0
+        ],
+        [
+          910.0,
+          2726.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "bottom_to_top"
+    },
+    "line_192": {
+      "id": "line_192",
+      "type": "signal",
+      "points": [
+        [
+          2534.0,
+          1632.0
+        ],
+        [
+          2534.0,
+          1665.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_193": {
+      "id": "line_193",
+      "type": "signal",
+      "points": [
+        [
+          2426.0,
+          1634.0
+        ],
+        [
+          2424.0,
+          1664.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_194": {
+      "id": "line_194",
+      "type": "signal",
+      "points": [
+        [
+          2532.0,
+          1742.0
+        ],
+        [
+          2532.0,
+          1774.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_195": {
+      "id": "line_195",
+      "type": "signal",
+      "points": [
+        [
+          2534.0,
+          1852.0
+        ],
+        [
+          2535.0,
+          1886.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_196": {
+      "id": "line_196",
+      "type": "signal",
+      "points": [
+        [
+          2424.0,
+          1742.0
+        ],
+        [
+          2424.0,
+          1776.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_197": {
+      "id": "line_197",
+      "type": "signal",
+      "points": [
+        [
+          2426.0,
+          1852.0
+        ],
+        [
+          2426.0,
+          1886.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_198": {
+      "id": "line_198",
+      "type": "signal",
+      "points": [
+        [
+          1322.0,
+          1634.0
+        ],
+        [
+          1322.0,
+          1665.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_199": {
+      "id": "line_199",
+      "type": "signal",
+      "points": [
+        [
+          1430.0,
+          1632.0
+        ],
+        [
+          1430.0,
+          1665.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_200": {
+      "id": "line_200",
+      "type": "signal",
+      "points": [
+        [
+          1430.0,
+          1742.0
+        ],
+        [
+          1430.0,
+          1774.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_201": {
+      "id": "line_201",
+      "type": "signal",
+      "points": [
+        [
+          1322.0,
+          1743.0
+        ],
+        [
+          1322.0,
+          1778.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_202": {
+      "id": "line_202",
+      "type": "signal",
+      "points": [
+        [
+          1430.0,
+          1852.0
+        ],
+        [
+          1430.0,
+          1887.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    },
+    "line_203": {
+      "id": "line_203",
+      "type": "signal",
+      "points": [
+        [
+          1322.0,
+          1852.0
+        ],
+        [
+          1322.0,
+          1886.0
+        ]
+      ],
+      "style": "dashed",
+      "direction": "unknown"
+    },
+    "line_204": {
+      "id": "line_204",
+      "type": "process",
+      "points": [
+        [
+          3780.0,
+          404.0
+        ],
+        [
+          3778.0,
+          429.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_205": {
+      "id": "line_205",
+      "type": "process",
+      "points": [
+        [
+          3806.0,
+          400.0
+        ],
+        [
+          3782.0,
+          400.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_206": {
+      "id": "line_206",
+      "type": "process",
+      "points": [
+        [
+          3777.0,
+          615.0
+        ],
+        [
+          3778.0,
+          640.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "unknown"
+    },
+    "line_207": {
+      "id": "line_207",
+      "type": "process",
+      "points": [
+        [
+          1870.0,
+          618.0
+        ],
+        [
+          1870.0,
+          654.0
+        ]
+      ],
+      "style": "solid",
+      "direction": "top_to_bottom"
+    }
+  },
+  "expansion_joints": [],
+  "control_loops": {
+    "T1107": {
+      "loop_type": "Temperature",
+      "loop_id": "1107",
+      "instruments": [
+        "TI-1107",
+        "TI-1107B",
+        "TI-1107A",
+        "TI-1107H",
+        "TI-1107G",
+        "TI-1107D",
+        "TI-1107C",
+        "TI-1107E",
+        "TI-1107F"
+      ],
+      "connected_components": [],
+      "process_line_junctions": {},
+      "connected_inline": [
+        "sym_98"
+      ]
+    },
+    "T1103": {
+      "loop_type": "Temperature",
+      "loop_id": "1103",
+      "instruments": [
+        "TI-1103",
+        "TI-1103B",
+        "TI-1103F A",
+        "TI-1103D",
+        "TI-1103A",
+        "TI-1103F B",
+        "TI-1103C",
+        "TI-1103E",
+        "TI-1103G"
+      ],
+      "connected_components": [],
+      "process_line_junctions": {},
+      "connected_inline": [
+        "sym_93"
+      ]
+    },
+    "T1105": {
+      "loop_type": "Temperature",
+      "loop_id": "1105",
+      "instruments": [
+        "TE-1105",
+        "TI-1105"
+      ],
+      "connected_components": [],
+      "process_line_junctions": {
+        "JX_T_035": {
+          "point": [
+            3024.0,
+            1073.0
+          ],
+          "via_instruments": [
+            "TI-1105"
+          ]
+        }
+      },
+      "connected_inline": []
+    },
+    "T1102": {
+      "loop_type": "Temperature",
+      "loop_id": "1102",
+      "instruments": [
+        "TE-1102 A",
+        "TE-1102 B"
+      ],
+      "connected_components": [],
+      "process_line_junctions": {
+        "JX_T_036": {
+          "point": [
+            1922.0,
+            1072.0
+          ],
+          "via_instruments": [
+            "TE-1102 B"
+          ]
+        }
+      },
+      "connected_inline": []
+    },
+    "F1108": {
+      "loop_type": "Flow",
+      "loop_id": "1108",
+      "instruments": [
+        "FIC-1108",
+        "FE-1108",
+        "FTC-1108"
+      ],
+      "connected_components": [
+        {
+          "id": "FC THERMAL",
+          "type": "mechanical"
+        }
+      ],
+      "process_line_junctions": {},
+      "connected_inline": []
+    },
+    "P1104": {
+      "loop_type": "Pressure",
+      "loop_id": "1104",
+      "instruments": [
+        "PIT-1104 A",
+        "PIT-1104 B"
+      ],
+      "connected_components": [],
+      "process_line_junctions": {
+        "JX_T_035": {
+          "point": [
+            3024.0,
+            1073.0
+          ],
+          "via_instruments": [
+            "PIT-1104 A"
+          ]
+        }
+      },
+      "connected_inline": [
+        "IHP-1104"
+      ]
+    }
+  },
+  "loop_groups": [],
+  "signal_paths": [
+    {
+      "signal_id": "SIG_001",
+      "chain": [
+        "FE-1108",
+        "FIC-1108"
+      ],
+      "chain_ids": [
+        "FE-1108",
+        "FIC-1108"
+      ],
+      "start_node": {
+        "id": "FE-1108",
+        "label": "FE-1108",
+        "type": "instrument",
+        "symbol_type": "Flow_Transmitter_Controller:Controller",
+        "bbox": [
+          1336,
+          2282,
+          1420,
+          2370
+        ],
+        "point": [
+          1378.0,
+          2326.0
+        ]
+      },
+      "end_node": {
+        "id": "FIC-1108",
+        "label": "FIC-1108",
+        "type": "instrument",
+        "symbol_type": "Flow_Indicating_Controller:Controller",
+        "bbox": [
+          1238,
+          2278,
+          1324,
+          2372
+        ],
+        "point": [
+          1281.0,
+          2325.0
+        ]
+      },
+      "path": [
+        {
+          "id": "FE-1108",
+          "label": "FE-1108",
+          "type": "instrument",
+          "symbol_type": "Flow_Transmitter_Controller:Controller",
+          "bbox": [
+            1336,
+            2282,
+            1420,
+            2370
+          ],
+          "point": [
+            1378.0,
+            2326.0
+          ]
+        },
+        {
+          "id": "FIC-1108",
+          "label": "FIC-1108",
+          "type": "instrument",
+          "symbol_type": "Flow_Indicating_Controller:Controller",
+          "bbox": [
+            1238,
+            2278,
+            1324,
+            2372
+          ],
+          "point": [
+            1281.0,
+            2325.0
+          ]
+        }
+      ],
+      "signal_role": "secondary"
+    },
+    {
+      "signal_id": "SIG_002",
+      "chain": [
+        "PIT-1101",
+        "TE-1102 B"
+      ],
+      "chain_ids": [
+        "PIT-1101",
+        "TE-1102 B"
+      ],
+      "start_node": {
+        "id": "PIT-1101",
+        "label": "PIT-1101",
+        "type": "instrument",
+        "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+        "bbox": [
+          1803,
+          1028,
+          1892,
+          1112
+        ],
+        "point": [
+          1847.5,
+          1070.0
+        ]
+      },
+      "end_node": {
+        "id": "TE-1102 B",
+        "label": "TE-1102 B",
+        "type": "instrument",
+        "symbol_type": "Temperature_Indicator:Sensor",
+        "bbox": [
+          1948,
+          1018,
+          2038,
+          1116
+        ],
+        "point": [
+          1993.0,
+          1067.0
+        ]
+      },
+      "path": [
+        {
+          "id": "PIT-1101",
+          "label": "PIT-1101",
+          "type": "instrument",
+          "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+          "bbox": [
+            1803,
+            1028,
+            1892,
+            1112
+          ],
+          "point": [
+            1847.5,
+            1070.0
+          ]
+        },
+        {
+          "id": "TE-1102 B",
+          "label": "TE-1102 B",
+          "type": "instrument",
+          "symbol_type": "Temperature_Indicator:Sensor",
+          "bbox": [
+            1948,
+            1018,
+            2038,
+            1116
+          ],
+          "point": [
+            1993.0,
+            1067.0
+          ]
+        }
+      ],
+      "signal_role": "secondary"
+    },
+    {
+      "signal_id": "SIG_003",
+      "chain": [
+        "PIT-1101",
+        "IHP-1101"
+      ],
+      "chain_ids": [
+        "PIT-1101",
+        "IHP-1101"
+      ],
+      "start_node": {
+        "id": "PIT-1101",
+        "label": "PIT-1101",
+        "type": "instrument",
+        "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+        "bbox": [
+          1803,
+          1028,
+          1892,
+          1112
+        ],
+        "point": [
+          1847.5,
+          1070.0
+        ]
+      },
+      "end_node": {
+        "id": "IHP-1101",
+        "label": "IHP-1101",
+        "type": "inline_component",
+        "symbol_type": "IHP:Interlock",
+        "bbox": [
+          1629,
+          1040,
+          1740,
+          1110
+        ],
+        "point": [
+          1684.5,
+          1075.0
+        ]
+      },
+      "path": [
+        {
+          "id": "PIT-1101",
+          "label": "PIT-1101",
+          "type": "instrument",
+          "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+          "bbox": [
+            1803,
+            1028,
+            1892,
+            1112
+          ],
+          "point": [
+            1847.5,
+            1070.0
+          ]
+        },
+        {
+          "id": "IHP-1101",
+          "label": "IHP-1101",
+          "type": "inline_component",
+          "symbol_type": "IHP:Interlock",
+          "bbox": [
+            1629,
+            1040,
+            1740,
+            1110
+          ],
+          "point": [
+            1684.5,
+            1075.0
+          ]
+        }
+      ],
+      "signal_role": "secondary"
+    },
+    {
+      "signal_id": "SIG_004",
+      "chain": [
+        "PIT-1104 A",
+        "TI-1105"
+      ],
+      "chain_ids": [
+        "PIT-1104 A",
+        "TI-1105"
+      ],
+      "start_node": {
+        "id": "PIT-1104 A",
+        "label": "PIT-1104 A",
+        "type": "instrument",
+        "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+        "bbox": [
+          2907,
+          1026,
+          2992,
+          1112
+        ],
+        "point": [
+          2949.5,
+          1069.0
+        ]
+      },
+      "end_node": {
+        "id": "TI-1105",
+        "label": "TI-1105",
+        "type": "instrument",
+        "symbol_type": "Temperature_Indicator:Sensor",
+        "bbox": [
+          3051,
+          1023,
+          3141,
+          1116
+        ],
+        "point": [
+          3096.0,
+          1069.5
+        ]
+      },
+      "path": [
+        {
+          "id": "PIT-1104 A",
+          "label": "PIT-1104 A",
+          "type": "instrument",
+          "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+          "bbox": [
+            2907,
+            1026,
+            2992,
+            1112
+          ],
+          "point": [
+            2949.5,
+            1069.0
+          ]
+        },
+        {
+          "id": "TI-1105",
+          "label": "TI-1105",
+          "type": "instrument",
+          "symbol_type": "Temperature_Indicator:Sensor",
+          "bbox": [
+            3051,
+            1023,
+            3141,
+            1116
+          ],
+          "point": [
+            3096.0,
+            1069.5
+          ]
+        }
+      ],
+      "signal_role": "secondary"
+    },
+    {
+      "signal_id": "SIG_005",
+      "chain": [
+        "PIT-1104 A",
+        "PIT-1104 B",
+        "IHP-1104"
+      ],
+      "chain_ids": [
+        "PIT-1104 A",
+        "PIT-1104 B",
+        "IHP-1104"
+      ],
+      "start_node": {
+        "id": "PIT-1104 A",
+        "label": "PIT-1104 A",
+        "type": "instrument",
+        "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+        "bbox": [
+          2907,
+          1026,
+          2992,
+          1112
+        ],
+        "point": [
+          2949.5,
+          1069.0
+        ]
+      },
+      "end_node": {
+        "id": "IHP-1104",
+        "label": "IHP-1104",
+        "type": "inline_component",
+        "symbol_type": "IHP:Interlock",
+        "bbox": [
+          2631,
+          1048,
+          2720,
+          1096
+        ],
+        "point": [
+          2675.5,
+          1072.0
+        ]
+      },
+      "path": [
+        {
+          "id": "PIT-1104 A",
+          "label": "PIT-1104 A",
+          "type": "instrument",
+          "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+          "bbox": [
+            2907,
+            1026,
+            2992,
+            1112
+          ],
+          "point": [
+            2949.5,
+            1069.0
+          ]
+        },
+        {
+          "id": "PIT-1104 B",
+          "label": "PIT-1104 B",
+          "type": "instrument",
+          "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+          "bbox": [
+            2799,
+            1023,
+            2882,
+            1112
+          ],
+          "point": [
+            2840.5,
+            1067.5
+          ]
+        },
+        {
+          "id": "IHP-1104",
+          "label": "IHP-1104",
+          "type": "inline_component",
+          "symbol_type": "IHP:Interlock",
+          "bbox": [
+            2631,
+            1048,
+            2720,
+            1096
+          ],
+          "point": [
+            2675.5,
+            1072.0
+          ]
+        }
+      ],
+      "signal_role": "secondary"
+    },
+    {
+      "signal_id": "SIG_006",
+      "chain": [
+        "PIT-1104 B",
+        "IHP-1104"
+      ],
+      "chain_ids": [
+        "PIT-1104 B",
+        "IHP-1104"
+      ],
+      "start_node": {
+        "id": "PIT-1104 B",
+        "label": "PIT-1104 B",
+        "type": "instrument",
+        "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+        "bbox": [
+          2799,
+          1023,
+          2882,
+          1112
+        ],
+        "point": [
+          2840.5,
+          1067.5
+        ]
+      },
+      "end_node": {
+        "id": "IHP-1104",
+        "label": "IHP-1104",
+        "type": "inline_component",
+        "symbol_type": "IHP:Interlock",
+        "bbox": [
+          2631,
+          1048,
+          2720,
+          1096
+        ],
+        "point": [
+          2675.5,
+          1072.0
+        ]
+      },
+      "path": [
+        {
+          "id": "PIT-1104 B",
+          "label": "PIT-1104 B",
+          "type": "instrument",
+          "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+          "bbox": [
+            2799,
+            1023,
+            2882,
+            1112
+          ],
+          "point": [
+            2840.5,
+            1067.5
+          ]
+        },
+        {
+          "id": "IHP-1104",
+          "label": "IHP-1104",
+          "type": "inline_component",
+          "symbol_type": "IHP:Interlock",
+          "bbox": [
+            2631,
+            1048,
+            2720,
+            1096
+          ],
+          "point": [
+            2675.5,
+            1072.0
+          ]
+        }
+      ],
+      "signal_role": "secondary"
+    },
+    {
+      "signal_id": "SIG_007",
+      "chain": [
+        "PIT-1104 B",
+        "PIT-1104 A",
+        "TI-1105"
+      ],
+      "chain_ids": [
+        "PIT-1104 B",
+        "PIT-1104 A",
+        "TI-1105"
+      ],
+      "start_node": {
+        "id": "PIT-1104 B",
+        "label": "PIT-1104 B",
+        "type": "instrument",
+        "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+        "bbox": [
+          2799,
+          1023,
+          2882,
+          1112
+        ],
+        "point": [
+          2840.5,
+          1067.5
+        ]
+      },
+      "end_node": {
+        "id": "TI-1105",
+        "label": "TI-1105",
+        "type": "instrument",
+        "symbol_type": "Temperature_Indicator:Sensor",
+        "bbox": [
+          3051,
+          1023,
+          3141,
+          1116
+        ],
+        "point": [
+          3096.0,
+          1069.5
+        ]
+      },
+      "path": [
+        {
+          "id": "PIT-1104 B",
+          "label": "PIT-1104 B",
+          "type": "instrument",
+          "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+          "bbox": [
+            2799,
+            1023,
+            2882,
+            1112
+          ],
+          "point": [
+            2840.5,
+            1067.5
+          ]
+        },
+        {
+          "id": "PIT-1104 A",
+          "label": "PIT-1104 A",
+          "type": "instrument",
+          "symbol_type": "Pressure_Indicating_Transmitter:Controller",
+          "bbox": [
+            2907,
+            1026,
+            2992,
+            1112
+          ],
+          "point": [
+            2949.5,
+            1069.0
+          ]
+        },
+        {
+          "id": "TI-1105",
+          "label": "TI-1105",
+          "type": "instrument",
+          "symbol_type": "Temperature_Indicator:Sensor",
+          "bbox": [
+            3051,
+            1023,
+            3141,
+            1116
+          ],
+          "point": [
+            3096.0,
+            1069.5
+          ]
+        }
+      ],
+      "signal_role": "secondary"
+    },
+    {
+      "signal_id": "SIG_008",
+      "chain": [
+        "TE-1102 A",
+        "TE-1102 B"
+      ],
+      "chain_ids": [
+        "TE-1102 A",
+        "TE-1102 B"
+      ],
+      "start_node": {
+        "id": "TE-1102 A",
+        "label": "TE-1102 A",
+        "type": "instrument",
+        "symbol_type": "Temperature_Element:Sensor",
+        "bbox": [
+          2049,
+          1023,
+          2138,
+          1112
+        ],
+        "point": [
+          2093.5,
+          1067.5
+        ]
+      },
+      "end_node": {
+        "id": "TE-1102 B",
+        "label": "TE-1102 B",
+        "type": "instrument",
+        "symbol_type": "Temperature_Indicator:Sensor",
+        "bbox": [
+          1948,
+          1018,
+          2038,
+          1116
+        ],
+        "point": [
+          1993.0,
+          1067.0
+        ]
+      },
+      "path": [
+        {
+          "id": "TE-1102 A",
+          "label": "TE-1102 A",
+          "type": "instrument",
+          "symbol_type": "Temperature_Element:Sensor",
+          "bbox": [
+            2049,
+            1023,
+            2138,
+            1112
+          ],
+          "point": [
+            2093.5,
+            1067.5
+          ]
+        },
+        {
+          "id": "TE-1102 B",
+          "label": "TE-1102 B",
+          "type": "instrument",
+          "symbol_type": "Temperature_Indicator:Sensor",
+          "bbox": [
+            1948,
+            1018,
+            2038,
+            1116
+          ],
+          "point": [
+            1993.0,
+            1067.0
+          ]
+        }
+      ],
+      "signal_role": "secondary"
+    },
+    {
+      "signal_id": "SIG_009",
+      "chain": [
+        "TE-1105",
+        "TI-1105"
+      ],
+      "chain_ids": [
+        "TE-1105",
+        "TI-1105"
+      ],
+      "start_node": {
+        "id": "TE-1105",
+        "label": "TE-1105",
+        "type": "instrument",
+        "symbol_type": "Temperature_Element:Sensor",
+        "bbox": [
+          3152,
+          1024,
+          3242,
+          1114
+        ],
+        "point": [
+          3197.0,
+          1069.0
+        ]
+      },
+      "end_node": {
+        "id": "TI-1105",
+        "label": "TI-1105",
+        "type": "instrument",
+        "symbol_type": "Temperature_Indicator:Sensor",
+        "bbox": [
+          3051,
+          1023,
+          3141,
+          1116
+        ],
+        "point": [
+          3096.0,
+          1069.5
+        ]
+      },
+      "path": [
+        {
+          "id": "TE-1105",
+          "label": "TE-1105",
+          "type": "instrument",
+          "symbol_type": "Temperature_Element:Sensor",
+          "bbox": [
+            3152,
+            1024,
+            3242,
+            1114
+          ],
+          "point": [
+            3197.0,
+            1069.0
+          ]
+        },
+        {
+          "id": "TI-1105",
+          "label": "TI-1105",
+          "type": "instrument",
+          "symbol_type": "Temperature_Indicator:Sensor",
+          "bbox": [
+            3051,
+            1023,
+            3141,
+            1116
+          ],
+          "point": [
+            3096.0,
+            1069.5
+          ]
+        }
+      ],
+      "signal_role": "secondary"
+    }
+  ],
+  "spatial_clusters": [],
+  "electric_heat_trace": {
+    "REACTOR EFFULENT 1-1-140": [
+      {
+        "points": [
+          1906,
+          2226,
+          4564,
+          2226
+        ]
+      }
+    ],
+    "R-110 B": [
+      {
+        "points": [
+          2889,
+          1332,
+          2890,
+          1569
+        ]
+      },
+      {
+        "points": [
+          2849,
+          1756,
+          3009,
+          1758
+        ]
+      },
+      {
+        "points": [
+          2892,
+          1570,
+          2973,
+          1570
+        ]
+      },
+      {
+        "points": [
+          3096,
+          1334,
+          3096,
+          1268
+        ]
+      },
+      {
+        "points": [
+          2955,
+          1334,
+          2955,
+          1268
+        ]
+      },
+      {
+        "points": [
+          3078,
+          1570,
+          3159,
+          1570
+        ]
+      },
+      {
+        "points": [
+          3096,
+          1572,
+          3096,
+          1636
+        ]
+      },
+      {
+        "points": [
+          2955,
+          1636,
+          2955,
+          1575
+        ]
+      },
+      {
+        "points": [
+          3159,
+          1332,
+          3160,
+          1404
+        ]
+      },
+      {
+        "points": [
+          3078,
+          1332,
+          3160,
+          1335
+        ]
+      },
+      {
+        "points": [
+          2892,
+          1334,
+          2972,
+          1335
+        ]
+      },
+      {
+        "points": [
+          3009,
+          1222,
+          2955,
+          1266
+        ]
+      },
+      {
+        "points": [
+          3038,
+          1222,
+          3098,
+          1268
+        ]
+      },
+      {
+        "points": [
+          3039,
+          1680,
+          3098,
+          1638
+        ]
+      },
+      {
+        "points": [
+          3009,
+          1680,
+          2954,
+          1638
+        ]
+      }
+    ],
+    "Reactor 1": [
+      {
+        "points": [
+          1786,
+          1569,
+          1785,
+          1332
+        ]
+      },
+      {
+        "points": [
+          1745,
+          1756,
+          1910,
+          1756
+        ]
+      },
+      {
+        "points": [
+          1790,
+          1570,
+          1870,
+          1570
+        ]
+      },
+      {
+        "points": [
+          1976,
+          1570,
+          2055,
+          1570
+        ]
+      },
+      {
+        "points": [
+          1974,
+          1334,
+          2054,
+          1334
+        ]
+      },
+      {
+        "points": [
+          1992,
+          1638,
+          1992,
+          1575
+        ]
+      },
+      {
+        "points": [
+          1785,
+          1334,
+          1870,
+          1335
+        ]
+      },
+      {
+        "points": [
+          1851,
+          1334,
+          1852,
+          1268
+        ]
+      },
+      {
+        "points": [
+          2056,
+          1404,
+          2056,
+          1336
+        ]
+      },
+      {
+        "points": [
+          1992,
+          1330,
+          1992,
+          1268
+        ]
+      },
+      {
+        "points": [
+          1852,
+          1575,
+          1852,
+          1638
+        ]
+      },
+      {
+        "points": [
+          1935,
+          1221,
+          1994,
+          1268
+        ]
+      },
+      {
+        "points": [
+          1906,
+          1222,
+          1851,
+          1268
+        ]
+      },
+      {
+        "points": [
+          1936,
+          1680,
+          1992,
+          1640
+        ]
+      },
+      {
+        "points": [
+          1906,
+          1680,
+          1852,
+          1640
+        ]
+      }
+    ],
+    "ANALYTICS 1-1-150 B": [
+      {
+        "points": [
+          3651,
+          585,
+          4042,
+          585
+        ]
+      }
+    ],
+    "REACTOR FEED BYPASS TO FE -1205 1-1-140": [
+      {
+        "points": [
+          3646,
+          459,
+          4032,
+          458
+        ]
+      }
+    ],
+    "REACTOR FEED HEADER 1-1-120": [
+      {
+        "points": [
+          3650,
+          488,
+          474,
+          488
+        ]
+      }
+    ]
+  },
+  "truth": {
+    "image": "pid-images/pid18.png",
+    "image_width": 5100,
+    "image_height": 2920,
+    "derived_from": "connectivity_graph 18.json",
+    "verified_by": null,
+    "note": "Derived automatically; provenance of the source graph is unrecorded. Verify tags and connections against the drawing before trusting scores."
+  }
+}

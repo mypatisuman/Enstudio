@@ -1,0 +1,441 @@
+{
+  "suite_name": "solution_agent_basic_v1",
+  "agent_type": "solution",
+  "version": "1.0",
+  "description": "Solution agent benchmark suite \u2013 10 test cases progressing from simple to complex. Covers: single instruments, multi-instrument, modification, standards toggle ON/OFF, ATEX/hazardous area, multi-category with accessories, and clarification flows. Every test records intent, deep instrument analysis steps, response, tokens, cost, and execution time end-to-end.",
+  "tags": [
+    "solution",
+    "v1",
+    "instruments",
+    "standards",
+    "progression"
+  ],
+  "test_cases": [
+    {
+      "test_id": "solution_001",
+      "name": "Simple \u2013 Single Pressure Transmitter (Standards OFF)",
+      "complexity": "simple",
+      "description": "Baseline case. One instrument type with minimal specs. Standards toggle is OFF. Validates basic requirements intent, deep analysis pipeline, and instrument identification.",
+      "input": {
+        "user_query": "I need 2 pressure transmitters for a natural gas pipeline, range 0-100 bar, 4-20mA output",
+        "session_id": "bench_sol_001",
+        "user_id": 1,
+        "current_instruments": [],
+        "current_accessories": [],
+        "skip_standards": true
+      },
+      "expected_behavior": {
+        "intent": "requirements",
+        "min_solutions_count": 1,
+        "min_response_length": 80,
+        "should_contain_keywords": [
+          "pressure",
+          "transmitter"
+        ],
+        "agent_path_contains": [
+          "project_intent",
+          "analyze_query_agent"
+        ],
+        "max_llm_calls": 8,
+        "max_tokens": 1000000,
+        "max_response_time_ms": 3000000
+      },
+      "tags": [
+        "pressure",
+        "requirements",
+        "simple",
+        "standards-off"
+      ]
+    },
+    {
+      "test_id": "solution_002",
+      "name": "Simple \u2013 Temperature Sensor with Process Specs (Standards OFF)",
+      "complexity": "simple",
+      "description": "Single temperature sensor with process-specific constraints (high temp, NPT connection, HART). Standards toggle is OFF. Validates that deep analysis correctly extracts high-temperature specs.",
+      "input": {
+        "user_query": "We need temperature sensors for a steam heat exchanger. Operating range 150-350\u00b0C, process connection 1/2 inch NPT, 4-20mA HART output, stainless steel wetted parts, quantity 4",
+        "session_id": "bench_sol_002",
+        "user_id": 1,
+        "current_instruments": [],
+        "current_accessories": [],
+        "skip_standards": true
+      },
+      "expected_behavior": {
+        "intent": "requirements",
+        "min_solutions_count": 1,
+        "min_response_length": 80,
+        "should_contain_keywords": [
+          "temperature"
+        ],
+        "agent_path_contains": [
+          "project_intent",
+          "analyze_query_agent"
+        ],
+        "max_llm_calls": 8,
+        "max_tokens": 1000000,
+        "max_response_time_ms": 3000000
+      },
+      "tags": [
+        "temperature",
+        "requirements",
+        "simple",
+        "standards-off"
+      ]
+    },
+    {
+      "test_id": "solution_003",
+      "name": "Simple-Medium \u2013 Two Instrument Types (Standards OFF)",
+      "complexity": "simple_medium",
+      "description": "Two different instrument categories in one request. Validates that the deep analysis sub-agent handles dual product categories and returns separate instrument objects for each.",
+      "input": {
+        "user_query": "For our compressor skid I need: (1) pressure transmitters, range 0-50 bar, flanged connection; (2) vibration sensors for bearing monitoring, 4-20mA output. Both for Zone 2 area.",
+        "session_id": "bench_sol_003",
+        "user_id": 1,
+        "current_instruments": [],
+        "current_accessories": [],
+        "skip_standards": true
+      },
+      "expected_behavior": {
+        "intent": "requirements",
+        "min_solutions_count": 2,
+        "min_response_length": 100,
+        "should_contain_keywords": [
+          "pressure"
+        ],
+        "agent_path_contains": [
+          "project_intent",
+          "analyze_query_agent"
+        ],
+        "max_llm_calls": 10,
+        "max_tokens": 1000000,
+        "max_response_time_ms": 3000000
+      },
+      "tags": [
+        "multi-instrument",
+        "requirements",
+        "simple_medium",
+        "standards-off"
+      ]
+    },
+    {
+      "test_id": "solution_004",
+      "name": "Simple \u2013 Modification: Quantity and Range Update (Standards OFF)",
+      "complexity": "simple",
+      "description": "Modification scenario with existing instrument in state. Validates that project_intent classifies as 'modification', triggers the modify_instruments node (NOT identify_instruments), and skips the deep analysis pipeline.",
+      "input": {
+        "user_query": "Please update the pressure transmitter quantity to 5 units and change the measurement range to 0-200 bar",
+        "session_id": "bench_sol_004",
+        "user_id": 1,
+        "current_instruments": [
+          {
+            "name": "Pressure Transmitter",
+            "category": "pressure_transmitter",
+            "quantity": 2,
+            "vendor": "ABB",
+            "specs": {
+              "range": "0-100 bar",
+              "output": "4-20mA",
+              "connection": "1/2 inch NPT"
+            }
+          }
+        ],
+        "current_accessories": [],
+        "skip_standards": true
+      },
+      "expected_behavior": {
+        "intent": "modification",
+        "min_solutions_count": 1,
+        "min_response_length": 50,
+        "agent_path_contains": [
+          "project_intent",
+          "modification"
+        ],
+        "max_llm_calls": 5,
+        "max_tokens": 1000000,
+        "max_response_time_ms": 3000000
+      },
+      "tags": [
+        "modification",
+        "simple",
+        "standards-off"
+      ]
+    },
+    {
+      "test_id": "solution_005",
+      "name": "Somewhat Complete \u2013 Level Transmitters with Standards ON",
+      "complexity": "somewhat_complete",
+      "description": "Level transmitter requirements with standards toggle ON. Validates that the apply_standards node is reached in agent_path. No user_id means standards gracefully skip (no documents uploaded), but the node must still execute.",
+      "input": {
+        "user_query": "I need guided-wave radar level transmitters for chemical dosing tanks, measurement range 0-5 metres, PTFE-lined probe, 4-20mA HART output, flanged process connection DN50, ATEX zone 2",
+        "session_id": "bench_sol_005",
+        "user_id": 1,
+        "current_instruments": [],
+        "current_accessories": [],
+        "skip_standards": false
+      },
+      "expected_behavior": {
+        "intent": "requirements",
+        "min_solutions_count": 1,
+        "min_response_length": 100,
+        "should_contain_keywords": [
+          "level"
+        ],
+        "agent_path_contains": [
+          "project_intent",
+          "analyze_query_agent",
+          "expansion_agent"
+        ],
+        "standards_applied": true,
+        "max_llm_calls": 10,
+        "max_tokens": 1000000,
+        "max_response_time_ms": 3000000
+      },
+      "tags": [
+        "level",
+        "requirements",
+        "somewhat_complete",
+        "standards-on"
+      ]
+    },
+    {
+      "test_id": "solution_006",
+      "name": "Medium \u2013 Three-Category Water Treatment Plant (Standards OFF)",
+      "complexity": "medium",
+      "description": "Full water treatment plant instrument request: three instrument types with independent specs. Validates multi-category deep analysis, accessory identification, and structured multi-instrument response.",
+      "input": {
+        "user_query": "For our new water treatment facility we require: (1) electromagnetic flow meters for DN80 pipes, water service, 4-20mA + Modbus RTU; (2) differential pressure transmitters for filter monitoring, 0-500 mbar range; (3) pH analysers for treated water monitoring, inline insertion type, 4-20mA output. Please identify all instruments.",
+        "session_id": "bench_sol_006",
+        "user_id": 1,
+        "current_instruments": [],
+        "current_accessories": [],
+        "skip_standards": true
+      },
+      "expected_behavior": {
+        "intent": "requirements",
+        "min_solutions_count": 2,
+        "min_response_length": 150,
+        "should_contain_keywords": [
+          "flow"
+        ],
+        "agent_path_contains": [
+          "project_intent",
+          "analyze_query_agent"
+        ],
+        "max_llm_calls": 12,
+        "max_tokens": 1000000,
+        "max_response_time_ms": 3000000
+      },
+      "tags": [
+        "multi-instrument",
+        "requirements",
+        "medium",
+        "standards-off"
+      ]
+    },
+    {
+      "test_id": "solution_007",
+      "name": "Medium \u2013 Modification of Multiple Instruments (Standards OFF)",
+      "complexity": "medium",
+      "description": "Modification with two existing instruments. Tests that the agent correctly modifies both instruments, adds a new accessory, and returns all instruments with correct updated specs.",
+      "input": {
+        "user_query": "Change the flow meter output to FOUNDATION Fieldbus and update the pressure transmitter to explosion-proof housing. Also add a junction box for both instruments.",
+        "session_id": "bench_sol_007",
+        "user_id": 1,
+        "current_instruments": [
+          {
+            "name": "Electromagnetic Flow Meter",
+            "category": "flow_meter",
+            "quantity": 3,
+            "vendor": "Endress+Hauser",
+            "specs": {
+              "size": "DN80",
+              "output": "4-20mA",
+              "lining": "PTFE"
+            }
+          },
+          {
+            "name": "Pressure Transmitter",
+            "category": "pressure_transmitter",
+            "quantity": 5,
+            "vendor": "Emerson",
+            "specs": {
+              "range": "0-16 bar",
+              "output": "4-20mA HART",
+              "housing": "standard"
+            }
+          }
+        ],
+        "current_accessories": [],
+        "skip_standards": true
+      },
+      "expected_behavior": {
+        "intent": "modification",
+        "min_solutions_count": 1,
+        "min_response_length": 80,
+        "agent_path_contains": [
+          "project_intent",
+          "modification"
+        ],
+        "max_llm_calls": 6,
+        "max_tokens": 1000000,
+        "max_response_time_ms": 3000000
+      },
+      "tags": [
+        "modification",
+        "medium",
+        "standards-off"
+      ]
+    },
+    {
+      "test_id": "solution_008",
+      "name": "Medium-Complex \u2013 ATEX Refinery with Standards ON",
+      "complexity": "medium_complex",
+      "description": "Comprehensive refinery instrumentation in a hazardous area with standards toggle ON. Tests deep analysis for hazardous-area specs (ATEX, IECEx), multi-instrument identification, and the standards node being reached in agent_path.",
+      "input": {
+        "user_query": "For a crude oil processing unit in ATEX Zone 1 (IIB T4 gas group): we need pressure transmitters (0-400 bar), temperature transmitters (0-250\u00b0C), and flow meters (crude oil service, DN100, mass flow type). All instruments must be SIL 2 rated, with 4-20mA HART output and stainless steel wetted parts. Provide 2 of each.",
+        "session_id": "bench_sol_008",
+        "user_id": 1,
+        "current_instruments": [],
+        "current_accessories": [],
+        "skip_standards": false
+      },
+      "expected_behavior": {
+        "intent": "requirements",
+        "min_solutions_count": 2,
+        "min_response_length": 150,
+        "should_contain_keywords": [
+          "pressure",
+          "ATEX"
+        ],
+        "agent_path_contains": [
+          "project_intent",
+          "analyze_query_agent",
+          "expansion_agent"
+        ],
+        "standards_applied": true,
+        "max_llm_calls": 12,
+        "max_tokens": 1000000,
+        "max_response_time_ms": 3000000
+      },
+      "tags": [
+        "ATEX",
+        "refinery",
+        "multi-instrument",
+        "medium_complex",
+        "standards-on",
+        "SIL"
+      ]
+    },
+    {
+      "test_id": "solution_009",
+      "name": "Complex \u2013 Full Offshore Platform Instrumentation (Standards ON)",
+      "complexity": "complex",
+      "description": "Complex multi-instrument request for offshore oil & gas. Six instrument categories including safety valves, analysers, and gas detectors. Standards toggle ON. Tests full deep analysis pipeline across maximum instrument categories.",
+      "input": {
+        "user_query": "For an offshore gas platform topsides I require the following instruments: (1) high-pressure differential pressure transmitters for wellhead monitoring (0-700 bar, Hastelloy wetted parts), (2) subsea-rated temperature transmitters for subsea Christmas tree (-10 to 120\u00b0C, ROV-retrievable), (3) vortex flow meters for gas export metering (DN200, 40 barg, custody transfer accuracy), (4) guided wave radar level transmitters for separators (flange mount, 3m range, ATEX Zone 1), (5) hydrogen sulphide gas detectors for safety system (0-100 ppm, SIL 2 certified), (6) safety relief valves (spring type, 150 barg set pressure). All must comply with NORSOK and API standards.",
+        "session_id": "bench_sol_009",
+        "user_id": 1,
+        "current_instruments": [],
+        "current_accessories": [],
+        "skip_standards": false
+      },
+      "expected_behavior": {
+        "intent": "requirements",
+        "min_solutions_count": 3,
+        "min_response_length": 200,
+        "should_contain_keywords": [
+          "pressure",
+          "flow"
+        ],
+        "agent_path_contains": [
+          "project_intent",
+          "analyze_query_agent",
+          "expansion_agent"
+        ],
+        "standards_applied": true,
+        "max_llm_calls": 14,
+        "max_tokens": 1000000,
+        "max_response_time_ms": 3000000
+      },
+      "tags": [
+        "offshore",
+        "multi-instrument",
+        "complex",
+        "standards-on",
+        "NORSOK",
+        "API"
+      ]
+    },
+    {
+      "test_id": "solution_010",
+      "name": "Very Complex \u2013 Full Chemical Plant with Modification + Standards ON",
+      "complexity": "very_complex",
+      "description": "Highest-complexity test combining a new requirements request AND a modification in the same session (two-turn). Starts with new instruments, then modifies. Standards toggle ON throughout. Tests the full workflow across both 'requirements' and 'modification' intents with standards.",
+      "input": {
+        "user_query": "Please upgrade all our existing instruments to SIL 2 rating, change the pressure transmitter output from 4-20mA to FOUNDATION Fieldbus, update the flow meter size from DN80 to DN100, and add HART multiplexer accessories for remote access. Also add 2 additional temperature transmitters for the reactor outlets at 300\u00b0C.",
+        "session_id": "bench_sol_010",
+        "user_id": 1,
+        "current_instruments": [
+          {
+            "name": "Pressure Transmitter",
+            "category": "pressure_transmitter",
+            "quantity": 8,
+            "vendor": "Yokogawa",
+            "specs": {
+              "range": "0-60 bar",
+              "output": "4-20mA HART",
+              "sil_rating": "SIL 1",
+              "housing": "standard",
+              "connection": "1/2 inch NPT"
+            }
+          },
+          {
+            "name": "Coriolis Flow Meter",
+            "category": "flow_meter",
+            "quantity": 4,
+            "vendor": "Endress+Hauser",
+            "specs": {
+              "size": "DN80",
+              "fluid": "chemical process",
+              "output": "4-20mA HART",
+              "sil_rating": "not rated"
+            }
+          },
+          {
+            "name": "Temperature Transmitter",
+            "category": "temperature_transmitter",
+            "quantity": 6,
+            "vendor": "ABB",
+            "specs": {
+              "range": "0-200\u00b0C",
+              "output": "4-20mA",
+              "thermowell": "stainless steel"
+            }
+          }
+        ],
+        "current_accessories": [],
+        "skip_standards": false
+      },
+      "expected_behavior": {
+        "intent": "modification",
+        "min_solutions_count": 1,
+        "min_response_length": 100,
+        "agent_path_contains": [
+          "project_intent",
+          "modification"
+        ],
+        "max_llm_calls": 12,
+        "max_tokens": 1000000,
+        "max_response_time_ms": 3000000
+      },
+      "tags": [
+        "modification",
+        "multi-instrument",
+        "very_complex",
+        "standards-on",
+        "SIL",
+        "chemical"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-10-17T12:29:15.262012+00:00",
+  "pid": "bv",
+  "agent_type": "general",
+  "user_message": "",
+  "accuracy_score": 66.7,
+  "rating": "FAIR",
+  "metrics": {
+    "total_nodes": 2,
+    "total_edges": 1,
+    "total_loops": 0,
+    "connectivity_score": 100.0,
+    "tag_compliance_score": 50.0,
+    "loop_completeness_score": null,
+    "hierarchy_score": 0.0
+  },
+  "issues": [
+    "1 non-standard or unclassified tag(s): ['ZZZ-10']",
+    "2 node(s) not yet mapped into a plant subsystem."
+  ],
+  "prompt_refinement_hints": [
+    "DIAGNOSTIC FOCUS - TAG OCR CONVENTIONS: Non-standard tags detected (['ZZZ-10']). Ensure ISA-5.1 standard tagging: 2-3 letter variable+function code followed by loop number (e.g. PT-101, PIC-101, PV-101)."
+  ],
+  "metadata": {}
+}

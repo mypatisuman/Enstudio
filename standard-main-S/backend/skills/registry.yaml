@@ -1,0 +1,108 @@
+# PlantSketch Skill Registry
+# Single source of truth for all skill files and their relationships
+# Load order matters — later files override earlier ones
+
+version: 2
+description: PlantSketch P&ID digitisation skill set
+
+skills:
+
+  # ── CORE (universal, ISA/Liptak/Perry's based) ──────────
+
+  - id: pid_rules
+    path: core/pid-development-rules.md
+    type: rules
+    priority: 1
+    provides:
+      - symbol_sizes          # Part 4.5, Part 5 YAML
+      - layout_rules          # Part 5 YAML (machine-readable)
+      - instrument_rules      # Part 3
+      - equipment_rules       # Part 2
+      - rendering_colors      # Part 4.4
+    tags: [universal, ISA-5.1, layout, rendering]
+
+  - id: digitization_framework
+    path: core/pid-digitization-framework.md
+    type: framework
+    priority: 1
+    depends_on: [pid_rules]
+    provides:
+      - classification_logic  # Section 4
+      - connection_framework  # Section 5
+      - layout_algorithm      # Section 6
+      - quality_rules         # Section 3
+      - node_sizing           # Section 7
+    tags: [universal, extraction, classification]
+
+  - id: pid_framework
+    path: core/pid-framework.md
+    type: rendering
+    priority: 1
+    depends_on: [pid_rules, digitization_framework]
+    provides:
+      - layer_visibility      # Sections 4-6
+      - view_presets          # Section 6
+      - unconnected_rules     # Section 4
+    tags: [universal, rendering, editor]
+
+  - id: pid_canvas_rendering
+    path: core/pid-canvas-rendering.md
+    type: rendering
+    priority: 2
+    depends_on: [pid_rules, digitization_framework]
+    provides:
+      - layer_visibility
+      - symbol_sizes
+      - color_standards
+      - x_ordering_rules
+      - y_band_assignments
+      - edge_rendering
+      - svg_export_defaults
+      - industrial_aesthetic
+    tags: [universal, rendering, canvas, svg]
+
+  # ── RECONSTRUCTION (process flow inference) ─────────────
+
+  - id: process_reconstruction
+    path: reconstruction/process-reconstruction-v2.md
+    type: reconstruction
+    priority: 2
+    depends_on: [pid_rules, digitization_framework]
+    supersedes: [reconstruction/process-reconstruction.md]
+    provides:
+      - flow_patterns         # GAP 1 — equipment sequences
+      - recycle_detection     # GAP 2
+      - utility_separation    # GAP 3
+      - dual_hx_handling      # GAP 4
+      - safety_connections    # GAP 5
+      - instrument_association # GAP 6
+      - tag_cleanup           # GAP 7
+      - reconstruction_prompt # Prompt template
+    tags: [universal, reconstruction, inference]
+
+  # ── COMPANY CONVENTIONS (overrides core) ────────────────
+
+  - id: company_template
+    path: company/template.md
+    type: template
+    priority: 0
+    provides:
+      - convention_schema     # What a conventions file must define
+    tags: [template]
+
+  - id: airco_conventions
+    path: company/AIRCO/conventions.md
+    type: company_convention
+    priority: 3              # Highest — overrides everything
+    depends_on: [pid_rules, digitization_framework]
+    overrides: [pid_rules]   # Tag prefixes, valve classification
+    company: AIRCO
+    provides:
+      - tag_prefixes          # Section 1
+      - valve_classification  # Section 2
+      - instrument_codes      # Section 3
+      - numbering_convention  # Section 4
+      - drawing_numbering     # Section 5
+      - rendering_preferences # Section 8
+      - default_assumptions   # Section 10
+    tags: [company, AIRCO]

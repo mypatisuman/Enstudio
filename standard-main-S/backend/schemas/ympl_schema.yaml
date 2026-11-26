@@ -1,0 +1,56 @@
+version: "1.0"
+target: ympl_convert
+description: "YMPL enrichment rules for enableSim — topology only, Perry defaults by enable build"
+
+port_rules:
+  heat_exchanger:
+    default_in: shell_inlet
+    default_out: tube_outlet
+  reactor:
+    default_in: inlet
+    default_out: outlet
+  vessel:
+    default_in: inlet
+    default_liquid_out: liquid_outlet
+    default_vapor_out: vapor_outlet
+  separator:
+    default_in: inlet
+    default_liquid_out: liquid_outlet
+    default_vapor_out: vapor_outlet
+  pump:
+    default_in: suction
+    default_out: discharge
+  compressor:
+    default_in: suction
+    default_out: discharge
+  column:
+    default_in: feed
+    default_vapor_out: overhead
+    default_liquid_out: bottoms
+  absorber:
+    default_in: gas_inlet
+    default_out: gas_outlet
+  default:
+    default_in: inlet
+    default_out: outlet
+
+node_position:
+  description: "x, y are canvas pixel coordinates (1400x800 canvas), drag-adjusted by the engineer"
+  fields: [x, y]
+
+instrument_defaults:
+  state_variable: null
+  state_index: null
+  fail_mode: last_value
+
+do_not_write:
+  - enable.matrix
+  - enable.equipment.UA
+  - enable.equipment.k0
+  - enable.equipment.Ea
+  - enable.equipment.dH
+  - enable.equipment.UA_j
+  - alarm_bounds
+  - eigenvalues
+  - M_ol
+  - M_cl

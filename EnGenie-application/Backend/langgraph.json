@@ -1,0 +1,14 @@
+{
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "router": "./domain/orchestrator/workflows/router_workflow.py:router_classifier_agent",
+    "solution": "./domain/solution/workflows/solution_workflow.py:create_solution_agent",
+    "chat": "./domain/chat/workflows/chat_workflow.py:create_chat_workflow",
+    "search": "./domain/search/workflows/search_workflow.py:create_search_workflow",
+    "extraction": "./domain/extraction/workflows/extraction_workflow.py:build_extraction_workflow",
+    "describe": "./domain/describe/workflows/describe_workflow.py:create_describe_workflow"
+  },
+  "env": ".env"
+}

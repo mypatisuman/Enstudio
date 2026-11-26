@@ -1,0 +1,71 @@
+__pycache__/
+*.pyc
+
+# CSV, Excel, and PDF files
+*.csv
+*.xlsx
+*.xls
+*.pdf
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+*.txt
+
+# Credentials & secrets — NEVER commit these
+*.json.key
+vertex-ai-key.json
+*-key.json
+*.pem
+*.p12
+*.pfx
+.env
+.env.*
+!.env.example
+Backend/local.settings.json
+
+# Temporary diagnostic / one-off scripts
+Backend/check_asset.py
+Backend/check_asset_broad.py
+Backend/list_standards.py
+Backend/list_standards_clean.py
+Backend/read_frontend.py
+Backend/tmp_check_serial.py
+Backend/tmp_check_serial_v2.py
+scripts/
+tests/
+pipeline/
+simulator/
+Backend/logs/
+
+# Test reports
+test-reports/
+
+# Compressed artifacts
+*.zip
+
+# Flask session files
+Backend/flask_session/
+
+scripts/
+log_watcher.py 
+Backend/scripts
+
+log_watcher.py
+
+# Session logs
+Backend/log_session_20260709_104102/
+
+studio
+
+standard-main-S
+.claude/
+*.timestamp-*.mjs
