@@ -1,8 +1,0 @@
-{
-  "include": ["."],
-  "extraPaths": ["."],
-  "pythonVersion": "3.13",
-  "pythonPlatform": "Windows",
-  "reportMissingImports": "warning",
-  "reportMissingModuleSource": "none"
-}

@@ -1,5 +1,6 @@
 # Root ignores for Enstudio workspace
 .claude/
+EnGenie-application/
 
 # Local SQLite databases & journals
 *.db
@@ -8,5 +9,4 @@
 *.db-shm
 
 # Runtime EngineeringHub session data
-EnGenie-application/EngineeringHub/
 standard-main-S/EngineeringHub/
